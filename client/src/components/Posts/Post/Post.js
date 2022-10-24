@@ -1,10 +1,5 @@
 import React from 'react';
-
-<<<<<<< Updated upstream
-const Post = () => {
-    return(
-        <h1>Post</h1>
-=======
+import { Card, CardActions, CardContent, CardMedia, Button, Typography} from "@material-ui/core"
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import { mergeClasses } from '@material-ui/styles';
 import useStyles from './styles';
@@ -35,7 +30,6 @@ const Post = ({ post }) => {
             
             
         </Card>
->>>>>>> Stashed changes
     );
 };
 
