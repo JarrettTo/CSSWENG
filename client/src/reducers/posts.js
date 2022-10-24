@@ -3,7 +3,7 @@ export default (posts=[], action) => { //reducers take in a state and an action 
         case 'FETCH_ALL':
             return action.payload; //simply return the posts carried by action.data variable, refer to action/posts.js
         case 'CREATE':
-            return posts;
+            return [...posts, action.payload];
         default:
             return posts;
     }

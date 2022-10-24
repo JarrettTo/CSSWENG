@@ -12,7 +12,9 @@ mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology : t
     .catch((error)=>console.log(error.message)); 
 
  const app = express();
- app.use('/posts', postRoutes) //adds a /posts to the url, meaning to access localhost:5000/, u have to now do localhost:5000/posts
+ app.use(cors());
+ 
  app.use(bodyParser.json({limit: "30mb", extended: true}));
  app.use(bodyParser.urlencoded({limit : "30mb", extended: true}));
- app.use(cors());
+ app.use('/posts', postRoutes) //adds a /posts to the url, meaning to access localhost:5000/, u have to now do localhost:5000/posts
+ 

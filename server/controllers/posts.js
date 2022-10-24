@@ -10,6 +10,7 @@ export const getPosts = async (req, res)=>{      //function for getting posts
 }
 export const createPost = async (req, res) =>{
     const post = req.body;
+    console.log("WHY"+post.title);    
     const newPost = new PostMessage(post);          //creates a new postmessage
     try{
         await newPost.save();
@@ -17,5 +18,5 @@ export const createPost = async (req, res) =>{
     } catch(error){
         res.status(409).json({message:error.message});
     }
-    res.send('Post');
+    
 }
