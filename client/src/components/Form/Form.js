@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import FileBase from 'react-file-base64';
 import { TextField, Button, Typography, Paper } from '@material-ui/core';
 import useStyles from './styles';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createPost } from '../../actions/posts.js';
 const Form = () => {
+    var post;
     const [postData, setPostData] = useState({      //initializes postData to the ff values. we set "setPostData" as the setter function for the state variable "postData"
         title: '',
         date: '',
@@ -18,13 +19,16 @@ const Form = () => {
         selectedFile: '',
 
     })
+ 
+      
     const classes=useStyles();
     const dispatch=useDispatch();               //allows us to dispatch an action
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("SHEESH:"+ postData.title);
         console.log("SHEESH:"+ postData.description);                    //prevents browser from reloading
-        dispatch(createPost(postData));             //dispatches our createPost function from our actions with the parameter of our new object created by filling up the form
+        await dispatch(createPost(postData));             //dispatches our createPost function from our actions with the parameter of our new object created by filling up the form
+          
     }
     const clear = () =>{
 
@@ -47,6 +51,7 @@ const Form = () => {
                 <Button className={classes.buttonSubmit} variant="container" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
             </form>
         </Paper>
+        
     );
 }
 
