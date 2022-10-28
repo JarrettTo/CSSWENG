@@ -4,7 +4,7 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import { mergeClasses } from '@material-ui/styles';
 import useStyles from './styles';
 import { useHistory } from 'react-router-dom';
-const Post = ({ post }) => {
+const Post = ({ post, setCurrentID }) => {
     const classes = useStyles();
     const history = useHistory();
 
@@ -12,6 +12,7 @@ const Post = ({ post }) => {
 
     return(
         <Card className={classes.card}>
+            
             <ButtonBase className={classes.cardAction} onClick={openPost} >
                 <CardMedia className={classes.media} image={postMessage.selectedFile} title={Post.title} />
                 <div className={classes.overlay}>
@@ -20,11 +21,7 @@ const Post = ({ post }) => {
                     <Typography variant='body2'>{post.date}</Typography>
 
                 </div>
-                <div className={classes.overlay2}>
-                    <Button style={{color: 'white'}} size="small" onClick={() => {}}>
-                        <MoreHorizIcon fontSize="default" />
-                    </Button>
-                </div>
+                
                 <div className={classes.details}>
                     <Typography variant="body2" color="textSecondary">{post.tags}</Typography>
                     
@@ -35,6 +32,11 @@ const Post = ({ post }) => {
                 </CardContent>
             
             </ButtonBase>
+            <div className={classes.overlay2}>
+                    <Button style={{color: 'black'}} size="small" onClick={() => setCurrentID(post._id)}>
+                        <MoreHorizIcon fontSize="default" />
+                    </Button>
+            </div>
         </Card>
     );
 };
