@@ -12,7 +12,7 @@ const Post = ({ post }) => {
 
     return(
         <Card className={classes.card}>
-            
+            <ButtonBase className={classes.cardAction} onClick={openPost} >
                 <CardMedia className={classes.media} image={postMessage.selectedFile} title={Post.title} />
                 <div className={classes.overlay}>
                     <Typography variant='h6'>{post.title}</Typography>
@@ -34,7 +34,7 @@ const Post = ({ post }) => {
                 <Typography className={classes.title} variant="body1" gutterBottom>{post.price}</Typography>
                 </CardContent>
             
-           
+            </ButtonBase>
         </Card>
     );
 };

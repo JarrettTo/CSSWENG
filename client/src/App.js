@@ -6,6 +6,7 @@ import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
 import { getPosts } from './actions/posts';
 
+import PostDetails from './components/PostDetails/PostDetails'
 const App = () => {
     const dispatch=useDispatch();   
     
@@ -15,7 +16,7 @@ const App = () => {
                 <Navbar />
                 <Switch>
                     <Route path='/' exact component={Home} />
-
+                    <Route path="/posts/:id" component={PostDetails} />
                 </Switch>
                 
             </Container>
