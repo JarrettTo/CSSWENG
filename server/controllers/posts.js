@@ -11,7 +11,7 @@ export const getPosts = async (req, res)=>{      //function for getting posts
 }
 export const createPost = async (req, res) =>{
     const post = req.body;
-    console.log("WHY"+post.title);    
+  
     const newPost = new PostMessage(post);          //creates a new postmessage
     try{
         await newPost.save();
@@ -22,11 +22,22 @@ export const createPost = async (req, res) =>{
     
 }
 export const updatePost = async (req, res) =>{
+    const {id: _id} = req.params;
+    const post = req.body;
+    if(!mongoose.isValidObjectId(_id)) return res(404).send("no post with that id");
+    
+    const updatedPost= await PostMessage.findByIdAndUpdate(_id, {...post, _id}, {new: true});
+    res.json(updatedPost);
+   
+    
+}
+
+export const deletePost = async (req, res) =>{
     const {id} = req.params;
     const post = req.body;
     if(!mongoose.isValidObjectId(id)) return res(404).send("no post with that id");
-    const updatedPost= await PostMessage.findByIdAndUpdate(id, post, {new: true});
-    res.json(updatedPost);
+    const deletedPost= await PostMessage.findByIdAndRemove(id);
+    res.json(deletedPost);
    
     
 }

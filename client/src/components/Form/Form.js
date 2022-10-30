@@ -42,16 +42,31 @@ const Form = ({currentID, setCurrentID}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if(currentID!=null){                    
-            dispatch(updatePost(currentID, postData))
+            dispatch(updatePost(currentID, postData));
+            clear();
         }
         else{
             dispatch(createPost(postData));             //dispatches our createPost function from our actions with the parameter of our new object created by filling up the form
+            clear();
         }
        
           
     }
     const clear = () =>{
-
+        setCurrentID(null)
+        setPostData({      //initializes postData to the ff values. we set "setPostData" as the setter function for the state variable "postData"
+            title: '',
+            date: '',
+            price: '',
+            description: '',
+            creator: '',
+            tags: '',
+            id: '',
+            noOfAttendees: '',
+            maxAttendees: '',
+            selectedFile: '',
+    
+        })
     }
     return(
         <Paper className={classes.paper}>       {/*adds a white bg*/}
@@ -63,7 +78,7 @@ const Form = ({currentID, setCurrentID}) => {
                 <TextField name='date' variant='outlined' label="Date" fullWidth value={postData.date} onChange={(e)=>{setPostData({...postData ,date: e.target.value})}}/>
                 <TextField name='price' variant='outlined' label="Price" fullWidth value={postData.price} onChange={(e)=>{setPostData({...postData ,price: e.target.value})}}/>
                 <TextField name='maxAttendees' variant='outlined' label="Max Attendees" fullWidth value={postData.maxAttendees} onChange={(e)=>{setPostData({...postData ,maxAttendees: e.target.value})}}/>
-                <TextField name='tags' variant='outlined' label="Tags" fullWidth value={postData.tags} onChange={(e)=>{setPostData({...postData ,tags: e.target.value})}}/>
+                <TextField name='tags' variant='outlined' label="Tags" fullWidth value={postData.tags} onChange={(e)=>{setPostData({...postData ,tags: e.target.value.split(',')})}}/>
                 <div className={classes.fileInput}>
                     <FileBase type ="file"multiple={false}onDone={({base64})=> setPostData({...postData, selectedFile: base64})}/>
                 </div>

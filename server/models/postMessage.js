@@ -2,14 +2,14 @@ import mongoose from 'mongoose';
 
 const postSchema = mongoose.Schema({ //schema for shows
     title: String,
-    date: String,
-    price: String,
+    date: Date,
+    price: Number,
     description: String,
     creator: String,
-    tags: String,
+    tags: [String],
     id: String,
-    noOfAttendees: String,
-    maxAttendees: String,
+    noOfAttendees: Number,
+    maxAttendees: Number,
     selectedFile: String,
 });
 
