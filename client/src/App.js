@@ -8,6 +8,7 @@ import Auth from './components/Auth/Auth';
 import { getPosts } from './actions/posts';
 
 import PostDetails from './components/PostDetails/PostDetails'
+import SearchBar from './components/SearchBar/SearchBar';
 const App = () => {
     const dispatch=useDispatch();   
     
@@ -15,6 +16,7 @@ const App = () => {
         <BrowserRouter>
             <Container   maxWidth="lg"> {/*equivalent of a div, lg means large*/} 
                 <Navbar />
+                <SearchBar />
                 <Switch>
                     <Route path='/' exact component={Home} />
                     <Route path="/auth" exact component={Auth} />
