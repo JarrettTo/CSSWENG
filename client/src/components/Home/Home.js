@@ -29,23 +29,23 @@ const Home = () => {
     },[currentID, dispatch])        //the dependency arrays, currentID and dispatch, when changed, trigger the contents of use effect
     //const posts= useSelector((state)=> state.posts);
     //console.log(posts)
-const searchPost = () => {
-    if(search.trim()) {
-        dispatch(getPostsBySearch({ search, tags: tags.join(',') }));
-    } else {
-        history.push('/');
+    const searchPost = () => {
+        if(search.trim() || tags) {
+            dispatch(getPostsBySearch({ search, tags: tags.join(',') }));
+        } else {
+            history.push('/');
+        }
     }
-}
 
-const handleKeyPress = (e) => {
-    if(e.keyCode = 13) { //if pressed enter key
-        searchPost();
+    const handleKeyPress = (e) => {
+        if(e.keyCode = 13) { //if pressed enter key
+            searchPost();
+        }
     }
-}
 
-const handleAdd = (tag) => setTags([ ...tags, tag]);
+    const handleAdd = (tag) => setTags([ ...tags, tag]);
 
-const handleDelete = (tagToDelete => setTags(tags.filter((tag) => tag != tagToDelete)))
+    const handleDelete = (tagToDelete => setTags(tags.filter((tag) => tag != tagToDelete)))
     return(
         <Grow in>
                 <Grid container justify="space-between" alignItems="stretch" spacing={4} className={classes.gridContainer}>
