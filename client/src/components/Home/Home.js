@@ -5,7 +5,7 @@ import Posts from '../Posts/Posts';
 import Form from '../Form/Form';
 import useStyles from './styles';
 import { useDispatch, useSelector } from 'react-redux';
-import {getPosts} from '../../actions/posts';
+import {getPosts, getPostsBySearch} from '../../actions/posts';
 import Pagination from '../Pagination';
 import ChipInput from 'material-ui-chip-input';
 
@@ -22,7 +22,7 @@ const Home = () => {
     const page = query.get('page') || 1;
     const searchQuery = query.get('searchQuery');
     const [search, setSearch] = useState('');
-    const [tags, setTags] = useState([])
+    const [tags, setTags] = useState([]);
 
     useEffect(() => {       //everything called here will get called after the react app is started
         dispatch(getPosts());   //dispatch is used to trigger an action that'll affect our state (check main index.js store variable)
@@ -31,7 +31,7 @@ const Home = () => {
     //console.log(posts)
 const searchPost = () => {
     if(search.trim()) {
-
+        dispatch(getPostsBySearch({ search, tags: tags.join(',') }));
     } else {
         history.push('/');
     }
@@ -39,7 +39,7 @@ const searchPost = () => {
 
 const handleKeyPress = (e) => {
     if(e.keyCode = 13) { //if pressed enter key
-        //
+        searchPost();
     }
 }
 

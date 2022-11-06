@@ -1,5 +1,6 @@
 import PostMessage from '../models/postMessage.js';
 import mongoose from 'mongoose';
+import Post from '../../client/src/components/Posts/Post/Post.js';
 export const getPosts = async (req, res)=>{      //function for getting posts
     try{
         const postMessages= await PostMessage.find();   //looks for all messages with the same model as models/postMessage.js in the database 
@@ -9,6 +10,20 @@ export const getPosts = async (req, res)=>{      //function for getting posts
         res.status(404).json({message:error.message});
     }
 }
+
+export const getPostsBySearch = async (req, res) => {
+    const { searchQuery, tags } = req.query
+    try {
+        const title = new RegExp(searchQuery, 'i');
+
+        const posts = await PostMessage.find({ $or: [ { title }, { tags: { $in: tags.split(',') } } ] });
+
+        res.json({ data: posts });
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+}
+
 export const createPost = async (req, res) =>{
     const post = req.body;
   
