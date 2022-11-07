@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import useStyles from './styles';
 const Posts = ({setCurrentID}) => {
     const posts= useSelector((state)=> state.posts); //gets the posts from the posts.js reducer by extracting it from the store state declared in main index
-    console.log(posts)
+    //console.log(posts)
     const classes = useStyles();
     
    

@@ -6,13 +6,23 @@ export const getPosts = () => async (dispatch)=> {
     try{
         const { data }= await api.fetchPosts();                         //fetch posts from backend or mongodb
         const action = { type: FETCH_ALL, payload: data};                 //type is just a code we can distinguish the action by
-        console.log(data);
+        //console.log(data);
         dispatch(action);                   //replacement of return which is needed cos of async
     } catch (error){
         console.log(error);
     }
   
 }
+
+export const getPostsBySearch = (searchQuery) => async (dispatch) => {
+    try {
+      
+      const { data: { data } } = await api.fetchPostsBySearch(searchQuery);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 export const createPost = (post) => async (dispatch) =>{            //creates a post
     try{
