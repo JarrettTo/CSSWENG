@@ -30,7 +30,7 @@ const Home = () => {
     //const posts= useSelector((state)=> state.posts);
     //console.log(posts)
 const searchPost = () => {
-    if(search.trim()) {
+    if(search.trim() || tags) {
         dispatch(getPostsBySearch({ search, tags: tags.join(',') }));
     } else {
         history.push('/');
@@ -69,7 +69,7 @@ const handleDelete = (tagToDelete => setTags(tags.filter((tag) => tag != tagToDe
                             value={tags}
                             onAdd={handleAdd}
                             onDelete={handleDelete}
-                            label="Search event tag"
+                            label="Search Event Tag (Press Enter)"
                             variant="outlined"
                         />
                         <Button onClick={searchPost} className={classes.searchButton} variant='contained' color="primary">Filter</Button>
