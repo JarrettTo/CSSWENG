@@ -3,6 +3,8 @@ export default (posts=[], action) => { //reducers take in a state and an action 
     switch (action.type){
         case 'FETCH_ALL':
             return action.payload; //simply return the posts carried by action.data variable, refer to action/posts.js. actions.payload is the { data } returned by api.getPosts, so in this case, it is an array of all the posts 
+        case 'FETCH_BY_SEARCH':
+            return action.payload;
         case 'CREATE':
             return [...posts, action.payload];
         case 'UPDATE':
