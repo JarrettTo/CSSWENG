@@ -2,9 +2,9 @@ import * as api from '../api';
 import {FETCH_ALL, FETCH_BY_SEARCH, UPDATE, DELETE, CREATE} from '../constants/actiontypes';
 
 //Action creations are functions that create a function
-export const getPosts = () => async (dispatch)=> {
+export const getPosts = (page) => async (dispatch)=> {
     try{
-        const { data }= await api.fetchPosts();                         //fetch posts from backend or mongodb
+        const { data }= await api.fetchPosts(page);                         //fetch posts from backend or mongodb
         const action = { type: FETCH_ALL, payload: data};                 //type is just a code we can distinguish the action by
         //console.log(data);
         dispatch(action);                   //replacement of return which is needed cos of async

@@ -4,13 +4,13 @@ import Post from './Post/Post.js';
 import { useSelector } from 'react-redux';
 import useStyles from './styles';
 const Posts = ({setCurrentID}) => {
-    const posts= useSelector((state)=> state.posts); //gets the posts from the posts.js reducer by extracting it from the store state declared in main index
+    const { posts }= useSelector((state)=> state.posts); //gets the posts from the posts.js reducer by extracting it from the store state declared in main index
     //console.log(posts)
     const classes = useStyles();
     
    
     return(
-        !posts.length ? <CircularProgress /> : (
+        !posts?.length ? <CircularProgress /> : (
             <Grid className={classes.container} container alignItems="stretch" spacing={3}>
                 {console.log(posts)}
                 
