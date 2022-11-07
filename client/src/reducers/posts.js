@@ -4,7 +4,7 @@ export default (posts=[], action) => { //reducers take in a state and an action 
         case 'FETCH_ALL':
             return action.payload; //simply return the posts carried by action.data variable, refer to action/posts.js. actions.payload is the { data } returned by api.getPosts, so in this case, it is an array of all the posts 
         case 'CREATE':
-            return [...posts, action.payload];
+            return [...posts, action.payload]; //the posts array will be updated with the value I return here
         case 'UPDATE':
             return posts.map((post)=> post._id == action.payload._id ? action.payload : post); //if post id is the same, turn that post into the new updated post. Otherwise, return the same post
         case 'DELETE':

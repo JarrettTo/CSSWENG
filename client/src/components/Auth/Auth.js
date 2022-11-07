@@ -2,15 +2,21 @@ import React, {useState} from 'react';
 import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import useStyles from './styles';
-import  {GoogleLogin} from 'react-google-login';
+import { useHistory } from 'react-router-dom';
+import  {GoogleLogin} from '@react-oauth/google';
+import {GoogleOAuthProvider} from '@react-oauth/google';
+import { useDispatch } from 'react-redux';
 import Icon from './icon';
 import Input from './Input';
+import jwt_decode from "jwt-decode";
 
 const Auth=() => {
     var isSignUp = false;
     const classes = useStyles();
     const [showPassword,setShowPassword]= useState(false);
     const [signUp,setSignUp]= useState(false);
+    const dispatch = useDispatch();
+    const history= useHistory();
     const handleSubmit = () =>{
 
     }
@@ -25,11 +31,20 @@ const Auth=() => {
         setShowPassword(false);
     }
     const googleSuccess = async (res)=>{
-        console.log("res");
+        console.log(res);
+        const result=jwt_decode(res.credential)
+        const tokenID= res?.credential;
 
+
+        try{
+            dispatch({type:'AUTH', data: { result, tokenID}});
+            history.push('/');                  //redirects us to the homepage
+        } catch(error){
+            console.log("error");
+        }
     }
-    const googleFailure =()=>{
-        console.log("L");
+    const googleFailure =(error)=>{
+        console.log(error);
     }
     return(
         <Container component="main" >
@@ -58,26 +73,29 @@ const Auth=() => {
                     </Grid>
                     
                     <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>{isSignUp? 'Sign Up':'Sign In'}</Button>
-                    <GoogleLogin
-                        clientId='387249647738-f58tonsbl58g3n75hh3rt3mqs9bkl0r0.apps.googleusercontent.com'
-                        render={(renderProps)=>(
-                            <Button 
-                                className={classes.googleButton} 
-                                color='primary' 
-                                fullWidth 
-                                onClick={renderProps.onClick} 
-                                disabled = { renderProps.disabled} 
-                                startIcon={<Icon/>} 
-                                variant="contained">
+                    <GoogleOAuthProvider clientId='387249647738-f58tonsbl58g3n75hh3rt3mqs9bkl0r0.apps.googleusercontent.com'>
+                        <GoogleLogin
 
-                            Google Sign In</Button>
-                            )
+                            render={(renderProps)=>(
+                                <Button 
+                                    className={classes.googleButton} 
+                                    color='primary' 
+                                    fullWidth 
+                                    onClick={renderProps.onClick} 
+                                    disabled = { renderProps.disabled} 
+                                    startIcon={<Icon/>} 
+                                    variant="contained">
 
-                        }
-                        onSuccess={googleSuccess}
-                        onFailure={googleFailure}
-                        cookiePolicy="single_host_origin"
-                    />
+                                Google Sign In</Button>
+                                )
+
+                            }
+                            onSuccess={googleSuccess}
+                            onFailure={googleFailure}
+                            cookiePolicy="single_host_origin"
+                        />
+                    </GoogleOAuthProvider>
+                    
                     <Grid container justifyContent="flex-end">
                         <Grid item>
                             <Button onClick={switchMode}>

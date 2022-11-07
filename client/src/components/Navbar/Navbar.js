@@ -1,14 +1,32 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, {useEffect} from 'react';
+import * as actionType from '../../constants/actiontypes';
+import { Link, useHistory, useLocation} from 'react-router-dom';
 import { AppBar, Typography, Toolbar, Avatar, Button } from '@material-ui/core';
-
+import { useDispatch } from 'react-redux';
 import useStyles from './styles';
 import caologo from '../../images/caologo.jpg';
+import { useState } from 'react';
 
 const Navbar = () => {
+    const dispatch = useDispatch();
+    const history=useHistory();
     const classes = useStyles();
-    const user=null;
+    const [user,setUser]=useState(JSON.parse(localStorage.getItem('profile')));
+    const location =useLocation();
+    console.log(user);
+   useEffect(()=>{
+        const token=user?.tokenID;
     
+        setUser(JSON.parse(localStorage.getItem('profile')));
+
+    },[location])
+    const logout = ()=>{
+        dispatch({ type: actionType.LOGOUT });
+
+        history.push('/auth');
+
+        setUser(null);
+    }
     return(
         <AppBar position="static" color="inherit" className={classes.appBar}> {/*appbar is the one on top that desnt move even when ure scrolling*/}
             <div className={classes.brandContainer}>
