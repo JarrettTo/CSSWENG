@@ -47,5 +47,23 @@ def test_addEvent(url): #02 - Add Event
   driver.find_element(By.NAME, "tags").send_keys("test, tag")
   driver.find_element(By.CSS_SELECTOR, ".MuiButton-sizeLarge > .MuiButton-label").click()
 
+def test_searchEvent(url):
+  #Search for Event using Event Name
+  driver.get("http://localhost:3000/posts")
+  driver.set_window_size(945, 1020)
+  driver.find_element(By.NAME, "search").click()
+  driver.find_element(By.NAME, "search").send_keys("LSYC")
+  driver.find_element(By.CSS_SELECTOR, ".MuiButtonBase-root:nth-child(3) > .MuiButton-label").click()
+
+  #Search for Non-existing Event 
+  driver.get("http://localhost:3000/posts")
+  driver.set_window_size(945, 1020)
+  driver.find_element(By.NAME, "search").click()
+  driver.find_element(By.CSS_SELECTOR, ".MuiButtonBase-root:nth-child(3) > .MuiButton-label")
+  driver.find_element(By.NAME, "search").send_keys("Dance")
+  driver.find_element(By.CSS_SELECTOR, ".MuiButtonBase-root:nth-child(3) > .MuiButton-label").click()
+  driver.find_element(By.CSS_SELECTOR, "body")
+
 test_addEvent(url)
 test_adminLogin(url)
+test_searchEvent(url)
