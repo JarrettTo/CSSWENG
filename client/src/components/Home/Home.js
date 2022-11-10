@@ -70,7 +70,7 @@ const handleDelete = (tagToDelete => setTags(tags.filter((tag) => tag != tagToDe
                             value={tags}
                             onAdd={handleAdd}
                             onDelete={handleDelete}
-                            label="Search Event Tag (Press Enter)"
+                            label="Search Event Tag (Press Enter For Each Tag Added)"
                             variant="outlined"
                         />
                         <Button onClick={searchPost} className={classes.searchButton} variant='contained' color="primary">Filter</Button>
