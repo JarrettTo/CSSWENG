@@ -1,6 +1,7 @@
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.action_chains import ActionChains
 
 driver = webdriver.Chrome(ChromeDriverManager().install())
 url = "http://localhost:3000/posts" # URL of website
@@ -64,6 +65,34 @@ def test_searchEvent(url):
   driver.find_element(By.CSS_SELECTOR, ".MuiButtonBase-root:nth-child(3) > .MuiButton-label").click()
   driver.find_element(By.CSS_SELECTOR, "body")
 
+def test_editShowDetails(url):
+  #Edit Show Details
+  driver.get("http://localhost:3000/posts")
+  driver.set_window_size(945, 1020)
+  driver.find_element(By.CSS_SELECTOR, ".MuiGrid-root:nth-child(2) .makeStyles-overlay2-44 .MuiSvgIcon-root").click()
+  driver.find_element(By.NAME, "title").click()
+  driver.find_element(By.NAME, "title").send_keys("5th Anniversary")
+  driver.find_element(By.CSS_SELECTOR, ".Mui-focused > .MuiInputBase-input").click()
+  driver.find_element(By.CSS_SELECTOR, ".Mui-focused > .MuiInputBase-input").send_keys("we are going to dance until the sun rises")
+  driver.find_element(By.NAME, "maxAttendees").click()
+  driver.find_element(By.CSS_SELECTOR, ".makeStyles-paper-34").click()
+  element = driver.find_element(By.CSS_SELECTOR, ".MuiButton-sizeLarge > .MuiButton-label")
+  actions = ActionChains(driver)
+  actions.move_to_element(element).perform()
+  driver.find_element(By.NAME, "maxAttendees").send_keys("150")
+  driver.find_element(By.CSS_SELECTOR, ".MuiButton-sizeLarge > .MuiButton-label").click()
+  element = driver.find_element(By.CSS_SELECTOR, "body")
+  actions = ActionChains(driver)
+  actions.move_to_element(element, 0, 0).perform()
+
+def test_deleteEvent(url):
+  #Delete Show
+  driver.get("http://localhost:3000/posts")
+  driver.set_window_size(945, 1020)
+  driver.find_element(By.CSS_SELECTOR, ".MuiGrid-root:nth-child(3) > .MuiPaper-root .MuiButtonBase-root:nth-child(2) > .MuiButton-label").click()
+
 test_addEvent(url)
 test_adminLogin(url)
 test_searchEvent(url)
+test_editShowDetails(url)
+test_deleteEvent(url)
