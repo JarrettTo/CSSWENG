@@ -11,6 +11,8 @@ const postSchema = mongoose.Schema({ //schema for shows
     noOfAttendees: Number,
     maxAttendees: Number,
     selectedFile: String,
+    registeredUsers: { type: [String], default: [] },
+    activeDate: Date,
 });
 
 const PostMessage = mongoose.model('PostMessage', postSchema);

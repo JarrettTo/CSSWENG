@@ -1,16 +1,17 @@
 import mongoose from 'mongoose';
 
 const userSchema = mongoose.Schema({ //schema for shows
-    id: String,
-    password: String,
-    holder: Boolean,
-    claimed: Boolean,
-    registeredShows: [Number],
-    firstName: String,
-    lastName: String,
-    college: String
+    id: {type: String, required: true},
+    password: {type: String, required: true},
+    dlsu: {type: Boolean, required: true},
+    claimed: {type: Boolean, required: true},
+    registeredShows: {type: [String], required: true},
+    firstName: {type: String, required: true},
+    lastName: {type: String, required: true},
+    admin: {type: Boolean, required: true},
+    email: {type: String, required: true},
 
 });
 
-const userMessage = mongoose.model('userMessage', userSchema);
-export default userMessage;
+const user = mongoose.model('user', userSchema);
+export default user;

@@ -35,22 +35,29 @@ const Form = ({currentID, setCurrentID}) => {
       
     const classes=useStyles();
     const dispatch=useDispatch();               //allows us to dispatch an action
-
+    const user = JSON.parse(localStorage.getItem('profile'))
     useEffect(()=>{
         if(post) setPostData(post)  
     },[post])       //[post], or the dependency array, when changed, triggers the useEffect function
     const handleSubmit = async (e) => {
         e.preventDefault();
         if(currentID!=null){                    
-            dispatch(updatePost(currentID, postData));
+            dispatch(updatePost(currentID, {...postData,name: user?.result?.id}));
             clear();
         }
         else{
-            dispatch(createPost(postData));             //dispatches our createPost function from our actions with the parameter of our new object created by filling up the form
+            dispatch(createPost({...postData,name: user?.result?.id}));             //dispatches our createPost function from our actions with the parameter of our new object created by filling up the form
             clear();
         }
        
           
+    }
+    if(!user?.result){
+        return(
+            <Paper>
+                <Typography> Please Sign In or Sign Up First!</Typography>
+            </Paper>
+        )
     }
     const clear = () =>{
         setCurrentID(null)
