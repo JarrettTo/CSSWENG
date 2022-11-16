@@ -24,11 +24,7 @@ const Home = () => {
     const [search, setSearch] = useState('');
     const [tags, setTags] = useState([]);
 
-    useEffect(() => {       //everything called here will get called after the react app is started
-        dispatch(getPosts());   //dispatch is used to trigger an action that'll affect our state (check main index.js store variable)
-    },[currentID, dispatch])        //the dependency arrays, currentID and dispatch, when changed, trigger the contents of use effect
-    //const posts= useSelector((state)=> state.posts);
-    //console.log(posts)
+    
 const searchPost = () => {
     if(search.trim() || tags) {
         dispatch(getPostsBySearch({ search, tags: tags.join(',') }));
@@ -77,7 +73,7 @@ const handleDelete = (tagToDelete => setTags(tags.filter((tag) => tag != tagToDe
                     </AppBar>   
                         <Form currentID={currentID} setCurrentID={setCurrentID}/>
                         <Paper elevation={6}>
-                            <Pagination />
+                            <Pagination page={page}/>
                         </Paper>
                     </Grid>
                 </Grid>
