@@ -5,17 +5,12 @@ import useStyles from './styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { createPost } from '../../actions/posts.js';
 import  {updatePost} from '../../actions/posts.js';
+import { useHistory } from 'react-router-dom';
+
 const Form = ({currentID, setCurrentID}) => {
     console.log(currentID);
-    const post= useSelector((state)=>{ 
-        if(currentID!=null){
-            for(var i=0;i<state.posts.length;i++){
-                if(state.posts[i]._id==currentID){
-                    return state.posts[i]
-                }
-            }
-        }
-    });    //gets the posts from the state tree to find an iteration with the same "_id" and returns that post. if none is found or current id is null, then it'll return null
+    const post = useSelector((state) => (currentID ? state.posts.posts.find((message) => message._id === currentID) : null));
+    const history = useHistory();
 
     console.log("Post:" + post);
     const [postData, setPostData] = useState({      //initializes postData to the ff values. we set "setPostData" as the setter function for the state variable "postData"
@@ -36,11 +31,14 @@ const Form = ({currentID, setCurrentID}) => {
     const classes=useStyles();
     const dispatch=useDispatch();               //allows us to dispatch an action
 
-    useEffect(()=>{
-        if(post) setPostData(post)  
-    },[post])       //[post], or the dependency array, when changed, triggers the useEffect function
-    const handleSubmit = async (e) => {
+    useEffect(() => {
+        if (!post?.title) clear();
+        if (post) setPostData(post);
+      }, [post]);  
+          //[post], or the dependency array, when changed, triggers the useEffect function
+      const handleSubmit = async (e) => {
         e.preventDefault();
+    
         if(currentID!=null){                    
             dispatch(updatePost(currentID, postData));
             clear();
@@ -49,9 +47,7 @@ const Form = ({currentID, setCurrentID}) => {
             dispatch(createPost(postData));             //dispatches our createPost function from our actions with the parameter of our new object created by filling up the form
             clear();
         }
-       
-          
-    }
+      };
     const clear = () =>{
         setCurrentID(null)
         setPostData({      //initializes postData to the ff values. we set "setPostData" as the setter function for the state variable "postData"
