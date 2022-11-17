@@ -1,18 +1,35 @@
 import { makeStyles } from '@material-ui/core/styles';
+import * as Colors from '@material-ui/core/colors';
+import bg from '../src/images/bg.png';
 
 export default makeStyles(() => ({
-  appBar: {
-    borderRadius: 15,
-    margin: '30px 0',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+  container:{
+    padding:'5px'
   },
-  heading: {
-    color: 'rgba(0,183,255, 1)',
+  paperContainer:{
+    backgroundImage: `url(${bg})`,
+    height:'100%',
+    backgroundSize:'cover',
   },
-  image: {
-    marginLeft: '15px',
+  divider:{
+    backgroundColor:'lightGrey',
+    marginBottom:'40px',
+    marginTop:'50px',
   },
+  label1:{
+    color:'white',
+    marginBottom:'40px'
+  },
+  about:{
+    textAlign:'center',
+    color:'white',
+    marginBottom:'20px',
+  },
+  description:{
+    textAlign:'center',
+    color:'white',
+    marginLeft:'50px',
+    marginRight:'50px',
+  }
+  
 }));

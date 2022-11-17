@@ -45,11 +45,11 @@ const handleAdd = (tag) => setTags([ ...tags, tag]);
 const handleDelete = (tagToDelete => setTags(tags.filter((tag) => tag != tagToDelete)))
     return(
         <Grow in>
-                <Grid container justify="space-between" alignItems="stretch" spacing={4} className={classes.gridContainer}>
+                <Grid container justify="space-between" alignItems="stretch" spacing={2} className={classes.gridContainer}>
                     <Grid item xs={12} sm={7}>
-                        <Posts setCurrentID={setCurrentID}/>
-                        
+                        <Posts setCurrentID={setCurrentID}/> 
                     </Grid>
+                    
                     <Grid item xs={12} sm={4}>
                     <AppBar className={classes.appBarSearch} position='static' color='inherit'>
                         <TextField
@@ -66,10 +66,11 @@ const handleDelete = (tagToDelete => setTags(tags.filter((tag) => tag != tagToDe
                             value={tags}
                             onAdd={handleAdd}
                             onDelete={handleDelete}
-                            label="Search Event Tag (Press Enter For Each Tag Added)"
+                            fullWidth
+                            label="Search Event Tag (Press Enter After Each Tag)"
                             variant="outlined"
                         />
-                        <Button onClick={searchPost} className={classes.searchButton} variant='contained' color="primary">Filter</Button>
+                        <Button onClick={searchPost} className={classes.searchButton} variant='contained' color="primary" fullWidth>Filter</Button>
                     </AppBar>   
                         <Form currentID={currentID} setCurrentID={setCurrentID}/>
                         <Paper elevation={6}>

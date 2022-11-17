@@ -32,7 +32,7 @@ const Auth=() => {
         console.log("L");
     }
     return(
-        <Container component="main" >
+        <Container className={classes.container} component="main" >
             <Paper className={classes.paper} elevation={3}>
                 <Avatar className={classes.Avatar}>
                     <LockOutlinedIcon></LockOutlinedIcon>
