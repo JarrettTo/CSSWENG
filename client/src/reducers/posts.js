@@ -11,11 +11,11 @@ export default (state=[], action) => { //reducers take in a state and an action 
         case 'FETCH_BY_SEARCH':
             return { ...state, posts: action.payload };
         case 'CREATE':
-            return [...state, action.payload];
+            return { ...state, posts: [...state.posts, action.payload] };
         case 'UPDATE':
-            return state.map((post)=> post._id == action.payload._id ? action.payload : post); //if post id is the same, turn that post into the new updated post. Otherwise, return the same post
+            return { ...state, posts: state.posts.map((post) => (post._id === action.payload._id ? action.payload : post)) }; //if post id is the same, turn that post into the new updated post. Otherwise, return the same post
         case 'DELETE':
-            return state.filter((post) => post._id !== action.payload); // if post id is the same return it as null
+            return { ...state, posts: state.posts.filter((post) => post._id !== action.payload) }; // if post id is the same return it as null
         default:
             return state;
     }
