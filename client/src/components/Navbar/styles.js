@@ -13,7 +13,8 @@ export default makeStyles((theme) => ({
   typography:{
     padding: "15px",
     color: 'white',
-    fontSize:'20px',
+    fontSize:'25px',
+    textDecoration:'none'
   },
 
   heading: {
@@ -49,7 +50,7 @@ export default makeStyles((theme) => ({
       border:'2px green solid',
       color: 'white',
     },
-    
+    fontSize:'15px',
   },
   purple: {
     color: theme.palette.getContrastText(deepPurple[500]),

@@ -11,5 +11,8 @@ export default makeStyles(() => ({
     },
     searchButton: {
         margin:'5px'
+    },
+    page:{
+        
     }
 }));

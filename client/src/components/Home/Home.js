@@ -47,9 +47,9 @@ const handleDelete = (tagToDelete => setTags(tags.filter((tag) => tag != tagToDe
         <Grow in>
                 <Grid container justify="space-between" alignItems="stretch" spacing={2} className={classes.gridContainer}>
                     <Grid item xs={12} sm={7}>
-                        <Posts setCurrentID={setCurrentID}/>
-                        
+                        <Posts setCurrentID={setCurrentID}/> 
                     </Grid>
+                    
                     <Grid item xs={12} sm={4}>
                     <AppBar className={classes.appBarSearch} position='static' color='inherit'>
                         <TextField

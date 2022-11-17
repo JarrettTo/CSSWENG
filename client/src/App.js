@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Container, Paper } from '@material-ui/core';
+import { Container, Paper, Divider, Typography } from '@material-ui/core';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
@@ -19,10 +19,7 @@ const App = () => {
             <Navbar />
             <div className={classes.container}>
                 <Container className={classes.container} maxWidth="lg"> {/*equivalent of a div, lg means large*/} 
-                    
-                    <div>
-                
-                    </div><br></br>
+                    <Typography className={classes.label1} variant='h3'>CAO SHOW LIST </Typography>
                     {/* <SearchBar /><br></br> */}
                     <Switch>
                         <Route path="/" exact component={() => <Redirect to ="/posts"/>} />
@@ -32,7 +29,6 @@ const App = () => {
                         <Route path="/posts/:id" component={PostDetails} />
                         
                     </Switch>
-                    
                 </Container>
             </div>
             
