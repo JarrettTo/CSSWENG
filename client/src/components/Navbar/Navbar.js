@@ -13,7 +13,7 @@ const Navbar = () => {
     return(
         <AppBar position="static" color="inherit" className={classes.appBar} > {/*appbar is the one on top that desnt move even when ure scrolling*/}
                 <div className={classes.brandContainer} >
-                    <img className={classes.image} src={caologo} alt="memories" height="60"/> {/*className is like defining a class in HTML*/}
+                    <img className={classes.image} src={logo} alt="memories" height="60"/> {/*className is like defining a class in HTML*/}
                     <Button component={Link} to="/" className={classes.typography} varaint="hs" align="center">DLSU CAO</Button>
                 </div>
             
