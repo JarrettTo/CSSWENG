@@ -19,26 +19,24 @@ const Post = ({ post, setCurrentID }) => {
         <Card className={classes.card}>
             
             <ButtonBase className={classes.cardAction} onClick={openPost} >
-                <CardMedia className={classes.media} image={postMessage.selectedFile} title={Post.title} />
-                <div className={classes.overlay}>
-                    <Typography variant='h6'>{post.title}</Typography>
-                    <Typography variant='body1'>{post.creator}</Typography>
-                    <Typography variant='body2'>{post.date}</Typography>
-
-                </div>
+                <CardMedia component= 'image' className={classes.media} image={postMessage.selectedFile} title={Post.title} />
                 
                 <div className={classes.details}>
                     <Typography variant="body2" color="textSecondary">{post.tags.map((tag) => `#${tag} `)}</Typography>
                     
                 </div>
-                <CardContent>
-                <Typography className={classes.title} variant="h5" gutterBottom>{post.description}</Typography>
-                <Typography className={classes.title} variant="body1" gutterBottom>{post.price}</Typography>
+                <CardContent className={classes.cardcontent}>
+
+                <Typography className={classes.title} >{post.title}</Typography>
+                <Typography className={classes.date}>{post.date}</Typography>
+                <Typography className={classes.description}>{post.description}</Typography>
+                <Typography className={classes.creator}>{post.creator}</Typography>
+                <Typography className={classes.price}>Php {post.price}</Typography>
                 </CardContent>
             
             </ButtonBase>
             <div className={classes.overlay2}>
-                    <Button style={{color: 'black'}} size="small" onClick={() => setCurrentID(post._id)}>
+                    <Button style={{color: 'white'}} size="medium" onClick={() => setCurrentID(post._id)}>
                         <MoreHorizIcon fontSize="default" />
                     </Button>
             </div>

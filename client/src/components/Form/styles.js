@@ -7,12 +7,21 @@ export default makeStyles((theme) => ({
     },
   },
   paper: {
+    marginTop: '5px',
     padding: theme.spacing(2),
+    borderRadius: '10px',
+    // backgroundColor:'black'
   },
   form: {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
+    backgroundColor:'transparent',
+    // color:'white',
+  },
+  textfield:{
+    borderColor:'white',
+    padding:'5px',
   },
   fileInput: {
     width: '97%',
@@ -20,5 +29,7 @@ export default makeStyles((theme) => ({
   },
   buttonSubmit: {
     marginBottom: 10,
+    // color:'white'
   },
+  
 }));
