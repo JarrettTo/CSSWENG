@@ -19,7 +19,6 @@ const App = () => {
             <Navbar />
             <div className={classes.container}>
                 <Container className={classes.container} maxWidth="lg"> {/*equivalent of a div, lg means large*/} 
-                    <Typography className={classes.label1} variant='h3'>CAO SHOW LIST </Typography>
                     {/* <SearchBar /><br></br> */}
                     <Switch>
                         <Route path="/" exact component={() => <Redirect to ="/posts"/>} />
@@ -29,6 +28,7 @@ const App = () => {
                         <Route path="/posts/:id" component={PostDetails} />
                         
                     </Switch>
+
                 </Container>
             </div>
             

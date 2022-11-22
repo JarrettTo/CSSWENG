@@ -33,7 +33,7 @@ const Auth=() => {
     }
     return(
         <Container className={classes.container} component="main" >
-            <Paper className={classes.paper} elevation={3}>
+            <Paper className={classes.paper} >
                 <Avatar className={classes.Avatar}>
                     <LockOutlinedIcon></LockOutlinedIcon>
                 </Avatar>
@@ -57,7 +57,7 @@ const Auth=() => {
                         }
                     </Grid>
                     
-                    <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>{isSignUp? 'Sign Up':'Sign In'}</Button>
+                    
                     <GoogleLogin
                         clientId='387249647738-f58tonsbl58g3n75hh3rt3mqs9bkl0r0.apps.googleusercontent.com'
                         render={(renderProps)=>(
@@ -78,6 +78,7 @@ const Auth=() => {
                         onFailure={googleFailure}
                         cookiePolicy="single_host_origin"
                     />
+                    <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>{isSignUp? 'Sign Up':'Sign In'}</Button>
                     <Grid container justifyContent="flex-end">
                         <Grid item>
                             <Button onClick={switchMode}>

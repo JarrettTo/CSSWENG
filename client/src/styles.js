@@ -1,5 +1,4 @@
 import { makeStyles } from '@material-ui/core/styles';
-import * as Colors from '@material-ui/core/colors';
 import bg from '../src/images/bg.png';
 
 export default makeStyles(() => ({
@@ -10,6 +9,7 @@ export default makeStyles(() => ({
     backgroundImage: `url(${bg})`,
     height:'100%',
     backgroundSize:'cover',
+    maxWidth:'100%'
   },
   divider:{
     backgroundColor:'lightGrey',
@@ -30,6 +30,22 @@ export default makeStyles(() => ({
     color:'white',
     marginLeft:'50px',
     marginRight:'50px',
-  }
+    marginBottom:'50px'
+  },
+
+  appBar: {
+    borderRadius: 15,
+    margin: '30px 0',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  heading: {
+    color: 'rgba(0,183,255, 1)',
+  },
+  image: {
+    marginLeft: '15px',
+  },
   
 }));

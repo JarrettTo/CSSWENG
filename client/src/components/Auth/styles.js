@@ -2,29 +2,37 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
+    margin:'auto',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    padding: theme.spacing(2),
+    padding: theme.spacing(5),
+    width:'700px'
   },
   root: {
     '& .MuiTextField-root': {
-      margin: theme.spacing(1),
+      margin: theme.spacing(5),
     },
   },
+  container:{
+    margin: theme.spacing(20,0),
+    alignItems: 'center',
+    alignItems: 'center',
+    display: 'flex',
+  },
   avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    alignContent:'center',
+    backgroundColor: 'theme.palette.secondary.main',
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: '80%', // Fix IE 11 issue.
     marginTop: theme.spacing(3),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    marginBottom: theme.spacing(1),
   },
   googleButton: {
-    marginBottom: theme.spacing(2),
+
+    margin: theme.spacing(3, 0, 2),
   },
 }));

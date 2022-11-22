@@ -20,8 +20,7 @@ export default makeStyles((theme) => ({
     // color:'white',
   },
   textfield:{
-    borderColor:'white',
-    padding:'5px',
+    color:'white',
   },
   fileInput: {
     width: '97%',
@@ -31,5 +30,6 @@ export default makeStyles((theme) => ({
     marginBottom: 10,
     // color:'white'
   },
+
   
 }));

@@ -14,7 +14,10 @@ export default makeStyles((theme) => ({
     padding: "15px",
     color: 'white',
     fontSize:'25px',
-    textDecoration:'none'
+    textDecoration:'none',
+    '&:hover':{
+      color:'#4caf50'
+    }
   },
 
   heading: {
@@ -47,8 +50,11 @@ export default makeStyles((theme) => ({
   },
   button: {
     "&.MuiButton-outlined":{
-      border:'2px green solid',
+      border:'2px #0c8e48 solid',
       color: 'white',
+    },
+    '&:hover':{
+      color:'#4caf50',
     },
     fontSize:'15px',
   },

@@ -8,6 +8,7 @@ import { deletePost } from '../../../actions/posts.js';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useDispatch } from 'react-redux';
+
 const Post = ({ post, setCurrentID }) => {
     const classes = useStyles();
     const history = useHistory();
