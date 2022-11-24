@@ -16,6 +16,8 @@ export default (state=[], action) => { //reducers take in a state and an action 
             return { ...state, posts: state.posts.map((post) => (post._id === action.payload._id ? action.payload : post)) }; //if post id is the same, turn that post into the new updated post. Otherwise, return the same post
         case 'DELETE':
             return { ...state, posts: state.posts.filter((post) => post._id !== action.payload) }; // if post id is the same return it as null
+        case 'REGISTER_POST':
+            return posts.map((post)=> post._id == action.payload._id ? action.payload : post);
         default:
             return state;
     }

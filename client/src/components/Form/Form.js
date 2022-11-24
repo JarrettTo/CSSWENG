@@ -11,7 +11,7 @@ const Form = ({currentID, setCurrentID}) => {
     console.log(currentID);
     const post = useSelector((state) => (currentID ? state.posts.posts.find((message) => message._id === currentID) : null));
     const history = useHistory();
-
+    const user = JSON.parse(localStorage.getItem('profile'))
     console.log("Post:" + post);
     const [postData, setPostData] = useState({      //initializes postData to the ff values. we set "setPostData" as the setter function for the state variable "postData"
         title: '',
@@ -36,18 +36,31 @@ const Form = ({currentID, setCurrentID}) => {
         if (post) setPostData(post);
       }, [post]);  
           //[post], or the dependency array, when changed, triggers the useEffect function
-      const handleSubmit = async (e) => {
+      
+    
+    
+    const handleSubmit = async (e) => {
         e.preventDefault();
     
         if(currentID!=null){                    
-            dispatch(updatePost(currentID, postData));
+            dispatch(updatePost(currentID, {...postData,name: user?.result?.id}));
             clear();
         }
         else{
-            dispatch(createPost(postData));             //dispatches our createPost function from our actions with the parameter of our new object created by filling up the form
+            dispatch(createPost({...postData,name: user?.result?.id}));             //dispatches our createPost function from our actions with the parameter of our new object created by filling up the form
             clear();
         }
       };
+       
+          
+    
+    if(!user?.result){
+        return(
+            <Paper>
+                <Typography> Please Sign In or Sign Up First!</Typography>
+            </Paper>
+        )
+    }
     const clear = () =>{
         setCurrentID(null)
         setPostData({      //initializes postData to the ff values. we set "setPostData" as the setter function for the state variable "postData"
@@ -76,7 +89,7 @@ const Form = ({currentID, setCurrentID}) => {
                 <TextField name='maxAttendees' variant='outlined' label="Max Attendees" fullWidth value={postData.maxAttendees} onChange={(e)=>{setPostData({...postData ,maxAttendees: e.target.value})}}/>
                 <TextField name='tags' variant='outlined' label="Tags" fullWidth value={postData.tags} onChange={(e)=>{setPostData({...postData ,tags: e.target.value.split(',')})}}/>
                 <div className={classes.fileInput}>
-                    <FileBase type ="file"multiple={false}onDone={({base64})=> setPostData({...postData, selectedFile: base64})}/>
+                    <FileBase type ="file"multiple={false} onDone={({base64})=> setPostData({...postData, selectedFile: base64})}/>
                 </div>
                 <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit </Button>
                 <Button className={classes.buttonSubmit} variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>

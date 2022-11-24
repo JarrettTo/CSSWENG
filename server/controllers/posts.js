@@ -1,4 +1,5 @@
 import PostMessage from '../models/postMessage.js';
+import form from '../models/registerForm.js';
 import mongoose from 'mongoose';
 export const getPosts = async (req, res) => {
     const { page } = req.query;
@@ -31,7 +32,7 @@ export const getPostsBySearch = async (req, res) => {
 export const createPost = async (req, res) =>{
     const post = req.body;
   
-    const newPost = new PostMessage(post);          //creates a new postmessage
+    const newPost = new PostMessage({...post, creator: req.userID, createdAt: new Date().toISOString()});          //creates a new postmessage
     try{
         await newPost.save();
         res.status(201).json(newPost);
@@ -43,10 +44,21 @@ export const createPost = async (req, res) =>{
 export const updatePost = async (req, res) =>{
     const {id: _id} = req.params;
     const post = req.body;
-    if(!mongoose.isValidObjectId(_id)) return res(404).send("no post with that id");
+    if(!mongoose.isValidObjectId(_id)) return res.status(404).send("no post with that id");
     
     const updatedPost= await PostMessage.findByIdAndUpdate(_id, {...post, _id}, {new: true});
     res.json(updatedPost);
+   
+    
+}
+export const getPost = async (req, res) =>{
+    const {id} = req.params;
+    const post = req.body;
+    if(!mongoose.isValidObjectId(id)) return res.status(404).send("no post with that id");
+    
+    const getPost= await PostMessage.findById(id);
+
+    res.json(getPost);
    
     
 }
@@ -54,9 +66,79 @@ export const updatePost = async (req, res) =>{
 export const deletePost = async (req, res) =>{
     const {id} = req.params;
     const post = req.body;
-    if(!mongoose.isValidObjectId(id)) return res(404).send("no post with that id");
+    if(!mongoose.isValidObjectId(id)) return res.status(404).send("no post with that id");
     const deletedPost= await PostMessage.findByIdAndRemove(id);
     res.json(deletedPost);
    
     
+}
+
+export const registerPost = async (req, res)=>{
+    const { id } = req.params;
+    const file =req.body;
+
+    let date = new Date().toJSON();
+
+    if (!req.id) {
+        return res.json({ message: "Unauthenticated" });
+    }
+    
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
+    const post = await PostMessage.findById(id);
+    const foundUser= await user.findById(req.id);
+    const registeredIndex = post.registeredUsers.findIndex((_id) => _id === String(req.id));
+    const acceptedIndex = post.acceptedUsers.findIndex((_id) => _id === String(req.id));
+    const valid= date<=Date(post.activeDate);
+    let status, finalTxn;
+    var claim=false;
+  
+    if (registeredIndex === -1 && acceptedIndex === -1 && valid) {
+        if(foundUser.dlsu && !foundUser.claimed){
+            post.acceptedUsers.push(req.id);
+            foundUser.acceptedShows.push(id);
+            foundUser.claimed=true;
+            claim=true;
+            
+            status='Accepted';
+        }
+        else{
+            post.registeredUsers.push(req.id);
+            foundUser.registeredShows.push(id);
+            status='Pending'
+            
+
+        }
+        finalTxn = new form({userID: req.id, postID: id, selectedFile: JSON.stringify(file), artPass: claim, status: status, date: Date(post.activeDate)});
+        console.log(finalTxn);
+        try{
+            await finalTxn.save();
+        } catch(error){
+            return res.status(409).json({message:error.message});
+        }
+        
+    } 
+    else if((registeredIndex !== -1 || acceptedIndex!== -1) && valid) {
+        post.registeredUsers = post.registeredUsers.filter((id) => id !== String(req.id));
+        post.acceptedUsers = post.acceptedUsers.filter((id) => id !== String(req.id));
+        foundUser.registeredShows= foundUser.registeredShows.filter((eid) => eid !== id);
+        foundUser.acceptedShows= foundUser.acceptedShows.filter((eid) => eid !== id);
+        const txn=await form.findOne({userID:req.id, postID:id}).sort({date: -1});
+        txn.status='Cancelled';
+        if(txn?.artPass){
+            foundUser.claimed=false;
+        }
+        finalTxn=await form.findByIdAndUpdate(txn._id, txn, {new: true});
+    }
+    else{
+        return res(404).send("Too late! :(");
+    }
+    const updatedPost = await PostMessage.findByIdAndUpdate(id, post, { new: true });
+    const updatedUser= await user.findByIdAndUpdate(req.id, foundUser, {new: true});
+    console.log(updatedUser);
+    return res.status(200).json({
+        updatedPost: updatedPost, 
+        updatedUser: {'result':updatedUser,'token': req.headers.authorization.slice(7)},
+        txn:finalTxn,
+    });
+
 }

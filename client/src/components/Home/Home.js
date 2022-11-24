@@ -45,6 +45,15 @@ const handleKeyPress = (e) => {
 const handleAdd = (tag) => setTags([ ...tags, tag]);
 
 const handleDelete = (tagToDelete => setTags(tags.filter((tag) => tag != tagToDelete)))
+    const location = useLocation();
+    const [user,setUser]=useState(JSON.parse(localStorage.getItem('profile')));
+
+    useEffect(() => {       //everything called here will get called after the react app is started
+        dispatch(getPosts());   //dispatch is used to trigger an action that'll affect our state (check main index.js store variable)
+        setUser(JSON.parse(localStorage.getItem('profile')));
+    },[currentID, dispatch])        //the dependency arrays, currentID and dispatch, when changed, trigger the contents of use effect
+    //const posts= useSelector((state)=> state.posts);
+    //console.log(posts)
     return(
         <Grow in>
 
@@ -89,6 +98,10 @@ const handleDelete = (tagToDelete => setTags(tags.filter((tag) => tag != tagToDe
                             <Paper elevation={6}>
                                 <Pagination page={page}/>
                         </Paper>
+                        { user?.result.admin ?(
+                        <Form currentID={currentID} setCurrentID={setCurrentID}/>
+                        ): null}
+                        
                     </Grid>
 
                     <Grid item xs={12} sm={20}>
