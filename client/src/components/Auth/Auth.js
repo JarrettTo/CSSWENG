@@ -58,8 +58,8 @@ const Auth=() => {
         console.log(error);
     }
     return(
-        <Container className={classes.container} component="main" >
-            <Paper className={classes.paper} >
+        <Container component="main" >
+            <Paper className={classes.paper} elevation={3}>
                 <Avatar className={classes.Avatar}>
                     <LockOutlinedIcon></LockOutlinedIcon>
                 </Avatar>
