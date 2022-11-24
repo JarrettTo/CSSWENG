@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import Icon from './icon';
 import Input from './Input';
 import jwt_decode from "jwt-decode";
-import {signIn, signUpFunc} from "../../actions/auth";
+import {signIn, signUpFunc, googleSign} from "../../actions/auth";
 const initialState = { firstName: '', lastName: '', email: '', id: '', password: '', confirmPassword: '' };
 const Auth=() => {
     
@@ -43,11 +43,13 @@ const Auth=() => {
         console.log(res);
         const result=jwt_decode(res.credential)
         const tokenID= res?.credential;
-
-
+        console.log("result:", result);
+        console.log("token:", tokenID);
+        const googleForm={ firstName: result.given_name, lastName: result.family_name, email: result.email, id: result.email, password: '', confirmPassword: '' };
+        
         try{
-            dispatch({type:'AUTH', data: { result, tokenID}});
-            history.push('/');                  //redirects us to the homepage
+            dispatch(googleSign(googleForm,tokenID,history));
+                           //redirects us to the homepage
         } catch(error){
             console.log("error");
         }

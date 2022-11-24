@@ -1,10 +1,11 @@
 import PostMessage from '../models/postMessage.js';
+import form from '../models/registerForm.js';
 import mongoose from 'mongoose';
 import user from '../models/user.js';
 export const getPosts = async (req, res)=>{      //function for getting posts
     try{
         const postMessages= await PostMessage.find();   //looks for all messages with the same model as models/postMessage.js in the database 
-        console.log(postMessages);
+
         res.status(200).json(postMessages); 
     } catch (error){
         res.status(404).json({message:error.message});
@@ -38,7 +39,7 @@ export const getPost = async (req, res) =>{
     if(!mongoose.isValidObjectId(id)) return res.status(404).send("no post with that id");
     
     const getPost= await PostMessage.findById(id);
-    console.log("GetPost=", getPost)
+
     res.json(getPost);
    
     
@@ -56,8 +57,10 @@ export const deletePost = async (req, res) =>{
 
 export const registerPost = async (req, res)=>{
     const { id } = req.params;
+    const file =req.body;
+
     let date = new Date().toJSON();
-    console.log(req.id);
+
     if (!req.id) {
         return res.json({ message: "Unauthenticated" });
     }
@@ -65,30 +68,59 @@ export const registerPost = async (req, res)=>{
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
     const post = await PostMessage.findById(id);
     const foundUser= await user.findById(req.id);
-    const index = post.registeredUsers.findIndex((_id) => _id === String(req.id));
+    const registeredIndex = post.registeredUsers.findIndex((_id) => _id === String(req.id));
+    const acceptedIndex = post.acceptedUsers.findIndex((_id) => _id === String(req.id));
     const valid= date<=Date(post.activeDate);
-    console.log(post);
-    console.log(valid);
-    console.log(foundUser);
-    console.log(index);
-    if (index === -1 && valid) {
-        post.registeredUsers.push(req.id);
-        foundUser.registeredShows.push(id);
+    let status, finalTxn;
+    var claim=false;
+  
+    if (registeredIndex === -1 && acceptedIndex === -1 && valid) {
+        if(foundUser.dlsu && !foundUser.claimed){
+            post.acceptedUsers.push(req.id);
+            foundUser.acceptedShows.push(id);
+            foundUser.claimed=true;
+            claim=true;
+            
+            status='Accepted';
+        }
+        else{
+            post.registeredUsers.push(req.id);
+            foundUser.registeredShows.push(id);
+            status='Pending'
+            
+
+        }
+        finalTxn = new form({userID: req.id, postID: id, selectedFile: JSON.stringify(file), artPass: claim, status: status, date: Date(post.activeDate)});
+        console.log(finalTxn);
+        try{
+            await finalTxn.save();
+        } catch(error){
+            return res.status(409).json({message:error.message});
+        }
+        
     } 
-    else if(index !== -1 && valid) {
+    else if((registeredIndex !== -1 || acceptedIndex!== -1) && valid) {
         post.registeredUsers = post.registeredUsers.filter((id) => id !== String(req.id));
+        post.acceptedUsers = post.acceptedUsers.filter((id) => id !== String(req.id));
         foundUser.registeredShows= foundUser.registeredShows.filter((eid) => eid !== id);
+        foundUser.acceptedShows= foundUser.acceptedShows.filter((eid) => eid !== id);
+        const txn=await form.findOne({userID:req.id, postID:id}).sort({date: -1});
+        txn.status='Cancelled';
+        if(txn?.artPass){
+            foundUser.claimed=false;
+        }
+        finalTxn=await form.findByIdAndUpdate(txn._id, txn, {new: true});
     }
     else{
         return res(404).send("Too late! :(");
     }
-    console.log(foundUser);
     const updatedPost = await PostMessage.findByIdAndUpdate(id, post, { new: true });
     const updatedUser= await user.findByIdAndUpdate(req.id, foundUser, {new: true});
     console.log(updatedUser);
-    res.status(200).json({
+    return res.status(200).json({
         updatedPost: updatedPost, 
-        updatedUser: {'result':updatedUser,'token': req.headers.authorization.slice(7)}
+        updatedUser: {'result':updatedUser,'token': req.headers.authorization.slice(7)},
+        txn:finalTxn,
     });
 
 }

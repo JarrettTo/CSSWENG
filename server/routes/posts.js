@@ -8,6 +8,6 @@ router.post('/:id', getPost);
 router.post('/', auth, createPost);
 router.patch('/:id', auth, updatePost);       //:id means it tales in an idea, so when localhost:5000/posts/123123 123123 is the id
 router.delete('/:id', auth, deletePost);
-router.patch('/:id/registerPost', auth, registerPost);
+router.post('/:id/registerPost', auth, registerPost);
 //router.get('/:id', getPost);
 export default router;

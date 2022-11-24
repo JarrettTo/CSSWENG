@@ -26,3 +26,17 @@ export const signIn = (form, history) => async (dispatch)=> {
     }
   
 }
+
+export const googleSign = (form, token, history) => async (dispatch)=> {
+    try{
+        const { data }= await api.googleSign(form, token);
+        console.log(data);                     
+        const action = { type: AUTH, data};
+        dispatch(action);  
+        history.push('/');                
+                          
+    } catch (error){
+        console.log(error);
+    }
+  
+}

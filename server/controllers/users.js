@@ -57,6 +57,26 @@ export const signIn = async (req, res) =>{        //signin
    
     
 }
+
+export const googleSign=async(req, res)=>{
+    const {email,password,confirmPassword, firstName, lastName, id} = req.body[0];
+    try{
+        const foundUser= await user.findOne({email: email});
+        if(foundUser){
+            const token = jwt.sign({id:foundUser._id, email: foundUser.email, isAdmin: foundUser.admin },"dlsucao", {expiresIn: "2h"});
+            res.status(200).json({result:foundUser,token});
+            
+        }
+        else{
+            const newUser = await user.create({email: email, password: ' ', firstName: firstName, lastName: lastName, id: id, admin: false, dlsu: true, claimed: false, registeredShows: []})
+            const token = jwt.sign({id:newUser._id, email: newUser.email, isAdmin: newUser.admin },"dlsucao", {expiresIn: "2h"});
+            res.status(200).json({result: newUser, token});
+        }
+    } catch(error){
+        console.log(error);
+        res.status(500).json({message: "Something Went Wrong!"});
+    }
+}
 /*export const deleteUser = async (req, res) =>{
     const {id} = req.params;
     const users = req.body;

@@ -12,6 +12,7 @@ const postSchema = mongoose.Schema({ //schema for shows
     maxAttendees: Number,
     selectedFile: String,
     registeredUsers: { type: [String], default: [] },
+    acceptedUsers: { type: [String], default: [] },
     activeDate: Date,
 });
 

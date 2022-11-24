@@ -8,6 +8,7 @@ import { Container, Grow, Grid} from '@material-ui/core';
 import moment from 'moment';
 import { useParams, useHistory } from 'react-router-dom';
 import { getPost, getPosts, registerPost } from "../../actions/posts";
+import { getTxn } from "../../actions/transactions";
 const PostDetails = () => {
     const [user,setUser]=useState(JSON.parse(localStorage.getItem('profile')));
     
@@ -17,6 +18,8 @@ const PostDetails = () => {
     const history = useHistory();
     const { id } = useParams();
     const classes=useStyles();
+    const [file, setFile]= useState(null);
+    const [txn, setTxn]=useState(getTxn(id));
     const [trigger,setTrigger]=useState(false);
     const selPost=posts.find((e)=>{ return e._id==id});
     
@@ -24,23 +27,16 @@ const PostDetails = () => {
         console.log(posts)
         dispatch(getPosts(id));
         setUser(JSON.parse(localStorage.getItem('profile')));
-
+        setTxn(getTxn(id));
     },[trigger])
  
-    /*for(var i=0;i<posts.length;i++){
-        if(posts[i]._id==id){
-            
-            setPost(posts[i]);
-        }
-    }*/
+
     const handleSubmit=(e)=>{
-        const old=selPost?.registeredUsers;
-        e.preventDefault();
-        
-        dispatch(registerPost(id));
-        if(selPost?.registeredUsers){
-            setTrigger(!trigger);
-        }
+
+        e.preventDefault(); 
+        console.log(file);
+        dispatch(registerPost(id, file));
+        setTrigger(!trigger)
         
         
               
@@ -55,8 +51,8 @@ const PostDetails = () => {
             {selPost?.date}
             {selPost?.tags}
             {selPost?.registeredUsers}
-            
-            {!selPost?.registeredUsers?.find((e)=> e==user.result._id)?(
+            <Typography>Status: {txn.status}</Typography>
+            {(!selPost?.registeredUsers?.find((e)=> e==user.result._id) && !selPost?.acceptedUsers?.find((e)=> e==user.result._id))?(
                 <>
                 {(!user?.result?.dlsu || user?.result?.claimed) ? (
                     <form autoComplete='off' noValidate className={classes.form} onSubmit={handleSubmit}>
@@ -64,12 +60,12 @@ const PostDetails = () => {
                         <Typography>Payment Details: 09270164346 GCASH JUSTIN TO</Typography>
                         <Typography>PROOF OF PAYMENT:</Typography>
                         <div className={classes.fileInput}>
-                            <FileBase type ="file"multiple={false}onDone={({base64})=> setPostData({...postData, selectedFile: base64})}/>
+                            <FileBase type ="file"multiple={false} onDone={({base64})=> setFile(base64)}/>
                         </div>
                         <Button className={classes.buttonSubmit} variant="container" color="primary" size="large" type="submit" fullWidth>Register</Button>
                         
                     </form>
-                ): null}
+                ): <Button className={classes.buttonSubmit} variant="container" color="primary" size="large" type="submit" onClick={handleSubmit} fullWidth>Register</Button> }
                 
                 
                 </>

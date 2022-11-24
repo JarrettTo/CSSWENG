@@ -6,3 +6,4 @@ export const AUTH='AUTH';
 export const LOGOUT='LOGOUT';
 export const REGISTER_POST='REGISTER_POST';
 export const REGISTER_USER='REGISTER_USER';
+export const REGISTER_TXN='REGISTER_TXN';

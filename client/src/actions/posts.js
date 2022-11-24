@@ -1,5 +1,5 @@
 import * as api from '../api';
-import {FETCH_ALL, UPDATE, DELETE, CREATE, REGISTER_POST, REGISTER_USER} from '../constants/actiontypes';
+import {FETCH_ALL, UPDATE, DELETE, CREATE, REGISTER_POST, REGISTER_USER, REGISTER_TXN} from '../constants/actiontypes';
 
 //Action creations are functions that create a function
 export const getPosts = () => async (dispatch)=> {
@@ -42,16 +42,17 @@ export const deletePost = (id) => async (dispatch) =>{          //creates a post
     }
 }
 
-export const registerPost = (id) => async (dispatch) =>{          //creates a post
+export const registerPost = (id, file) => async (dispatch) =>{          //creates a post
     const user = JSON.parse(localStorage.getItem('profile'));
-
+    console.log(file);
 
     try{
-        const { data } = await api.registerPost(id, user?.token);
+        const { data } = await api.registerPost(id, file, user?.token);
         console.log(data);
 
         dispatch({type: REGISTER_POST, payload : data.updatedPost});
         dispatch({type: REGISTER_USER, payload : data.updatedUser});
+        
     } catch (error){
         console.log(error);
     }
