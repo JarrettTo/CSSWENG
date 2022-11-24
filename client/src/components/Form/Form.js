@@ -27,7 +27,22 @@ const Form = ({currentID, setCurrentID}) => {
 
     })
  
-      
+    const clear = () =>{
+        setCurrentID(null)
+        setPostData({      //initializes postData to the ff values. we set "setPostData" as the setter function for the state variable "postData"
+            title: '',
+            date: '',
+            price: '',
+            description: '',
+            creator: '',
+            tags: '',
+            id: '',
+            noOfAttendees: '',
+            maxAttendees: '',
+            selectedFile: '',
+    
+        })
+    }
     const classes=useStyles();
     const dispatch=useDispatch();               //allows us to dispatch an action
 
@@ -61,22 +76,7 @@ const Form = ({currentID, setCurrentID}) => {
             </Paper>
         )
     }
-    const clear = () =>{
-        setCurrentID(null)
-        setPostData({      //initializes postData to the ff values. we set "setPostData" as the setter function for the state variable "postData"
-            title: '',
-            date: '',
-            price: '',
-            description: '',
-            creator: '',
-            tags: '',
-            id: '',
-            noOfAttendees: '',
-            maxAttendees: '',
-            selectedFile: '',
     
-        })
-    }
     return(
         <Paper className={classes.paper}>       {/*adds a white bg*/}
             <form autoComplete='off' noValidate className={classes.form} onSubmit={handleSubmit}>
