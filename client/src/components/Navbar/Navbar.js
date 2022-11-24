@@ -40,19 +40,10 @@ const Navbar = () => {
                     <Typography className={classes.userName} variant="h6">{user?.result.name}</Typography>
                     <Button variant="contained" className={classes.logout} color="secondary" onClick={logout}>Logout</Button>
                 </div>
-            
-                <Toolbar className={classes.toolbar}>
-                    {user?.result ? (
-                    <div className={classes.profile}>
-                        <Avatar className={classes.purple} alt={user?.result.name} src={user?.result.imageUrl}>{user?.result.name.charAt(0)}</Avatar>
-                        <Typography className={classes.userName} variant="h6">{user?.result.name}</Typography>
-                        <Button variant="contained" className={classes.logout} color="#FFFFFF" onClick={logout}>Logout</Button>
-                    </div>
-                    ) : (
-                    <Button className={classes.button} variant='outlined' component={Link} to="/auth" >Sign In</Button>
-                    )}
-                
-                </Toolbar>
+                ) : (
+                <Button component={Link} to="/auth" variant="contained" color="primary">Sign In</Button>
+                )}
+            </Toolbar>
             
         </AppBar>
     );
