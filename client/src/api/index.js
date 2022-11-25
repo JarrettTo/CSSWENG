@@ -15,7 +15,7 @@ export const getTxn=(id)=> API.post(`/transactions/${id}`);
 export const createPost= (newPost) =>   API.post(`/posts`, newPost);
 export const updatePost=(id, updatePost) => API.patch(`/posts/${id}`,updatePost);
 export const deletePost=(id, deletePost) => API.delete(`/posts/${id}`,deletePost);
-export const registerPost = (id, file) => API.post(`/posts/${id}/registerPost`,file);
+export const registerPost = (id, form) => API.post(`/posts/${id}/registerPost`,form);
 
 export const fetchPost=(id)=> API.post(`/posts/${id}`);
 export const signIn=(formData) => API.post('/users/signin', formData);

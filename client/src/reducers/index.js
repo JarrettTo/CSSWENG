@@ -1,7 +1,8 @@
 import { combineReducers} from 'redux';     //our main reducer index file
 import posts from './posts.js';
-import post from './post.js';
+
 import auth from './auth.js';
+import txn from './txn.js';
 export default combineReducers({
-    posts, auth, post                              //return posts and auth reducer
+    posts, auth,  txn                              //return posts and auth reducer
 })      

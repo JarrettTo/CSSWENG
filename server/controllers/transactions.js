@@ -14,7 +14,8 @@ export const getTxns = async (req, res)=>{      //function for getting posts
 export const getTxn = async (req, res)=>{      //function for getting posts
     const {id} = req.params;
     try{
-        const txn= await form.findOne({userID: req.id, postID: id},{ sort: { createdAt: -1 } });   //looks for all messages with the same model as models/postMessage.js in the database 
+        const txn= await form.findOne({userID: req.id, postID: id}).sort({date: -1});   //looks for all messages with the same model as models/postMessage.js in the database 
+        console.log(txn);
         res.status(200).json(txn); 
     } catch (error){
         res.status(404).json({message:error.message});

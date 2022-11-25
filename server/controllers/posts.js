@@ -57,7 +57,7 @@ export const deletePost = async (req, res) =>{
 
 export const registerPost = async (req, res)=>{
     const { id } = req.params;
-    const file =req.body;
+    const register =req.body;
 
     let date = new Date().toJSON();
 
@@ -90,7 +90,7 @@ export const registerPost = async (req, res)=>{
             
 
         }
-        finalTxn = new form({userID: req.id, postID: id, selectedFile: JSON.stringify(file), artPass: claim, status: status, date: Date(post.activeDate)});
+        finalTxn = new form({userID: req.id, postID: id, selectedFile: register.payment, artPass: claim, status: status, firstName: foundUser.firstName, lastName: foundUser.lastName, dlsu_id: register.dlsu_id, contactNumber: register.contactNumber, degree: register.degree, college: register.college, altClass: register.altClass, email: foundUser.email, date: Date(post.activeDate)});
         console.log(finalTxn);
         try{
             await finalTxn.save();
