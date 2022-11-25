@@ -1,6 +1,8 @@
 import PostMessage from '../models/postMessage.js';
 import form from '../models/registerForm.js';
 import mongoose from 'mongoose';
+import user from '../models/user.js';
+
 export const getPosts = async (req, res) => {
     const { page } = req.query;
     
