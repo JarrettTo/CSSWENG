@@ -94,7 +94,6 @@ const handleDelete = (tagToDelete => setTags(tags.filter((tag) => tag != tagToDe
                             />
                             <Button onClick={searchPost} className={classes.searchButton} variant='contained' color="primary" fullWidth>Filter</Button>
                         </AppBar>   
-                            <Form currentID={currentID} setCurrentID={setCurrentID}/>
                             <Paper elevation={6}>
                                 <Pagination page={page}/>
                         </Paper>
