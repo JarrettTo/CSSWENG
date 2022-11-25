@@ -12,7 +12,7 @@ import { getTxn } from "../../actions/transactions";
 const PostDetails = () => {
     const [user,setUser]=useState(JSON.parse(localStorage.getItem('profile')));
     
-    const posts=useSelector((state) => state.posts);
+    const {posts}=useSelector((state) => state.posts);
     
     const dispatch = useDispatch();
     const history = useHistory();
