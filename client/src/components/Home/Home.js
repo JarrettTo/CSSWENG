@@ -28,7 +28,7 @@ const Home = () => {
 
     
 const searchPost = () => {
-    if(search.trim() || tags) {
+    if((search.trim() || tags) && (search != '' || tags.join(',') != '')) {
         dispatch(getPostsBySearch({ search, tags: tags.join(',') }));
         history.push(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
     } else {
@@ -37,7 +37,7 @@ const searchPost = () => {
 };
 
 const handleKeyPress = (e) => {
-    if(e.keyCode = 13) { //if pressed enter key
+    if(e.keyCode === 13) { //if pressed enter key
         searchPost();
     }
 };
@@ -93,7 +93,8 @@ const handleDelete = (tagToDelete => setTags(tags.filter((tag) => tag != tagToDe
                                 variant="outlined"
                             />
                             <Button onClick={searchPost} className={classes.searchButton} variant='contained' color="primary" fullWidth>Filter</Button>
-                        </AppBar>   
+                        </AppBar>
+
                             <Paper elevation={6}>
                                 <Pagination page={page}/>
                         </Paper>
