@@ -1,24 +1,23 @@
 import * as api from '../api';
-import {FETCH} from '../constants/actiontypes';
+import {FETCH_TXN, FETCH_TXNS} from '../constants/actiontypes';
 export const getTxn = (id) => async (dispatch)=> {
     try{
         const { data }= await api.getTxn(id);                         //fetch posts from backend or mongodb
-        dispatch({type: FETCH, payload : data});
-        return data;
+        dispatch({type: FETCH_TXN, payload : data});
+
     } catch (error){
         console.log(error);
     }
-    return 0;
-    
+
   
 }
 
 export const getTxns = () => async (dispatch)=> {
     try{
         const { data }= await api.getTxns();                         //fetch posts from backend or mongodb
-        return data;
+        dispatch({type: FETCH_TXNS, payload : data});
     } catch (error){
         console.log(error);
     }
-    return 0;
+
 }

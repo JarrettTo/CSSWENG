@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 export const getTxns = async (req, res)=>{      //function for getting posts
     try{
         const txns= await form.find();   //looks for all messages with the same model as models/postMessage.js in the database 
+        console.log("it ran")
         res.status(200).json(txns); 
     } catch (error){
         res.status(404).json({message:error.message});

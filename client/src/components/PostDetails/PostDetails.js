@@ -8,12 +8,14 @@ import { Container, Grow, Grid} from '@material-ui/core';
 import moment from 'moment';
 import { useParams, useHistory } from 'react-router-dom';
 import { getPost, getPosts, registerPost } from "../../actions/posts";
-import { getTxn } from "../../actions/transactions";
+import { getTxn, getTxns } from "../../actions/transactions";
+
 const PostDetails = () => {
     const [user,setUser]=useState(JSON.parse(localStorage.getItem('profile')));
     
     const posts=useSelector((state) => state.posts);
     const txn=useSelector((state) => state.txn);
+    const txns=useSelector((state) => state.txns);
     
     const dispatch = useDispatch();
     const history = useHistory();
@@ -29,31 +31,30 @@ const PostDetails = () => {
     });
     
     const [trigger,setTrigger]=useState(false);
-    const [loading,setLoading]=useState(true);
     const selPost=posts.find((e)=>{ return e._id==id});
-    
+
     useEffect(()=>{
-        console.log(posts)
+
         dispatch(getPosts(id));
         setUser(JSON.parse(localStorage.getItem('profile')));
-        setLoading(true);
         dispatch(getTxn(id));
+        dispatch(getTxns());
     },[trigger])
  
 
     const handleSubmit=(e)=>{
 
-        e.preventDefault(); 
+        
         console.log(form);
         dispatch(registerPost(id, form));
         setTrigger(!trigger)
-        
+        window.location.reload(false);
         
               
         
     }
     return (
-
+        <>
         <Grid container alignItems="stretch" spacing={3}>
             {selPost?.title}
             {selPost?.description}
@@ -61,7 +62,8 @@ const PostDetails = () => {
             {selPost?.date}
             {selPost?.tags}
             {selPost?.registeredUsers}
-            <Typography>Status: {txn?.status}</Typography>
+            
+            <Typography>Status: {txn ? txn.status: "No Recorded transaction" }</Typography>
             <Typography>Register for event:</Typography>
             {(!selPost?.registeredUsers?.find((e)=> e==user.result._id) && !selPost?.acceptedUsers?.find((e)=> e==user.result._id))?(
                 <>
@@ -92,6 +94,11 @@ const PostDetails = () => {
             ):<Button className={classes.buttonSubmit} variant="container" color="primary" size="large" type="submit" onClick={handleSubmit} fullWidth>Unregister</Button> }
             
         </Grid>
+        <Grid>
+                {console.log(txns)}
+                <Admin txns= {txns} ></Admin>
+        </Grid>
+        </>
     );
 };
 

@@ -27,6 +27,9 @@ const Navbar = () => {
 
         setUser(null);
     }
+    const adminPage= ()=>{
+        history.push(`/admin`);
+    }
     return(
         <AppBar position="static" color="inherit" className={classes.appBar}> {/*appbar is the one on top that desnt move even when ure scrolling*/}
             <div className={classes.brandContainer}>
@@ -44,6 +47,12 @@ const Navbar = () => {
                 <Button component={Link} to="/auth" variant="contained" color="primary">Sign In</Button>
                 )}
             </Toolbar>
+            
+            { user?.result.admin ?(
+            <Button variant="contained" className={classes.logout} color="secondary" onClick={adminPage}>Admin Page</Button>
+            ): null}
+                        
+                    
             
         </AppBar>
     );
