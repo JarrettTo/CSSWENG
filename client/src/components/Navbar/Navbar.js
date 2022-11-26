@@ -4,7 +4,7 @@ import { Link, useHistory, useLocation} from 'react-router-dom';
 import { AppBar, Typography, Toolbar, Avatar, Button } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import useStyles from './styles';
-import caologo from '../../images/caologo.jpg';
+import caologo from '../../images/image.png';
 import { useState } from 'react';
 
 const Navbar = () => {
@@ -30,18 +30,25 @@ const Navbar = () => {
     return(
         <AppBar position="static" color="inherit" className={classes.appBar}> {/*appbar is the one on top that desnt move even when ure scrolling*/}
             <div className={classes.brandContainer}>
-                <Typography component={Link} to="/" className={classes.typography} varaint="hs" align="center">DLSU CAO Ticketing Site</Typography>
-                <img className={classes.image} src={caologo} alt="memories" height="60"/> {/*className is like defining a class in HTML*/}
+                <img className={classes.image} src={caologo} alt="memories" height="60"/>
+                <Typography component={Link} to="/" className={classes.typography} varaint="hs" align="center">DLSU CAO Ticketing Hub</Typography>
+                 {/*className is like defining a class in HTML*/}
             </div>
             <Toolbar className={classes.toolbar}>
                 {user?.result ? (
                 <div className={classes.profile}>
-                    
+                    <Typography component={Link} to="/" className={classes.home}>HOME</Typography>
+                    <Typography  className={classes.home}>ABOUT US</Typography>
                     <Typography className={classes.userName} variant="h6">{user?.result.name}</Typography>
-                    <Button variant="contained" className={classes.logout} color="secondary" onClick={logout}>Logout</Button>
+                    <Button variant="outlined" className={classes.logout} color="secondary" onClick={logout}>Logout</Button>
                 </div>
                 ) : (
-                <Button component={Link} to="/auth" variant="contained" color="primary">Sign In</Button>
+                <div className={classes.profile}>
+                    <Typography component={Link} to="/" className={classes.home}>HOME</Typography>
+                    <Typography className={classes.home}>ABOUT US</Typography>
+                    <Button variant="outlined" component={Link} className={classes.button} to="/auth">Sign In</Button>
+                </div>
+
                 )}
             </Toolbar>
             

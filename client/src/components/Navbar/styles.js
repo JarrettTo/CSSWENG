@@ -15,9 +15,7 @@ export default makeStyles((theme) => ({
     color: 'white',
     fontSize:'25px',
     textDecoration:'none',
-    '&:hover':{
-      color:'#4caf50'
-    }
+   
   },
 
   heading: {
@@ -37,12 +35,13 @@ export default makeStyles((theme) => ({
   },
   profile: {
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
     width: '400px',
   },
   userName: {
     display: 'flex',
     alignItems: 'center',
+    color:'white'
   },
   brandContainer: {
     display: 'flex',
@@ -50,16 +49,36 @@ export default makeStyles((theme) => ({
   },
   button: {
     "&.MuiButton-outlined":{
-      border:'2px #0c8e48 solid',
+      border:'2px #4caf50 solid',
       color: 'white',
     },
     '&:hover':{
       color:'#4caf50',
     },
-    fontSize:'15px',
+    fontSize:'17px',
+  },
+  logout: {
+    "&.MuiButton-outlined":{
+      border:'2px red solid',
+      color: 'white',
+    },
+    '&:hover':{
+      color:'red',
+    },
+    fontSize:'17px',
   },
   purple: {
     color: theme.palette.getContrastText(deepPurple[500]),
     backgroundColor: deepPurple[500],
   },
+  home:{
+    marginRight:'25px',
+    color:'white',
+    fontSize:'17px',
+    marginTop:'9px',
+    textDecoration:'none',
+    '&:hover':{
+      color:'#4caf50'
+    },
+  }
 }));

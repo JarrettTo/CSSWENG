@@ -10,8 +10,8 @@ API.interceptors.request.use((req) => {
   });
   
  //connects with our backend to receive posts doesnt wrok atm
- export const fetchPosts = (page) => API.get(`/posts?page=${page}`);
- export const getTxns = () => API.get(`/transactions`);
+export const fetchPosts = (page) => API.get(`/posts?page=${page}`);
+export const getTxns = () => API.get(`/transactions`);
 export const getTxn=(id)=> API.post(`/transactions/${id}`);
 export const createPost = (newPost) => API.post('/posts', newPost);
 export const updatePost = (id, updatedPost) => API.patch(`/posts/${id}`, updatedPost);
