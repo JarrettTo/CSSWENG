@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 const postSchema = mongoose.Schema({ //schema for shows
     title: String,
     date: Date,
+    endDate: Date,
     price: Number,
     description: String,
     creator: String,

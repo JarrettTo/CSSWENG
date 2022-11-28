@@ -16,6 +16,7 @@ const Form = ({currentID, setCurrentID}) => {
     const [postData, setPostData] = useState({      //initializes postData to the ff values. we set "setPostData" as the setter function for the state variable "postData"
         title: '',
         date: '',
+        endDate: '',
         price: '',
         description: '',
         creator: '',
@@ -32,6 +33,7 @@ const Form = ({currentID, setCurrentID}) => {
         setPostData({      //initializes postData to the ff values. we set "setPostData" as the setter function for the state variable "postData"
             title: '',
             date: '',
+            endDate: '',
             price: '',
             description: '',
             creator: '',
@@ -83,6 +85,7 @@ const Form = ({currentID, setCurrentID}) => {
                 <Typography variant='h6'>Add an event:</Typography>
                 <TextField name='title' variant='outlined' label="Title" fullWidth value={postData.title} onChange={(e)=>{setPostData({...postData ,title: e.target.value})}}/>
                 <TextField name='date' variant='outlined' label="Start Date YYYY-MM-DD HH:mm" fullWidth value={postData.date} onChange={(e)=>{setPostData({...postData ,date: e.target.value})}}/>
+                <TextField name='endDate' variant='outlined' label="End Date YYYY-MM-DD HH:mm" fullWidth value={postData.endDate} onChange={(e)=>{setPostData({...postData ,endDate: e.target.value})}}/>
                 <TextField name='creator' variant='outlined' label="Creator" fullWidth value={postData.creator} onChange={(e)=>{setPostData({...postData ,creator: e.target.value})}}/>   {/*e.target.value basically just takes the new value of the textfrield. the onchange attribute ensures that it only changes whenever there is a change to the textfield*/}
                 <TextField name='description' variant='outlined' label="Description" multiline rows ={4} maxRows={4} fullWidth value={postData.description} onChange={(e)=>{setPostData({...postData ,description: e.target.value})}}/>
                 <TextField name='price' variant='outlined' label="Price" fullWidth value={postData.price} onChange={(e)=>{setPostData({...postData ,price: e.target.value})}}/>

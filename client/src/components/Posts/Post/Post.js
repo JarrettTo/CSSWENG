@@ -32,6 +32,7 @@ const Post = ({ post, setCurrentID }) => {
 
                 <Typography className={classes.title} >{post.title}</Typography>
                 <Typography className={classes.date}>{moment(post.date).local().format('YYYY-MM-DD HH:mm:ss')}</Typography>
+                <Typography className={classes.endDate}>{moment(post.endDate).local().format('YYYY-MM-DD HH:mm:ss')}</Typography>
                 <Typography className={classes.description}>{post.description}</Typography>
                 <Typography className={classes.creator}>{post.creator}</Typography>
                 <Typography className={classes.price}>Php {post.price}</Typography>
