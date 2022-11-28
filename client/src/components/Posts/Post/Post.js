@@ -8,6 +8,8 @@ import { deletePost } from '../../../actions/posts.js';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useDispatch } from 'react-redux';
+import moment from 'moment';
+
 
 const Post = ({ post, setCurrentID }) => {
     const classes = useStyles();
@@ -29,7 +31,7 @@ const Post = ({ post, setCurrentID }) => {
                 <CardContent className={classes.cardcontent}>
 
                 <Typography className={classes.title} >{post.title}</Typography>
-                <Typography className={classes.date}>{post.date}</Typography>
+                <Typography className={classes.date}>{moment(post.date).local().format('YYYY-MM-DD HH:mm:ss')}</Typography>
                 <Typography className={classes.description}>{post.description}</Typography>
                 <Typography className={classes.creator}>{post.creator}</Typography>
                 <Typography className={classes.price}>Php {post.price}</Typography>
