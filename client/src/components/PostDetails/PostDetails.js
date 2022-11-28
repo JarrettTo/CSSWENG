@@ -94,10 +94,6 @@ const PostDetails = () => {
             ):<Button className={classes.buttonSubmit} variant="container" color="primary" size="large" type="submit" onClick={handleSubmit} fullWidth>Unregister</Button> }
             
         </Grid>
-        <Grid>
-                {console.log(txns)}
-                <Admin txns= {txns} ></Admin>
-        </Grid>
         </>
     );
 };

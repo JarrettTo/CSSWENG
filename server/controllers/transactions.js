@@ -22,3 +22,28 @@ export const getTxn = async (req, res)=>{      //function for getting posts
         res.status(404).json({message:error.message});
     }
 }
+
+export const approveTxn = async (req, res)=>{      //function for getting posts
+    const {id} = req.params;
+    try{
+        const txn= await form.findById(id).sort({date: -1});   //looks for all messages with the same model as models/postMessage.js in the database 
+        txn.status="Accepted";
+        form.findByIdAndUpdate(txn._id, txn, {new: true});
+        res.status(200).json(txn); 
+    } catch (error){
+        res.status(404).json({message:error.message});
+    }
+    
+}
+export const declineTxn = async (req, res)=>{      //function for getting posts
+    const {id} = req.params;
+    try{
+        const txn= await form.findById(id).sort({date: -1});   //looks for all messages with the same model as models/postMessage.js in the database 
+        txn.status="Rejected";
+        form.findByIdAndUpdate(txn._id, txn, {new: true});
+        res.status(200).json(txn); 
+    } catch (error){
+        res.status(404).json({message:error.message});
+    }
+    
+}

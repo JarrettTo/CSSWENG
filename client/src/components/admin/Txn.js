@@ -4,10 +4,18 @@ import FileBase from 'react-file-base64';
 import { useState } from "react";
 import { Paper, Typography, CircularProgress, Divider, TextField, Button, Card} from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
+import { approveTxn, declineTxn } from "../../actions/transactions";
 
 const Txn = (txn) =>{
     
     txn=txn.txn
+    const dispatch= useDispatch();
+    const approve = () =>{
+        dispatch(approveTxn(txn._id));
+    }
+    const decline = () =>{
+        dispatch(declineTxn(txn._id));
+    }
     return(
         <Card>
             <Typography>Date of Order: {txn.date}</Typography>
@@ -19,6 +27,8 @@ const Txn = (txn) =>{
             <Typography>{txn.degree ? "Degree :" + txn.degree : null}</Typography>
             <Typography>{txn.altClass ? "Alt Class :" + txn.altClass : null}</Typography>
             <Typography>{txn.status ? "Current Status :" + txn.status : null}</Typography>
+            <Button onClick={approve}>Approve</Button>
+            <Button onClick={decline}>Decline</Button>
         </Card>
     )
 }

@@ -2,7 +2,9 @@ export default (txns=[], action) => { //reducers take in a state and an action a
     switch (action.type){
         case 'FETCH_TXNS':
             
-            return action.payload;    
+            return action.payload; 
+        case 'UPDATE_TXN':
+            return txns.map((txn)=> txn._id == action.payload._id ? action.payload : txn);   
         default:
             return txns;
     }
