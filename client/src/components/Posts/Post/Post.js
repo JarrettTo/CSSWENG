@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardActions, CardContent, CardMedia, Button, Typography, ButtonBase} from "@material-ui/core"
+import { Card, CardActions, CardContent, CardMedia, Button, Typography, ButtonBase, Grid} from "@material-ui/core"
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import { mergeClasses } from '@material-ui/styles';
 import useStyles from './styles';
@@ -29,13 +29,21 @@ const Post = ({ post, setCurrentID }) => {
                     
                 </div>
                 <CardContent className={classes.cardcontent}>
+                    <Grid container className={classes.c} maxWidth>
+                        <Grid  xs={4}  md={3}className={classes.gridDate}>
+                            <Typography className={classes.month} maxWidth>{moment(post.date).local().format('MMM')}</Typography>
+                            <Typography className={classes.day}>{moment(post.date).local().format('DD')}</Typography>
+                            <Typography className={classes.time}>{moment(post.date).local().format('HH:mm')}</Typography>
+                        </Grid>
 
-                <Typography className={classes.title} >{post.title}</Typography>
-                <Typography className={classes.date}>{moment(post.date).local().format('YYYY-MM-DD HH:mm:ss')}</Typography>
-                <Typography className={classes.endDate}>{moment(post.endDate).local().format('YYYY-MM-DD HH:mm:ss')}</Typography>
-                <Typography className={classes.description}>{post.description}</Typography>
-                <Typography className={classes.creator}>{post.creator}</Typography>
-                <Typography className={classes.price}>Php {post.price}</Typography>
+                        <Grid className={classes.gridDesc}>
+                            <Typography className={classes.title} >{post.title}</Typography>
+                            <Typography className={classes.description}>{post.description}</Typography>
+                            {/* <Typography className={classes.endDate}>{moment(post.endDate).local().format('YYYY-MM-DD HH:mm')}</Typography> */}
+                            {/* <Typography className={classes.creator}>{post.creator}</Typography> */}
+                            <Typography className={classes.price}>Php {post.price}</Typography>
+                        </Grid>
+                    </Grid>
                 </CardContent>
             
             </ButtonBase>

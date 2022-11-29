@@ -3,13 +3,14 @@ import bg from '../src/images/bg.png';
 
 export default makeStyles(() => ({
   container:{
-    padding:'5px'
+    padding:'2px',
   },
   paperContainer:{
     backgroundImage: `url(${bg})`,
     height:'100%',
     backgroundSize:'cover',
-    maxWidth:'100%'
+    maxWidth:'100%',
+    minHeight:'920px'
   },
   divider:{
     backgroundColor:'lightGrey',

@@ -65,7 +65,7 @@ const Auth=() => {
                 </Avatar>
                 <Typography variant="h5">{signUp? 'Sign Up':'Sign In'}</Typography>
                 <form className={classes.form} onSubmit={handleSubmit}>
-                    <Grid container spacing={2}>
+                    <Grid container spacing={2} className={classes.input}>
                         {
                             signUp? (
                             <>
@@ -75,16 +75,17 @@ const Auth=() => {
                                 <Input name="id" label="ID" handleChange={handleChange}  type="id" ></Input>
                             </>
                         ) : null}
-                            <Input name="email" label="Email" handleChange={handleChange} type="email"    half></Input>
+                            <Input name="email" label="Email" handleChange={handleChange} type="email"    fullWidth></Input>
                             <Input name="password" label="Password" handleChange={handleChange}  type={showPassword ? "text": "password"} handleShowPassword={handleShowPassword} ></Input>
                         {
                             signUp? (
-                                <Input name="confirmPassword" label="Confirm Password" handleChange={handleChange}  type={showPassword ? "text": "password"} handleShowPassword={handleShowPassword} half></Input>  
+                                <Input name="confirmPassword" label="Confirm Password" handleChange={handleChange}  type={showPassword ? "text": "password"} handleShowPassword={handleShowPassword} fullWidth></Input>  
                             ) : null
                         }
                     </Grid>
                     
                     <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>{signUp? 'Sign Up':'Sign In'}</Button>
+                <Typography> If you have a DLSU Account, please sign in with Google:</Typography>
                     <GoogleOAuthProvider clientId='387249647738-f58tonsbl58g3n75hh3rt3mqs9bkl0r0.apps.googleusercontent.com'>
                         <GoogleLogin
 

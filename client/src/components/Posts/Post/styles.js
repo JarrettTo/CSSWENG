@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 export default makeStyles({
   media: { //image
     display:'flex',
-    height: "250px",
+    height: "280px",
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     backgroundBlendMode: 'darken',
   },
@@ -12,11 +12,11 @@ export default makeStyles({
     flexDirection: 'column',
     justifyContent: 'space-between',
     borderRadius: '15px',
-    height: '510px',
+    height: '100%',
     position: 'relative',
   },
   cardcontent: {
-    height: '150px',
+    height: '100%',
   },
   overlay2: {
     position: 'absolute',
@@ -24,8 +24,24 @@ export default makeStyles({
     right: '10px',
     color: 'white',
   },
-  grid: {
-    display: 'flex',
+  content:{
+    width:'100%'
+  },
+  gridDate: {
+    justifyContent:'center',
+    backgroundColor:'#e3e6e8',
+    height:'90px',
+    textAlign:'center',
+    padding:'10px',
+    borderRadius:'10px',
+    maxWidth:'60px'
+    
+  },
+  gridDesc: {
+    height:'80px',
+    textAlign:'left',
+    padding:'10px',
+    minWidth:'80px'
   },
   details: {
     display: 'flex',
@@ -36,13 +52,27 @@ export default makeStyles({
     fontSize:'20px',
     fontStyle:'bold',
     justifyContent: 'space-between',
+    
   },
-  date:{
+  month:{
+    fontSize:'20px',
+    display:'block',
+  },
+  day:{
+    fontSize:'30px',
+    display:'block',
+    lineHeight:'30px'
+  },
+  time:{
     fontSize:'15px',
+    lineHeight:'30px'
   },
   description: {
     fontSize:'15px',
-    whiteSpace: 'normal'
+    overflow:'hidden',
+    textOverflow:'ellipsis',
+    maxLines:'2',
+    
   },
   creator:{
     fontSize:'12px',
