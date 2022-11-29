@@ -35,7 +35,7 @@ const PostDetails = () => {
 
     useEffect(()=>{
 
-        dispatch(getPosts(id));
+        dispatch(getPosts());
         setUser(JSON.parse(localStorage.getItem('profile')));
         dispatch(getTxn(id));
         dispatch(getTxns());

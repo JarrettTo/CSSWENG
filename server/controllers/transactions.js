@@ -1,5 +1,6 @@
 
 import form from '../models/registerForm.js';
+import { addLog, removeLog } from './attendance.js';
 import mongoose from 'mongoose';
 
 export const getTxns = async (req, res)=>{      //function for getting posts
@@ -28,7 +29,8 @@ export const approveTxn = async (req, res)=>{      //function for getting posts
     try{
         const txn= await form.findById(id).sort({date: -1});   //looks for all messages with the same model as models/postMessage.js in the database 
         txn.status="Accepted";
-        form.findByIdAndUpdate(txn._id, txn, {new: true});
+        await form.findByIdAndUpdate(txn._id, txn, {new: true});
+        await addLog(txn.userID, txn.postID, txn._id);
         res.status(200).json(txn); 
     } catch (error){
         res.status(404).json({message:error.message});
@@ -40,7 +42,9 @@ export const declineTxn = async (req, res)=>{      //function for getting posts
     try{
         const txn= await form.findById(id).sort({date: -1});   //looks for all messages with the same model as models/postMessage.js in the database 
         txn.status="Rejected";
-        form.findByIdAndUpdate(txn._id, txn, {new: true});
+        await removeLog(txn.userID, txn.postID, txn._id);
+        await form.findByIdAndUpdate(txn._id, txn, {new: true});
+        
         res.status(200).json(txn); 
     } catch (error){
         res.status(404).json({message:error.message});

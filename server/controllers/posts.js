@@ -2,6 +2,7 @@ import PostMessage from '../models/postMessage.js';
 import form from '../models/registerForm.js';
 import mongoose from 'mongoose';
 import user from '../models/user.js';
+import { addLog, removeLog } from './attendance.js';
 export const getPosts = async (req, res)=>{      //function for getting posts
     try{
         const postMessages= await PostMessage.find();   //looks for all messages with the same model as models/postMessage.js in the database 
@@ -14,7 +15,7 @@ export const getPosts = async (req, res)=>{      //function for getting posts
 export const createPost = async (req, res) =>{
     const post = req.body;
   
-    const newPost = new PostMessage({...post, creator: req.userID, createdAt: new Date().toISOString()});          //creates a new postmessage
+    const newPost = new PostMessage({...post, createdAt: new Date().toISOString()});          //creates a new postmessage
     try{
         await newPost.save();
         res.status(201).json(newPost);
@@ -82,6 +83,7 @@ export const registerPost = async (req, res)=>{
             claim=true;
             
             status='Accepted';
+            
         }
         else{
             post.registeredUsers.push(req.id);
@@ -94,6 +96,9 @@ export const registerPost = async (req, res)=>{
         console.log(finalTxn);
         try{
             await finalTxn.save();
+            if(status=='Accepted'){
+                await addLog(req.id, id, finalTxn._id);
+            }
         } catch(error){
             return res.status(409).json({message:error.message});
         }
@@ -107,6 +112,7 @@ export const registerPost = async (req, res)=>{
         const txn=await form.findOne({userID:req.id, postID:id}).sort({date: -1});
         txn.status='Cancelled';
         if(txn?.artPass){
+            await removeLog(txn.userID, txn.postID, txn._id);
             foundUser.claimed=false;
         }
         finalTxn=await form.findByIdAndUpdate(txn._id, txn, {new: true});
