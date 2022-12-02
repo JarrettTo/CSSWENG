@@ -30,6 +30,9 @@ export default makeStyles((theme) => ({
     marginBottom: 10,
     // color:'white'
   },
-
+  err_msg: {
+    color:'red',
+    fontStyle: 'italic',
+  },
   
 }));
