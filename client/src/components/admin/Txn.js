@@ -22,7 +22,8 @@ const Txn = ({txn}) =>{
     
     const dispatch= useDispatch();
     const approve = () =>{
-        dispatch(approveTxn(txn._id));
+        
+        dispatch(approveTxn(txn._id, selPost));
         setTrigger(!trigger);
     }
     const decline = () =>{

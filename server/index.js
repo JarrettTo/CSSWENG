@@ -6,6 +6,7 @@
  import cors from 'cors';
  import dotenv from 'dotenv';
  import postRoutes from './routes/posts.js';
+ import attendanceRoutes from './routes/attendance.js';
  import userRoutes from './routes/users.js';
  import txnRoutes from './routes/transactions.js';
 const CONNECTION_URL= 'mongodb+srv://jarrettto:flsmdfs30@cluster0.91eauuj.mongodb.net/?retryWrites=true&w=majority'
@@ -23,3 +24,4 @@ mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology : t
  app.use('/posts', postRoutes) //adds a /posts to the url, meaning to access localhost:5000/, u have to now do localhost:5000/posts
  app.use('/users', userRoutes);
  app.use('/transactions', txnRoutes);
+ app.use('/attendance', attendanceRoutes);

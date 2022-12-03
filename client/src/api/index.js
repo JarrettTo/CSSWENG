@@ -16,10 +16,11 @@ export const createPost= (newPost) =>   API.post(`/posts`, newPost);
 export const updatePost=(id, updatePost) => API.patch(`/posts/${id}`,updatePost);
 export const deletePost=(id, deletePost) => API.delete(`/posts/${id}`,deletePost);
 export const registerPost = (id, form) => API.post(`/posts/${id}/registerPost`,form);
-
+export const logTime = (form) => API.post(`/attendance/log`,form);
+export const getLogs = () => API.get(`/attendance/`);
 export const fetchPost=(id)=> API.post(`/posts/${id}`);
 export const signIn=(formData) => API.post('/users/signin', formData);
 export const signUp=(formData) => API.post('/users/signup', formData);
 export const googleSign=(formData,token) => API.post('/users/googlesign', [formData,token]);
-export const approveTxn=(id)=> API.post(`/transactions/approve/${id}`);
+export const approveTxn=(id, post)=> API.post(`/transactions/approve/${id}`, post);
 export const declineTxn=(id)=> API.post(`/transactions/decline/${id}`);

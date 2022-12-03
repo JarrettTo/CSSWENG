@@ -22,9 +22,10 @@ export const getTxns = () => async (dispatch)=> {
 
 }
 
-export const approveTxn = (id) => async (dispatch)=> {
+export const approveTxn = (id, post) => async (dispatch)=> {
     try{
-        const { data }= await api.approveTxn(id);
+        console.log(post);
+        const { data }= await api.approveTxn(id, post);
                              //fetch posts from backend or mongodb
         dispatch({type: UPDATE_TXN, payload : data});
     } catch (error){

@@ -24,6 +24,9 @@ const Home = () => {
     const adminPage= ()=>{
         history.push(`/admin`);
     }
+    const scanQr= ()=>{
+        history.push(`/scan`);
+    }
     return(
         <Grow in>
                 <Grid container justify="space-between" alignItems="stretch" spacing={4}>
@@ -41,6 +44,7 @@ const Home = () => {
                         { user?.result.admin ?(
                         <Button onClick={adminPage}>Admin Page</Button>
                         ): null}
+                        
                         
                     </Grid>
                 </Grid>

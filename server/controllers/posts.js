@@ -74,7 +74,7 @@ export const registerPost = async (req, res)=>{
     const valid= date<=Date(post.activeDate);
     let status, finalTxn;
     var claim=false;
-  
+    console.log("FAK");
     if (registeredIndex === -1 && acceptedIndex === -1 && valid) {
         if(foundUser.dlsu && !foundUser.claimed){
             post.acceptedUsers.push(req.id);
@@ -97,7 +97,8 @@ export const registerPost = async (req, res)=>{
         try{
             await finalTxn.save();
             if(status=='Accepted'){
-                await addLog(req.id, id, finalTxn._id);
+                
+                await addLog(req.id, id, finalTxn._id, foundUser.email, post.title, post.date, foundUser.firstName + foundUser.lastName);
             }
         } catch(error){
             return res.status(409).json({message:error.message});
