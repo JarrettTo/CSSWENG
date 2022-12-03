@@ -173,7 +173,6 @@ const PostDetails = () => {
                 
                 </>
             ):<Button className={classes.buttonSubmit} variant="container" color="primary" size="large" type="submit" onClick={handleSubmit} fullWidth>Unregister</Button> }
-                                 <Typography>STATUS: {txn.status}</Typography>
                             </Container>
                             
                         </Container>
