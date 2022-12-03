@@ -38,6 +38,7 @@ const Post = ({ post, setCurrentID }) => {
 
                         <Grid className={classes.gridDesc}>
                             <Typography className={classes.title} >{post.title}</Typography>
+                            <Typography className={classes.venue}>{post.venue}</Typography>
                             <Typography className={classes.description}>{post.description}</Typography>
                             {/* <Typography className={classes.endDate}>{moment(post.endDate).local().format('YYYY-MM-DD HH:mm')}</Typography> */}
                             {/* <Typography className={classes.creator}>{post.creator}</Typography> */}

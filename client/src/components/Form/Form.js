@@ -20,6 +20,7 @@ const Form = ({currentID, setCurrentID}) => {
         endDate: '',
         price: '',
         description: '',
+        venue: '',
         creator: '',
         tags: '',
         id: '',
@@ -37,6 +38,7 @@ const Form = ({currentID, setCurrentID}) => {
             endDate: '',
             price: '',
             description: '',
+            venue: '',
             creator: '',
             tags: '',
             id: '',
@@ -61,7 +63,7 @@ const Form = ({currentID, setCurrentID}) => {
         e.preventDefault();
         console.log("logging desc");
         console.log(postData.description);
-        if(!postData.description || !postData.creator || !postData.date || !postData.endDate || !postData.maxAttendees || !postData.price || !postData.title)
+        if(!postData.description || !postData.creator || !postData.date || !postData.endDate || !postData.maxAttendees || !postData.price || !postData.title || !postData.venue)
         {
             console.log("no desc");
             setError(true);
@@ -98,6 +100,7 @@ const Form = ({currentID, setCurrentID}) => {
                 <TextField error={error && !postData.endDate} name='endDate' variant='outlined' label="End Date YYYY-MM-DD HH:mm" fullWidth value={postData.endDate} onChange={(e)=>{setPostData({...postData ,endDate: e.target.value})}}/>
                 <TextField error={error && !postData.creator} name='creator' variant='outlined' label="Creator" fullWidth value={postData.creator} onChange={(e)=>{setPostData({...postData ,creator: e.target.value})}}/>   {/*e.target.value basically just takes the new value of the textfrield. the onchange attribute ensures that it only changes whenever there is a change to the textfield*/}
                 <TextField error={error && !postData.description} name='description' variant='outlined' label="Description" multiline rows ={4} maxRows={4} fullWidth value={postData.description} onChange={(e)=>{setPostData({...postData ,description: e.target.value})}}/>
+                <TextField error={error && !postData.venue} name='venue' variant='outlined' label="Venue" fullWidth value={postData.venue} onChange={(e)=>{setPostData({...postData ,venue: e.target.value})}}/>
                 <TextField error={error && !postData.price} name='price' variant='outlined' label="Price" fullWidth value={postData.price} onChange={(e)=>{setPostData({...postData ,price: e.target.value})}}/>
                 <TextField error={error && !postData.maxAttendees} name='maxAttendees' variant='outlined' label="Max Attendees" fullWidth value={postData.maxAttendees} onChange={(e)=>{setPostData({...postData ,maxAttendees: e.target.value})}}/>
                 <TextField name='tags' variant='outlined' label="Tags" fullWidth value={postData.tags} onChange={(e)=>{setPostData({...postData ,tags: e.target.value.split(',')})}}/>

@@ -6,6 +6,7 @@ const postSchema = mongoose.Schema({ //schema for shows
     endDate: Date,
     price: Number,
     description: String,
+    venue: String,
     creator: String,
     tags: [String],
     id: String,
