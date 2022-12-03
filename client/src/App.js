@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Container, Paper } from '@material-ui/core';
+import { Container, Paper, CssBaseline } from '@material-ui/core';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
@@ -15,6 +15,7 @@ const App = () => {
     const classes=useStyles();
     return (
         <Paper className={classes.paperContainer}>
+            <CssBaseline/>
             <BrowserRouter>
             <Navbar />
             <div className={classes.container}>

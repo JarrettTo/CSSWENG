@@ -9,7 +9,7 @@ export default makeStyles(() => ({
     backgroundImage: `url(${bg})`,
     height:'100%',
     backgroundSize:'cover',
-    maxWidth:'100%',
+    minWidth:'900px',
     minHeight:'920px'
   },
   divider:{
