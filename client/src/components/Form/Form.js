@@ -27,6 +27,7 @@ const Form = ({currentID, setCurrentID}) => {
         noOfAttendees: '',
         maxAttendees: '',
         selectedFile: '',
+        selectedFileOther: '',
 
     })
  
@@ -45,6 +46,7 @@ const Form = ({currentID, setCurrentID}) => {
             noOfAttendees: '',
             maxAttendees: '',
             selectedFile: '',
+            selectedFileOther: '',
     
         })
     }
@@ -107,6 +109,9 @@ const Form = ({currentID, setCurrentID}) => {
                 {error && <span className={classes.err_msg}>One or more required field is empty</span> }
                 <div className={classes.fileInput}>
                     <FileBase type ="file"multiple={false} onDone={({base64})=> setPostData({...postData, selectedFile: base64})}/>
+                </div>
+                <div className={classes.fileInput}>
+                    <FileBase type ="file"multiple={false} onDone={({base64})=> setPostData({...postData, selectedFileOther: base64})}/>
                 </div>
                 <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit </Button>
                 <Button className={classes.buttonSubmit} variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
