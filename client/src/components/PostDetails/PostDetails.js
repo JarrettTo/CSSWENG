@@ -8,54 +8,63 @@ import { Container, Grow, Grid} from '@material-ui/core';
 import moment from 'moment';    
 import { useParams, useHistory } from 'react-router-dom';
 import { getPost, getPosts, registerPost } from "../../actions/posts";
-import { getTxn } from "../../actions/transactions";
 import regBg from '../../images/regBg.png';
-
+import { getTxn, getTxns } from "../../actions/transactions";
 
 const PostDetails = () => {
     const [user,setUser]=useState(JSON.parse(localStorage.getItem('profile')));
     
     const {posts}=useSelector((state) => state.posts);
+    const txn=useSelector((state) => state.txn);
+    const txns=useSelector((state) => state.txns);
     
     const dispatch = useDispatch();
     const history = useHistory();
     const { id } = useParams();
     const classes=useStyles();
-    const [file, setFile]= useState(null);
-    const [txn, setTxn]=useState(getTxn(id));
+    const [form, setForm]= useState({      //initializes postData to the ff values. we set "setPostData" as the setter function for the state variable "postData"
+        contactNumber: '',
+        dlsu_id:'',
+        college: '',
+        degree: '',
+        altClass: '',
+        payment:'',
+    });
+    
     const [trigger,setTrigger]=useState(false);
     const selPost=posts.find((e)=>{ return e._id==id});
     // const mainPub = {selPost?.selectedFile}.replace('data:image/png;base64,', '');
     
+
     useEffect(()=>{
-        console.log(posts)
-        dispatch(getPosts(id));
+
+        dispatch(getPosts());
         setUser(JSON.parse(localStorage.getItem('profile')));
-        setTxn(getTxn(id));
+        dispatch(getTxn(id));
+        dispatch(getTxns());
     },[trigger])
  
 
     const handleSubmit=(e)=>{
 
-        e.preventDefault(); 
-        console.log(file);
-        dispatch(registerPost(id, file));
-        setTrigger(!trigger)
         
+        console.log(form);
+        dispatch(registerPost(id, form));
+        setTrigger(!trigger)
+        window.location.reload(false);
         
               
         
     }
     return (
        
-        <Grid>
-            {/* {selPost?.title} */}
-            {/* {selPost?.description} */}
-            {/* {selPost?.price} */}
-            {/* {selPost?.date} */}
-            {/* {selPost?.tags} */}
-            {/* {selPost?.registeredUsers} */}
-            {/* {selPost?.selectedFile} */}
+        <Grid container alignItems="stretch" spacing={3}>
+            {selPost?.title}
+            {selPost?.description}
+            {selPost?.price}
+            {selPost?.date}
+            {selPost?.tags}
+            {selPost?.registeredUsers}
 
             <CssBaseline />
 
@@ -135,44 +144,35 @@ const PostDetails = () => {
 
                             <Container className={classes.registration}>
                                
-                                {(!selPost?.registeredUsers?.find((e)=> e==user.result._id) && !selPost?.acceptedUsers?.find((e)=> e==user.result._id))?(
-                                    <>
-                                    {(!user?.result?.dlsu || user?.result?.claimed) ? (
-                                        <form autoComplete='off' noValidate className={classes.form} onSubmit={handleSubmit}>
-                                        
-                                            
-                                            <Typography className={classes.regHeading}>REGISTER HERE</Typography>
-                                            
-                                            
-                                            <Typography className={classes.formTitle}>Full Name *</Typography>
-                                            <TextField/>
-
-                                            <Typography className={classes.formTitle}>DLSU Email *</Typography>
-                                            <TextField/>
-
-                                            <Typography className={classes.formTitle}>Complete ID Number *</Typography>
-                                            <TextField/>
-
-                                            <Typography className={classes.formTitle}>College *</Typography>
-                                            <TextField/>
-
-
-                                            {/* <Typography>Payment Details: 09270164346 GCASH JUSTIN TO</Typography> */}
-
-                                            <Typography className={classes.formPayment}>Proof of Payment *</Typography>
-                                            <div className={classes.fileInput}>
-                                                <FileBase type ="file"multiple={false} onDone={({base64})=> setFile(base64)}/>
-                                            </div>
-
-
-                                            <Button className={classes.buttonSubmit} variant="container" color="primary" size="large" type="submit" fullWidth>Register</Button>
-                                            
-                                        </form>
-                                    ): <Button className={classes.buttonSubmit} variant="container" color="primary" size="large" type="submit" onClick={handleSubmit} fullWidth>Register</Button> }
-                                    
-                                    
-                                    </>
-                                ):<Button className={classes.buttonSubmit} variant="container" color="primary" size="large" type="submit" onClick={handleSubmit} fullWidth>Unregister</Button> }
+                            <Typography>Status: {txn ? txn.status: "No Recorded transaction" }</Typography>
+            <Typography>Register for event:</Typography>
+            {(!selPost?.registeredUsers?.find((e)=> e==user.result._id) && !selPost?.acceptedUsers?.find((e)=> e==user.result._id))?(
+                <>
+                <TextField name='Contact Number' variant='outlined' label="Contact Number" fullWidth value={form.contactNumber} onChange={(e)=>{setForm({...form ,contactNumber: e.target.value})}}/>
+                {(user?.result?.dlsu) ? (
+                    <>
+                        <TextField name='ID Number' variant='outlined' label="ID Number" fullWidth value={form.dlsu_id} onChange={(e)=>{setForm({...form ,dlsu_id: e.target.value})}}/>
+                        <TextField name='College' variant='outlined' label="College" fullWidth value={form.college} onChange={(e)=>{setForm({...form ,college: e.target.value})}}/>
+                        <TextField name='Degree Program' variant='outlined' label="Degree Program" fullWidth value={form.degree} onChange={(e)=>{setForm({...form ,degree: e.target.value})}}/>
+                        <TextField name='Alternative Class' variant='outlined' label="Alternative Class" fullWidth value={form.altClass} onChange={(e)=>{setForm({...form ,altClass: e.target.value})}}/>
+                    </>
+                ): null}
+                {(!user?.result?.dlsu || user?.result?.claimed) ? (
+                    <>
+                        
+                        <Typography>Payment Details: 09270164346 GCASH JUSTIN TO</Typography>
+                        <Typography>PROOF OF PAYMENT:</Typography>
+                        <div className={classes.fileInput}>
+                            <FileBase type ="file"multiple={false} onDone={({base64})=> setForm({...form ,payment: base64})}/>
+                        </div>
+                        <Button className={classes.buttonSubmit} variant="container" color="primary" size="large" type="submit" onClick={handleSubmit} fullWidth>Register</Button>
+                        
+                    </>
+                ): <Button className={classes.buttonSubmit} variant="container" color="primary" size="large" type="submit" onClick={handleSubmit} fullWidth>Register</Button> }
+                
+                
+                </>
+            ):<Button className={classes.buttonSubmit} variant="container" color="primary" size="large" type="submit" onClick={handleSubmit} fullWidth>Unregister</Button> }
                                  <Typography>STATUS: {txn.status}</Typography>
                             </Container>
                             
@@ -184,36 +184,7 @@ const PostDetails = () => {
 
 
         </Grid>
-
-        // <Grid container alignItems="stretch" spacing={3}>
-            // {selPost?.title}
-            // {selPost?.description}
-            // {selPost?.price}
-            // {selPost?.date}
-            // {selPost?.tags}
-            // {selPost?.registeredUsers}
-            // <CssBaseline />
-            // <Typography>Status: {txn.status}</Typography>
-            // {(!selPost?.registeredUsers?.find((e)=> e==user.result._id) && !selPost?.acceptedUsers?.find((e)=> e==user.result._id))?(
-            //     <>
-            //     {(!user?.result?.dlsu || user?.result?.claimed) ? (
-            //         <form autoComplete='off' noValidate className={classes.form} onSubmit={handleSubmit}>
-            //             <Typography>Register for event:</Typography>
-            //             <Typography>Payment Details: 09270164346 GCASH JUSTIN TO</Typography>
-            //             <Typography>PROOF OF PAYMENT:</Typography>
-            //             <div className={classes.fileInput}>
-            //                 <FileBase type ="file"multiple={false} onDone={({base64})=> setFile(base64)}/>
-            //             </div>
-            //             <Button className={classes.buttonSubmit} variant="container" color="primary" size="large" type="submit" fullWidth>Register</Button>
-                        
-            //         </form>
-            //     ): <Button className={classes.buttonSubmit} variant="container" color="primary" size="large" type="submit" onClick={handleSubmit} fullWidth>Register</Button> }
-                
-                
-            //     </>
-            // ):<Button className={classes.buttonSubmit} variant="container" color="primary" size="large" type="submit" onClick={handleSubmit} fullWidth>Unregister</Button> }
-            
-        // </Grid>
+        
     );
 };
 

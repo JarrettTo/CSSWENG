@@ -27,6 +27,12 @@ const Navbar = () => {
 
         setUser(null);
     }
+    const adminPage= ()=>{
+        history.push(`/admin`);
+    }
+    const scanQr= ()=>{
+        history.push(`/scan`);
+    }
     return(
         <AppBar position="static" color="inherit" className={classes.appBar}> {/*appbar is the one on top that desnt move even when ure scrolling*/}
             <div className={classes.brandContainer}>
@@ -51,6 +57,15 @@ const Navbar = () => {
 
                 )}
             </Toolbar>
+            
+            { user?.result.admin ?(
+            <>
+            <Button variant="contained" className={classes.logout} color="secondary" onClick={adminPage}>Admin Page</Button>
+            <Button variant="contained" className={classes.logout} color="secondary" onClick={scanQr}>QR Scanner</Button>
+            </>
+            ): null}
+                        
+                    
             
         </AppBar>
     );

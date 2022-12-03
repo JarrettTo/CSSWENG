@@ -52,12 +52,12 @@ export const deletePost = (id) => async (dispatch) =>{          //creates a post
     }
 }
 
-export const registerPost = (id, file) => async (dispatch) =>{          //creates a post
+export const registerPost = (id, form) => async (dispatch) =>{          //creates a post
     const user = JSON.parse(localStorage.getItem('profile'));
-    console.log(file);
+    console.log(form);
 
     try{
-        const { data } = await api.registerPost(id, file, user?.token);
+        const { data } = await api.registerPost(id, form, user?.token);
         console.log(data);
 
         dispatch({type: REGISTER_POST, payload : data.updatedPost});

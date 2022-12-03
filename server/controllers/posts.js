@@ -2,6 +2,7 @@ import PostMessage from '../models/postMessage.js';
 import form from '../models/registerForm.js';
 import mongoose from 'mongoose';
 import user from '../models/user.js';
+import { addLog, removeLog } from './attendance.js';
 
 export const getPosts = async (req, res) => {
     const { page } = req.query;
@@ -11,6 +12,7 @@ export const getPosts = async (req, res) => {
         const startIndex = (Number(page) - 1) * LIMIT; 
         const total = await PostMessage.countDocuments({});
         const posts = await PostMessage.find().sort({ _id: -1 }).limit(LIMIT).skip(startIndex);
+        const postMessages= await PostMessage.find();   //looks for all messages with the same model as models/postMessage.js in the database 
 
         res.status(200).json({ data: posts, currentPage: Number(page), numberOfPages: Math.ceil(total / LIMIT)});
     } catch (error) {    
@@ -34,7 +36,7 @@ export const getPostsBySearch = async (req, res) => {
 export const createPost = async (req, res) =>{
     const post = req.body;
   
-    const newPost = new PostMessage({...post, creator: req.userID, createdAt: new Date().toISOString()});          //creates a new postmessage
+    const newPost = new PostMessage({...post, createdAt: new Date().toISOString()});          //creates a new postmessage
     try{
         await newPost.save();
         res.status(201).json(newPost);
@@ -77,7 +79,7 @@ export const deletePost = async (req, res) =>{
 
 export const registerPost = async (req, res)=>{
     const { id } = req.params;
-    const file =req.body;
+    const register =req.body;
 
     let date = new Date().toJSON();
 
@@ -93,7 +95,7 @@ export const registerPost = async (req, res)=>{
     const valid= date<=Date(post.activeDate);
     let status, finalTxn;
     var claim=false;
-  
+    console.log("FAK");
     if (registeredIndex === -1 && acceptedIndex === -1 && valid) {
         if(foundUser.dlsu && !foundUser.claimed){
             post.acceptedUsers.push(req.id);
@@ -102,6 +104,7 @@ export const registerPost = async (req, res)=>{
             claim=true;
             
             status='Accepted';
+            
         }
         else{
             post.registeredUsers.push(req.id);
@@ -110,10 +113,14 @@ export const registerPost = async (req, res)=>{
             
 
         }
-        finalTxn = new form({userID: req.id, postID: id, selectedFile: JSON.stringify(file), artPass: claim, status: status, date: Date(post.activeDate)});
+        finalTxn = new form({userID: req.id, postID: id, selectedFile: register.payment, artPass: claim, status: status, firstName: foundUser.firstName, lastName: foundUser.lastName, dlsu_id: register.dlsu_id, contactNumber: register.contactNumber, degree: register.degree, college: register.college, altClass: register.altClass, email: foundUser.email, date: Date(post.activeDate)});
         console.log(finalTxn);
         try{
             await finalTxn.save();
+            if(status=='Accepted'){
+                
+                await addLog(req.id, id, finalTxn._id, foundUser.email, post.title, post.date, foundUser.firstName + foundUser.lastName);
+            }
         } catch(error){
             return res.status(409).json({message:error.message});
         }
@@ -127,6 +134,7 @@ export const registerPost = async (req, res)=>{
         const txn=await form.findOne({userID:req.id, postID:id}).sort({date: -1});
         txn.status='Cancelled';
         if(txn?.artPass){
+            await removeLog(txn.userID, txn.postID, txn._id);
             foundUser.claimed=false;
         }
         finalTxn=await form.findByIdAndUpdate(txn._id, txn, {new: true});

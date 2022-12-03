@@ -15,6 +15,7 @@ function useQuery(){
     return new URLSearchParams(useLocation().search);
 }
 
+
 const Home = () => {
     const [currentID, setCurrentID] = useState(null);
     const classes= useStyles();
@@ -54,6 +55,12 @@ const handleDelete = (tagToDelete => setTags(tags.filter((tag) => tag != tagToDe
     },[currentID, dispatch])        //the dependency arrays, currentID and dispatch, when changed, trigger the contents of use effect
     //const posts= useSelector((state)=> state.posts);
     //console.log(posts)
+    const adminPage= ()=>{
+        history.push(`/admin`);
+    }
+    const scanQr= ()=>{
+        history.push(`/scan`);
+    }
     return(
         <Grow in>
 
@@ -119,6 +126,13 @@ const handleDelete = (tagToDelete => setTags(tags.filter((tag) => tag != tagToDe
                     </Grid>
 
 
+                    <Grid item xs={12} sm={4}>
+                        { user?.result.admin ?(
+                        <Button onClick={adminPage}>Admin Page</Button>
+                        ): null}
+                        
+                        
+                    </Grid>
                 </Grid>
 
 
