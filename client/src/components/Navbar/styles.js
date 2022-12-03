@@ -15,6 +15,8 @@ export default makeStyles((theme) => ({
     color: 'white',
     fontSize:'25px',
     textDecoration:'none',
+    overflow:'hidden',
+    whiteSpace:'nowrap'
    
   },
 

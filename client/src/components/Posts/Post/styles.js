@@ -16,7 +16,9 @@ export default makeStyles({
     position: 'relative',
   },
   cardcontent: {
-    height: '100%',
+    Height: '120px',
+    marginTop:'2px',
+    padding:'10px'
   },
   overlay2: {
     position: 'absolute',
@@ -25,7 +27,9 @@ export default makeStyles({
     color: 'white',
   },
   content:{
-    width:'100%'
+    flex:'1',
+    justifyContent:'left',
+    
   },
   gridDate: {
     justifyContent:'center',
@@ -40,8 +44,11 @@ export default makeStyles({
   gridDesc: {
     height:'80px',
     textAlign:'left',
-    padding:'10px',
-    minWidth:'80px'
+    paddingLeft:'9px',
+    minWidth:'150px',
+    // wrap:'wrap',
+    
+    
   },
   details: {
     display: 'flex',
@@ -49,36 +56,37 @@ export default makeStyles({
     margin: '5px',
   },
   title: {
-    fontSize:'20px',
-    fontStyle:'bold',
-    justifyContent: 'space-between',
+    fontSize:'17px',
+    fontWeight: 'bold',
+    lineHeight:'20px'
     
   },
   month:{
     fontSize:'20px',
-    display:'block',
+    lineHeight:'28px',
+    paddingBottom:'1px',
+    
   },
   day:{
-    fontSize:'30px',
+    fontSize:'25px',
     display:'block',
-    lineHeight:'30px'
+    lineHeight:'18px',
   },
   time:{
     fontSize:'15px',
-    lineHeight:'30px'
+    paddingTop:'5px'
+
   },
   description: {
-    fontSize:'15px',
-    overflow:'hidden',
+    fontSize:'12px',
     textOverflow:'ellipsis',
-    maxLines:'2',
     
   },
   creator:{
     fontSize:'12px',
   },
   price:{
-    fontSize:'15px',
+    fontSize:'13px',
   },
   cardActions: {
     padding: '0 16px 8px 16px',
