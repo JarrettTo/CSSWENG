@@ -6,13 +6,17 @@ export default makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    padding: theme.spacing(5),
-    width:'700px'
+    padding: theme.spacing(3),
+    width:'700px',
+    marginTop:'100px'
   },
   root: {
     '& .MuiTextField-root': {
       margin: theme.spacing(5),
     },
+  },
+  input:{
+    marginBottom:'10px'
   },
   container:{
     margin: theme.spacing(20,0),
