@@ -23,7 +23,7 @@ const Post = ({ post, setCurrentID }) => {
             
             <ButtonBase className={classes.cardAction} onClick={openPost} >
                 <CardMedia component= 'image' className={classes.media} image={postMessage.selectedFile} title={Post.title} />
-                
+
                 <div className={classes.details}>
                     <Typography variant="body2" color="textSecondary">{post.tags.map((tag) => `#${tag} `)}</Typography>
                     
@@ -39,7 +39,7 @@ const Post = ({ post, setCurrentID }) => {
                         <Grid  xs={5}  md={8} lg={20} className={classes.gridDesc}>
                             <Typography className={classes.title} >{post.title}</Typography>
                             <Typography className={classes.venue}>{post.venue}</Typography>
-                            <Typography className={classes.description} noWrap>{post.description}</Typography>
+                            {/* <Typography className={classes.description} noWrap>{post.description}</Typography> */}
                             {/* <Typography className={classes.endDate}>{moment(post.endDate).local().format('YYYY-MM-DD HH:mm')}</Typography> */}
                             {/* <Typography className={classes.creator}>{post.creator}</Typography> */}
                             <Typography className={classes.price}>Php {post.price}</Typography>

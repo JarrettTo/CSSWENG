@@ -82,5 +82,17 @@ export default makeStyles((theme) => ({
     '&:hover':{
       color:'#4caf50'
     },
-  }
+  },
+  admin:{
+    "&.MuiButton-outlined":{
+      border:'2px #4caf50 solid',
+      color: 'white',
+    },
+    '&:hover':{
+      color:'#4caf50',
+    },
+    fontSize:'15px',
+    lineHeight:'20px',
+    marginLeft:'10px'
+  },
 }));
