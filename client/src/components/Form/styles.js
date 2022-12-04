@@ -10,13 +10,15 @@ export default makeStyles((theme) => ({
     marginTop: '5px',
     padding: theme.spacing(2),
     borderRadius: '10px',
-    backgroundColor:'#555760'
+    backgroundColor:'#555760',
+    width:'450px'
   },
   form: {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'left',
     backgroundColor:'transparent',
+    
     // color:'white',
   },
   label:{
@@ -41,16 +43,18 @@ export default makeStyles((theme) => ({
             borderColor: 'white',
             color:'white'
         },
-    marginBottom:'10px'
+    marginBottom:'10px',
+    backgroundColor:'#72737b'
     },
-},
+  },
   button1: {
-    marginBottom: 10,
+    marginBottom: '10px',
+    marginTop: '10px',
     color:'white',
-    backgroundColor:'blue'
+    backgroundColor:'#5865f2'
   },
   button2: {
-    marginBottom: 10,
+    marginBottom: '10px',
     color:'white',
     backgroundColor:'red'
   },

@@ -18,7 +18,6 @@ export default makeStyles({
   },
   cardcontent: {
     height: '120px',
-    marginTop:'2px',
     padding:'10px',
     color:'white'
   },

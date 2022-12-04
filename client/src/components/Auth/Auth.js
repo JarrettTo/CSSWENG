@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui/core';
+import { Avatar, Button, Paper, Grid, Typography, Container, Divider } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import useStyles from './styles';
 import { useHistory } from 'react-router-dom';
@@ -63,29 +63,9 @@ const Auth=() => {
                 <Avatar className={classes.Avatar}>
                     <LockOutlinedIcon></LockOutlinedIcon>
                 </Avatar>
-                <Typography variant="h5">{signUp? 'Sign Up':'Sign In'}</Typography>
-                <form className={classes.form} onSubmit={handleSubmit}>
-                    <Grid container spacing={2} className={classes.input}>
-                        {
-                            signUp? (
-                            <>
-                                <Input name="firstName" label="First Name" handleChange={handleChange} autoFocus half></Input>
-                                <Input name="lastName" label="Last Name" handleChange={handleChange}  half></Input>
-                                
-                                <Input name="id" label="ID" handleChange={handleChange}  type="id" ></Input>
-                            </>
-                        ) : null}
-                            <Input name="email" label="Email" handleChange={handleChange} type="email"    fullWidth></Input>
-                            <Input name="password" label="Password" handleChange={handleChange}  type={showPassword ? "text": "password"} handleShowPassword={handleShowPassword} ></Input>
-                        {
-                            signUp? (
-                                <Input name="confirmPassword" label="Confirm Password" handleChange={handleChange}  type={showPassword ? "text": "password"} handleShowPassword={handleShowPassword} fullWidth></Input>  
-                            ) : null
-                        }
-                    </Grid>
-                    
-                    <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>{signUp? 'Sign Up':'Sign In'}</Button>
-                <Typography> If you have a DLSU Account, please sign in with Google:</Typography>
+                <Typography className={classes.title} variant="h5">{signUp? 'Sign Up':'Sign In'}</Typography>
+                <div className={classes.googleDiv}>
+                <Typography className={classes.note}> If you have a DLSU Account, please sign in with Google:</Typography>
                     <GoogleOAuthProvider clientId='387249647738-f58tonsbl58g3n75hh3rt3mqs9bkl0r0.apps.googleusercontent.com'>
                         <GoogleLogin
 
@@ -108,10 +88,34 @@ const Auth=() => {
                             cookiePolicy="single_host_origin"
                         />
                     </GoogleOAuthProvider>
+                            <Divider className={classes.divider}></Divider>
+                    </div>
+                <form className={classes.form} onSubmit={handleSubmit}>
+                    <Grid container spacing={2} className={classes.input}>
+                        {
+                            signUp? (
+                            <>
+                                <Input name="firstName" label="First Name" handleChange={handleChange} autoFocus half></Input>
+                                <Input name="lastName" label="Last Name" handleChange={handleChange}  half></Input>
+                                
+                                <Input name="id" label="ID" handleChange={handleChange}  type="id" ></Input>
+                            </>
+                        ) : null}
+                            <Input name="email" label="Email" handleChange={handleChange} type="email"    fullWidth></Input>
+                            <Input name="password" label="Password" handleChange={handleChange}  type={showPassword ? "text": "password"} handleShowPassword={handleShowPassword} ></Input>
+                        {
+                            signUp? (
+                                <Input name="confirmPassword" label="Confirm Password" handleChange={handleChange}  type={showPassword ? "text": "password"} handleShowPassword={handleShowPassword} fullWidth></Input>  
+                            ) : null
+                        }
+                    </Grid>
+                    
+                    <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>{signUp? 'Sign Up':'Sign In'}</Button>
+                
                     
                     <Grid container justifyContent="flex-end">
                         <Grid item>
-                            <Button onClick={switchMode}>
+                            <Button className={classes.button2} onClick={switchMode}>
                                 { signUp? 'Already have an account? Sign In!' : 'Don\'t have an Account? Sign Up!'}
                             </Button>
                         </Grid>
