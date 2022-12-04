@@ -23,6 +23,7 @@ export default makeStyles((theme) => ({
     // border: '1px solid rgba(0, 0, 0, 0.3)',
     // backgroundColor: 'rgba(0, 0, 0, 0.3)',
     // border: '1px solid white',
+    marginTop: '10vh'
   },
   titleBox: {
     // border: '1px solid white',
@@ -342,7 +343,7 @@ export default makeStyles((theme) => ({
 
   // SECTION 3
   box3: {
-    border: '1px solid white',
+    // border: '1px solid white',
     height: '90vh',
     marginTop: '15vh',
 

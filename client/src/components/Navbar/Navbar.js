@@ -46,12 +46,11 @@ const Navbar = () => {
         history.push(`/scan`);
     }
     return(
-        <AppBar position="static" color="inherit" className={classes.appBar}> {/*appbar is the one on top that desnt move even when ure scrolling*/}
+        <AppBar position="fixed" color="inherit" className={classes.appBar}> {/*appbar is the one on top that desnt move even when ure scrolling*/}
             <div className={classes.brandContainer}>
                 <img className={classes.image} src={caologo} alt="memories" />
                 <ThemeProvider theme={theme}>
                     <Typography component={Link} to="/" className={classes.typography} variant="h3" align="center">DLSU CAO Ticketing Hub</Typography>
-                 {/*className is like defining a class in HTML*/}
                 </ThemeProvider>
             </div>
             <Toolbar className={classes.toolbar}>

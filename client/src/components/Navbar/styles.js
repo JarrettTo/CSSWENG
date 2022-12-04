@@ -3,6 +3,7 @@ import { deepPurple } from '@material-ui/core/colors';
 
 export default makeStyles((theme) => ({
   appBar: {
+    // marginTop: '2vh',
     padding: '0 1% 0 1%',
     width: '100vw',
     display: 'flex',
@@ -10,46 +11,64 @@ export default makeStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#09300d',
+    height: '12vh',
+    fontSize: '2vh'
     
   },
+  brandContainer: {
+    // border: '1px solid red',
+    height: '100%',
+    display: 'flex',
+    alignItems: 'center',
+  },
+  image: {
+    // border: '1px solid red',
+    marginLeft: '80px',
+    margin: '10px',
+    height: '80%',
+    maxHeight:'80px'
+  },
   typography:{
+    // border: '1px solid red',
     padding: "15px",
     color: 'white',
-    fontSize:'25px',
+    fontSize:'2em',
     textDecoration:'none',
     overflow:'hidden',
     whiteSpace:'nowrap'
   },
-
-  heading: {
-    color: 'rgba(0,183,255, 1)',
-    textDecoration: 'none',
-  },
-  image: {
-    marginLeft: '80px',
-    margin: '10px',
-    height: 'auto',
-    maxHeight:'80px'
-  },
   toolbar: {
-    marginRight: '80px',
+    // border: '1px solid red',
+    height: '100%',
+    marginRight: '5vw',
     display: 'flex',
     justifyContent: 'flex-end',
-    width: '400px',
+    width: '29vw',
+    fontSize: '2vh'
   },
   profile: {
+    // border: '1px solid red',
+    height: '85%',
     display: 'flex',
-    justifyContent: 'flex-end',
-    width: '400px',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 'auto',
+  },
+  home:{
+    // border: '1px solid red',
+    marginRight:'2vw',
+    color:'white',
+    fontSize:'1.4em',
+    textDecoration:'none',
+    '&:hover':{
+      color:'#4caf50'
+    },
   },
   userName: {
+    // border: '1px solid red',
     display: 'flex',
     alignItems: 'center',
     color:'white'
-  },
-  brandContainer: {
-    display: 'flex',
-    alignItems: 'center',
   },
   button: {
     "&.MuiButton-outlined":{
@@ -65,26 +84,18 @@ export default makeStyles((theme) => ({
     "&.MuiButton-outlined":{
       border:'2px red solid',
       color: 'white',
+      height: '7vh',
     },
     '&:hover':{
       color:'red',
     },
-    fontSize:'17px',
+    fontSize:'1.6em',
   },
   purple: {
     color: theme.palette.getContrastText(deepPurple[500]),
     backgroundColor: deepPurple[500],
   },
-  home:{
-    marginRight:'25px',
-    color:'white',
-    fontSize:'17px',
-    marginTop:'9px',
-    textDecoration:'none',
-    '&:hover':{
-      color:'#4caf50'
-    },
-  },
+  
   admin:{
     "&.MuiButton-outlined":{
       border:'2px #5865f2 solid',
