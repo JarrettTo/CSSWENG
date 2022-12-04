@@ -6,10 +6,11 @@ import { Paper, Typography, CircularProgress, Divider, TextField, Button, Card} 
 import { useDispatch, useSelector } from 'react-redux';
 import { getPost, getPosts, registerPost } from "../../actions/posts";
 import { approveTxn, declineTxn } from "../../actions/transactions";
-
+import useStyles from './styles';
 const Txn = ({txn}) =>{
     const [trigger, setTrigger] = useState(false);
     const {posts} = useSelector((state)=>state.posts);
+    const classes = useStyles();
     
     
 
@@ -43,7 +44,7 @@ const Txn = ({txn}) =>{
             <Typography>{txn.degree ? "Degree :" + txn.degree : null}</Typography>
             <Typography>{txn.altClass ? "Alt Class :" + txn.altClass : null}</Typography>
             <Typography>{txn.status ? "Current Status :" + txn.status : null}</Typography>
-            {txn.status == 'Pending' || txn.status == 'Rejected' ? (<Button onClick={approve}>Approve</Button>): (<Button onClick={decline}>Decline</Button>)}
+            {txn.status == 'Pending' || txn.status == 'Rejected' ? (<Button className={classes.button1} type="submit"  variant="contained" onClick={approve}>Approve</Button>): (<Button className={classes.button2} type="submit" variant="contained" onClick={decline}>Decline</Button>)}
             
             
         </Card>
