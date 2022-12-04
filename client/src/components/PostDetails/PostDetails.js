@@ -2,15 +2,12 @@ import React, { useEffect } from "react";
 import FileBase from 'react-file-base64';
 import useStyles from './styles';
 import { useState } from "react";
-import { Paper, Typography, TextField, Button } from '@material-ui/core';
+import { Typography, TextField, Button } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container, Grid} from '@material-ui/core';
-// import moment from 'moment';    
 import { useParams, useHistory } from 'react-router-dom';
-import { getPost, getPosts, registerPost } from "../../actions/posts";
-import regBg from '../../images/regBg.png';
+import { getPosts, registerPost } from "../../actions/posts";
 import { getTxn, getTxns } from "../../actions/transactions";
-// import './/showpage.css';
 
 
 
@@ -144,7 +141,7 @@ const PostDetails = () => {
 
                     {/* RIGHT */}
                     <Container className={classes.right2}>
-                        <img className={classes.ticketbg} src={regBg}/>
+                        {/* <img className={classes.ticketbg} src={regBg}/> */}
 
                         <Container className={classes.registration}>
                             <Typography>Status: {txn ? txn.status: "No Recorded transaction" }</Typography>
@@ -154,11 +151,11 @@ const PostDetails = () => {
                             <>
                                 <TextField 
                                     name='Contact Number' 
-                                    variant='outlined' 
+                                    variant='filled' 
                                     label="Contact Number"
                                     value={form.contactNumber} 
                                     onChange={(e)=>{setForm({...form ,contactNumber: e.target.value})}}
-                                    className="textField"
+                                    className={classes.textField}
                                     InputProps={{className: classes.input}}
                                 />
 
@@ -171,7 +168,7 @@ const PostDetails = () => {
                                         label="ID Number" 
                                         value={form.dlsu_id} 
                                         onChange={(e)=>{setForm({...form ,dlsu_id: e.target.value})}}
-                                        className="textField"
+                                        className={classes.textField}
                                         InputProps={{className: classes.input}}
                                     />
                                     
@@ -181,7 +178,7 @@ const PostDetails = () => {
                                         label="College" 
                                         value={form.college} 
                                         onChange={(e)=>{setForm({...form ,college: e.target.value})}}
-                                        className="textField"
+                                        className={classes.textField}
                                         InputProps={{className: classes.input}}
                                     />
 
@@ -191,7 +188,7 @@ const PostDetails = () => {
                                         label="Degree Program" 
                                         value={form.degree} 
                                         onChange={(e)=>{setForm({...form ,degree: e.target.value})}}
-                                        className="textField"
+                                        className={classes.textField}
                                         InputProps={{className: classes.input}}
                                     />
 
@@ -201,7 +198,7 @@ const PostDetails = () => {
                                         label="Alternative Class" 
                                         value={form.altClass} 
                                         onChange={(e)=>{setForm({...form ,altClass: e.target.value})}}
-                                        className="textField"
+                                        className={classes.textField}
                                         InputProps={{className: classes.input}}
                                     />
                                 </>

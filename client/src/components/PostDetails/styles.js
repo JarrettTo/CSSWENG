@@ -111,7 +111,7 @@ export default makeStyles((theme) => ({
     
   },
   descImg: {
-    minWidth: '80px',
+    minWidth: '50px',
     minHeight: 'auto',
     maxWidth: '320px',
     maxHeight: 'auto',
@@ -163,33 +163,40 @@ export default makeStyles((theme) => ({
     fontSize: '1em',
   },
 
+  // --------------------------------------------------------------
+
   // SECTION 2
   box2: {
-    marginTop: '15vh',
-    border: '1px solid white',
+    // border: '1px solid white',
+    marginTop: '4vh',
     height: '90vh',
     display: 'flex',
     flexDirection: 'row',
     color: 'white',
   },
   left2: {
-    border: '1px solid red',
+    // border: '1px solid red',
     maxHeight: '100%',
     padding: '5%',
     display:'flex',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    width: '40%',
+    borderRadius: '2vh 0 0 2vh',
+    background: 'linear-gradient(90deg, rgba(29,69,10,.5) 0%, rgba(40,48,74,.5) 53%, rgba(18,17,62,.5) 100%)',
+
   },
   right2: {
-    border: '1px solid blue',
+    // border: '1px solid white',
     maxHeight: '100%',
     textAlign: 'center',
     position: 'relative',
     display:'flex',
-    justifyContent: 'center'
+    background: 'rgb(0, 0, 0, 0.2)',
+    borderRadius: '0 2vh 2vh 0'
   },
   mainImg: {
     height: '100%',
-    width: 'auto%',
+    width: 'auto',
   },
   caption: {
     marginTop: '3vh',
@@ -224,16 +231,26 @@ export default makeStyles((theme) => ({
   buttonSubmit: {
     marginTop: '1vh',
     marginBottom: '1vh',
-    backgroundColor: 'white',
+    backgroundColor: 'black',
+    color: 'white',
     width: '18%'
   },
   textField: {
-    width: '30%',
-  outline: 'white'
+    width: '50%',
+    // outline: 'white',
+    fontFamily: 'nunito', 
+    // color: 'white',
+    // borderColor: 'white',
+    // border: 'white'
+
   },
   input: {
     color: 'white',
+    outline: 'white',
+    borderColor: 'white',
+    border: '1px solid white'
     // backgroundColor: 'white'
+    
   },
 
   // SECTION 3
