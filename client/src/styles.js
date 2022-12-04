@@ -5,7 +5,7 @@ export default makeStyles(() => ({
   
   
   paperContainer:{
-    
+    // border: '1px solid red',
     height: '100%',
     width:'100vw',
     boxSizing: 'border-box',
@@ -21,7 +21,7 @@ export default makeStyles(() => ({
     // overflow: 'overlay'
   },
   body:{
-    // border: '1px solid red',
+    border: '1px solid rgba(0, 0, 0, 0)',
     width: '100vw',
     padding: '0',
   },

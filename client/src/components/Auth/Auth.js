@@ -59,7 +59,7 @@ const Auth=() => {
     }
     return(
         <Container component="main" >
-            <Paper className={classes.paper} elevation={3}>
+            <Container className={classes.paper}>
                 <Avatar className={classes.Avatar}>
                     <LockOutlinedIcon></LockOutlinedIcon>
                 </Avatar>
@@ -122,7 +122,11 @@ const Auth=() => {
                     </Grid>
                 </form>
 
-            </Paper>
+            </Container>
+
+            <Container className={classes.btmbox}>
+
+            </Container>
 
         </Container>
     )

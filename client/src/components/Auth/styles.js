@@ -1,16 +1,43 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
+  '@global': {
+    '*::-webkit-scrollbar': {
+      width: '8px',  
+      backgroundColor: 'black'
+    },
+    '*::-webkit-scrollbar-track': {
+      boxshadow: 'rgb(0, 0, 0)',
+      backgroundColor: 'transparent'
+    },
+    '*::-webkit-scrollbar-thumb': {
+      background: 'rgba(255, 255, 255, 0.289) '
+    },
+    '*::-webkit-scrollbar-thumb:hover': {
+      background: 'rgb(74, 74, 72)',
+    },
+  },
+  main: {
+    height: '150vh'
+  },
   paper: {
     margin:'auto',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     padding: theme.spacing(3),
+    height: '20',
     width:'700px',
     marginTop:'100px',
     backgroundColor:'#555760',
+    borderRadius: '2vh'
   },
+  btmbox: {
+    // border: '1px solid red',
+    marginTop: '5vh',
+    height: '20vh'
+  },
+
   root: {
     '& .MuiTextField-root': {
       margin: theme.spacing(5),
@@ -20,6 +47,7 @@ export default makeStyles((theme) => ({
     color:'white'
   },
   input: {                           // - The TextField-root
+    // border: '1px solid red',
     '& label': {
       color: 'white',
     },
@@ -47,6 +75,7 @@ export default makeStyles((theme) => ({
     marginBottom:'5px'
   },
   container:{
+    // border: '1px solid red',
     margin: theme.spacing(20,0),
     alignItems: 'center',
     alignItems: 'center',
@@ -57,6 +86,7 @@ export default makeStyles((theme) => ({
     backgroundColor: 'theme.palette.secondary.main',
   },
   form: {
+    // border: '1px solid red',
     width: '80%', // Fix IE 11 issue.
     marginTop: theme.spacing(3),
   },
