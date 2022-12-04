@@ -51,8 +51,6 @@ const PostDetails = () => {
         dispatch(registerPost(id, form));
         setTrigger(!trigger)
         
-              
-        
     }
 
     
@@ -147,14 +145,15 @@ const PostDetails = () => {
                         {/* <img className={classes.ticketbg} src={regBg}/> */}
 
                         <Container className={classes.registration}>
-                            <Typography>Status: {txn ? txn.status: "No Recorded transaction" }</Typography>
-                            <Typography>Register for event:</Typography>
+                            
+                            <Typography className={classes.regHeading}>REGISTER</Typography>
+                            <Typography>STATUS: {txn ? txn.status: "No Recorded Transaction" }</Typography>
                             {(!selPost?.registeredUsers?.find((e)=> e==user.result._id) && !selPost?.acceptedUsers?.find((e)=> e==user.result._id))?(
                             
                             <>
                                 <TextField 
                                     name='Contact Number' 
-                                    variant='filled' 
+                                    variant='outlined' 
                                     label="Contact Number"
                                     value={form.contactNumber} 
                                     onChange={(e)=>{setForm({...form ,contactNumber: e.target.value})}}

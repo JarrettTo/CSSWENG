@@ -51,24 +51,6 @@ export default makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center'
   },
-  // innerbox1: {
-  //   border: '1px solid white',
-  //   height: '100%',
-  //   borderRadius: '3vh',
-  //   width: '80%',
-  //   position: 'relative',
-  //   // backgroundColor: 'rgba(0, 0, 0, 0.232)',
-  //   display: 'flex',
-  //   padding: '1.5%'
-  // },
-  // innerInfo: {
-  //   border: '1px solid white',
-  //   height: '100%',
-  //   width: '100%',
-  //   // backgroundColor: 'rgba(0, 0, 0, 0.167)',
-  //   display: 'flex',
-  //   flexDirection: 'row',
-  // },
   innerBox: {
     // border: '1px solid white',
     height: '100%',
@@ -81,8 +63,8 @@ export default makeStyles((theme) => ({
     // padding: '8% 4% 8% 4%',
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center'
-    
+    alignItems: 'center',
+    overflow: 'hidden'
   },
   right: {
     // border: '1px solid red',  
@@ -168,43 +150,45 @@ export default makeStyles((theme) => ({
   // SECTION 2
   box2: {
     // border: '1px solid white',
-    marginTop: '4vh',
+    marginTop: '8vh',
     height: '90vh',
+    width: '80vw',
     display: 'flex',
     flexDirection: 'row',
     color: 'white',
+    padding: '0',
+    boxShadow: '.1vh .1vh 1vh .1vh white',
+    borderRadius: '2vh',
+    background: 'rgb(255, 255, 255, 0.2)',
+
   },
   left2: {
     // border: '1px solid red',
-    maxHeight: '100%',
+    maxHeight: '105%',
     padding: '5%',
     display:'flex',
     justifyContent: 'center',
     width: '40%',
-    borderRadius: '2vh 0 0 2vh',
-    background: 'linear-gradient(90deg, rgba(29,69,10,.5) 0%, rgba(40,48,74,.5) 53%, rgba(18,17,62,.5) 100%)',
-
+    borderRadius: '2vh',
+    boxShadow: '.1vh .1vh 2vh white',
+    // background: 'linear-gradient(90deg, rgba(29,69,10,.5) 0%, rgba(40,48,74,.5) 53%, rgba(18,17,62,.5) 100%)',
+    background: 'rgb(0, 0, 0, 0.5)',
+    alignItems: 'center',
   },
+
   right2: {
     // border: '1px solid white',
     maxHeight: '100%',
+    width: '70%',
     textAlign: 'center',
     position: 'relative',
     display:'flex',
-    background: 'rgb(0, 0, 0, 0.2)',
-    borderRadius: '0 2vh 2vh 0'
+    borderRadius: '0 2vh 2vh 0',
+    
   },
   mainImg: {
-    height: '100%',
+    height: '90%',
     width: 'auto',
-  },
-  caption: {
-    marginTop: '3vh',
-    textAlign: 'center',
-  },
-  ticketbg: {
-    height: '100%',
-    maxHeight: '100%',
   },
   registration: {
     position: 'absolute',
@@ -236,21 +220,29 @@ export default makeStyles((theme) => ({
     width: '18%'
   },
   textField: {
-    width: '50%',
-    // outline: 'white',
-    fontFamily: 'nunito', 
-    // color: 'white',
-    // borderColor: 'white',
-    // border: 'white'
+    width: '40%',
+    '& label': {
+      color: 'white',
+    },
+    '& label.Mui-focused': {
+      color: 'white',
+    },
+    '& .MuiOutlinedInput-root': {  // - The Input-root, inside the TextField-root
+        '& fieldset': {            // - The <fieldset> inside the Input-root
+            borderColor: 'gray',   // - Set the Input border
+        },
+        '&:hover fieldset': {
+            borderColor: 'white', // - Set the Input border when parent has :hover
+        },
+        '&.Mui-focused fieldset': { // - Set the Input border when parent is focused 
+            borderColor: 'white',
+            color:'white'
+        }
+    },
 
   },
   input: {
     color: 'white',
-    outline: 'white',
-    borderColor: 'white',
-    border: '1px solid white'
-    // backgroundColor: 'white'
-    
   },
 
   // SECTION 3
