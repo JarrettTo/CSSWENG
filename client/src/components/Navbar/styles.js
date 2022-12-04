@@ -3,6 +3,8 @@ import { deepPurple } from '@material-ui/core/colors';
 
 export default makeStyles((theme) => ({
   appBar: {
+    padding: '0 1% 0 1%',
+    width: '100vw',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -17,7 +19,6 @@ export default makeStyles((theme) => ({
     textDecoration:'none',
     overflow:'hidden',
     whiteSpace:'nowrap'
-   
   },
 
   heading: {

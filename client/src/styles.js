@@ -2,51 +2,29 @@ import { makeStyles } from '@material-ui/core/styles';
 import bg from '../src/images/bg.png';
 
 export default makeStyles(() => ({
-  container:{
-    padding:'2px',
-  },
+  
+  
   paperContainer:{
+    
+    height: '100%',
+    width:'100vw',
+    boxSizing: 'border-box',
+    margin: '0',
+    padding: '0',
+    borderRadius: '0',
+    // marginBottom: '-3%',
+    // marginRight: '-5%',
     backgroundImage: `url(${bg})`,
-    height:'100%',
     backgroundSize:'cover',
-    minWidth:'900px',
-    minHeight:'920px'
+    backgroundRepeat: 'noRepeat',
+    backgroundPosition: 'center center',
+    // overflow: 'overlay'
   },
-  divider:{
-    backgroundColor:'lightGrey',
-    marginBottom:'40px',
-    marginTop:'50px',
+  body:{
+    // border: '1px solid red',
+    width: '100vw',
+    padding: '0',
   },
-  label1:{
-    color:'white',
-    marginBottom:'40px'
-  },
-  about:{
-    textAlign:'center',
-    color:'white',
-    marginBottom:'20px',
-  },
-  description:{
-    textAlign:'center',
-    color:'white',
-    marginLeft:'50px',
-    marginRight:'50px',
-    marginBottom:'50px'
-  },
-
-  appBar: {
-    borderRadius: 15,
-    margin: '30px 0',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  heading: {
-    color: 'rgba(0,183,255, 1)',
-  },
-  image: {
-    marginLeft: '15px',
-  },
+  
   
 }));

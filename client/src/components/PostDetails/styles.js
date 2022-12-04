@@ -1,142 +1,199 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
-  root: {
-    '& .MuiTextField-root': {
-      // margin: theme.spacing(1),
+  '@global': {
+    '*::-webkit-scrollbar': {
+      width: '8px',  
+      backgroundColor: 'black'
+    },
+    '*::-webkit-scrollbar-track': {
+      boxshadow: 'rgb(0, 0, 0)',
+      backgroundColor: 'transparent'
+    },
+    '*::-webkit-scrollbar-thumb': {
+      background: 'rgba(255, 255, 255, 0.289) '
+    },
+    '*::-webkit-scrollbar-thumb:hover': {
+      background: 'rgb(74, 74, 72)',
     },
   },
-  paper: {
-    // padding: theme.spacing(2),
+
+  // SECTION 1
+  section1: {
+    // border: '1px solid rgba(0, 0, 0, 0.3)',
+    // backgroundColor: 'rgba(0, 0, 0, 0.3)',
+    // border: '1px solid white',
+  },
+  titleBox: {
+    // border: '1px solid white',
+    marginTop: '7vh',
+    width: '80vw',
+    fontSize: '6vh',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+
   },
   title: {
     color: '#fff',
-    fontSize: '10vh',
-    marginTop: '4vh',
+    fontSize: '1em',
     textAlign: 'center',
     fontWeight: 'bold',
     maxWidth: '100vw',
-    alignSelf: 'flexstart',
     textTransform: 'uppercase',
+    lineHeight: '100%',
   },
-  infoBox: {
-    height: '600px',
-    borderRadius: '30px',
-    width: '90%',
-    position: 'relative',
-    backgroundColor: 'rgba(255, 255, 255, 0.232)',
+  box1: {
+    // border: '1px solid white',
+    marginTop: '5vh',
+    height: '80vh',
+    maxHeight: '500px',
     display: 'flex',
+    alignItems: 'center'
   },
-  innerInfo: {
-    backgroundColor: 'rgba(255, 255, 255, 0.167)',
-    height: '550px',
-    borderRadius: '30px',
-    width: '99%',
-    marginTop: '4vh',
-    display: 'flex',
-    flexDirection: 'row',
-    padding: '4vh',
-  },
+  // innerbox1: {
+  //   border: '1px solid white',
+  //   height: '100%',
+  //   borderRadius: '3vh',
+  //   width: '80%',
+  //   position: 'relative',
+  //   // backgroundColor: 'rgba(0, 0, 0, 0.232)',
+  //   display: 'flex',
+  //   padding: '1.5%'
+  // },
+  // innerInfo: {
+  //   border: '1px solid white',
+  //   height: '100%',
+  //   width: '100%',
+  //   // backgroundColor: 'rgba(0, 0, 0, 0.167)',
+  //   display: 'flex',
+  //   flexDirection: 'row',
+  // },
   innerBox: {
+    // border: '1px solid white',
     height: '100%',
+    width: '100%',
   },
   left: {
-    // border: '1px solid white',
-    width: '35%',
+    // border: '1px solid blue',
+    width: '40%',
     textAlign: 'center',
-    padding: '18vh 4vh 18vh 4vh',
+    // padding: '8% 4% 8% 4%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
     
   },
   right: {
-    // border: '1px solid white',
-    width: '65%',
-    padding: '5vh 5vh 5vh  0',
+    // border: '1px solid red',  
+    // padding: '2% 2% 2% 0',
+    width: '60%',
+    padding: '0',
     color: 'white',
+    overflowY: 'visible',
+    textAlign: 'justify',
+    fontSize: '2vh',
     display: 'flex',
-    justifyContent: 'center',
+    alignItems: 'center',
   },
   innerRight: {
-    height: 'auto',
     // border: '1px solid pink',
+    height: 'fit-content',
+    width: '100%',
     color: 'white',
+    display: 'flex',
+    flexDirection: 'column',
+    padding: '0',
+    paddingRight: '7%',
     
   },
   descImg: {
-    border: '1px solid white',
-    height: '100%',
-    width: '100%',
-    borderRadius: '8px',
+    minWidth: '100px',
+    minHeight: 'auto',
+    maxWidth: '320px',
+    maxHeight: 'auto',
   },
   eventBy: {
+    // border: '1px solid red',  
     fontWeight: 'bold',
     textTransform: 'uppercase',
+    fontSize: '1.5em'
   },
   innerTitle: {
-    marginTop: '2vh',
-    fontSize: '5vh',
+    fontWeight: 'bold',
+    marginTop: '2%',
+    fontSize: '2.5em'
   },
   venue: {
     textTransform: 'uppercase',
-    fontWeight: 'bold',
     marginTop: '-1vh',
-    fontSize: '2.2vh'
+    fontSize: '1.2em'
   },
   description: {
-    marginTop: '2vh',
+    marginTop: '7%',
   },
   bottomInfo: {
+    // border: '1px solid white',
     display: 'flex',
     flexDirection: 'row',
-    // border: '1px solid white',
     padding: '0',
-    marginTop: '7vh',
-    position: 'absolute'
+    marginTop: '3%',
   },
   price: {
     borderRight: '1px solid white',
-    width: '35vh',
+    width: '25%',
     
   },
+  attendees: {
+    borderRight: '1px solid white',
+    width: '30%'
+  },
+  date: {
+    width: '46%'
+  },
   bottomValue: {
-    fontSize: '3vh',
+    fontSize: '1.5em',
     fontWeight: 'bold',
   },
   bottomTitle: {
-    marginTop: '0.5vh',
-    fontSize: '2.5vh',
+    fontSize: '1em',
   },
-  infoBox2: {
+
+  // SECTION 2
+  box2: {
     marginTop: '15vh',
-    // border: '1px solid white',
+    border: '1px solid white',
     height: '90vh',
     display: 'flex',
     flexDirection: 'row',
-    color: 'white', 
-    // backgroundColor: 'rgba(0, 0, 0, 0.232)',
-    borderRadius: '30px'
+    color: 'white',
   },
   left2: {
-    // border: '1px solid white',
-    padding: '5vh 5vh 5vh 5vh'
+    border: '1px solid red',
+    maxHeight: '100%',
+    padding: '5%',
+    display:'flex',
+    justifyContent: 'center'
   },
   right2: {
-    // border: '1px solid white',
+    border: '1px solid blue',
+    maxHeight: '100%',
     textAlign: 'center',
-    position: 'relative'
+    position: 'relative',
+    display:'flex',
+    justifyContent: 'center'
   },
-  mainPub: {
-    border: '1px solid white',
-    height: '400px',
-    width: '300px',
-    borderRadius: '8px',
-    textAlign: 'center',
+  mainImg: {
+    height: '100%',
+    width: 'auto%',
   },
   caption: {
     marginTop: '3vh',
     textAlign: 'center',
   },
-  ticketBg: {
-    height: '10vh',
+  ticketbg: {
+    height: '100%',
+    maxHeight: '100%',
   },
   registration: {
     position: 'absolute',
@@ -166,4 +223,20 @@ export default makeStyles((theme) => ({
     backgroundColor: 'white',
     width: '18%'
   },
+  textField: {
+    width: '30%',
+  outline: 'white'
+  },
+  input: {
+    color: 'white',
+    // backgroundColor: 'white'
+  },
+
+  // SECTION 3
+  box3: {
+    border: '1px solid white',
+    height: '90vh',
+    marginTop: '15vh',
+
+  }
 }));

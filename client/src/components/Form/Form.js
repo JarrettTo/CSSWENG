@@ -52,7 +52,7 @@ const Form = ({currentID, setCurrentID}) => {
     }
     const classes=useStyles();
     const dispatch=useDispatch();               //allows us to dispatch an action
-
+    
     useEffect(() => {
         if (!post?.title) clear();
         if (post) setPostData(post);
@@ -107,9 +107,11 @@ const Form = ({currentID, setCurrentID}) => {
                 <TextField error={error && !postData.maxAttendees} name='maxAttendees' variant='outlined' label="Max Attendees" fullWidth value={postData.maxAttendees} onChange={(e)=>{setPostData({...postData ,maxAttendees: e.target.value})}}/>
                 <TextField name='tags' variant='outlined' label="Tags" fullWidth value={postData.tags} onChange={(e)=>{setPostData({...postData ,tags: e.target.value.split(',')})}}/>
                 {error && <span className={classes.err_msg}>One or more required field is empty</span> }
+                <Typography>Main Pub (3:4 ratio)</Typography> {/* temporary, just putting a label for now */}
                 <div className={classes.fileInput}>
                     <FileBase type ="file"multiple={false} onDone={({base64})=> setPostData({...postData, selectedFile: base64})}/>
                 </div>
+                <Typography>Description Pub (1:1 ratio)</Typography> {/* temporary, just putting a label for now */}
                 <div className={classes.fileInput}>
                     <FileBase type ="file"multiple={false} onDone={({base64})=> setPostData({...postData, selectedFileOther: base64})}/>
                 </div>
