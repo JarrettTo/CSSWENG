@@ -9,6 +9,8 @@ import { getPost, getPosts, registerPost } from "../../actions/posts";
 import { getTxns } from "../../actions/transactions";
 import { useHistory } from "react-router-dom";
 const Admin = () => {
+    
+    const classes = useStyles();
     const txns = useSelector((state)=> state.txns);
     const posts = useSelector((state)=>state.posts);
     const selPost=(id)=>posts.find((e)=>{ return e._id==id});
@@ -26,8 +28,8 @@ const Admin = () => {
         history.push("/attendance");
     }
     return(
-        <>
-        <Typography>Dashboard</Typography>
+        <div>
+        <Typography className={classes.title} variant="h1">Dashboard</Typography>
         
         <Grid container alignItems="stretch" spacing={3}>
             <Button onClick={loadTxns}>Transactions</Button>
@@ -35,7 +37,7 @@ const Admin = () => {
         </Grid>
 
         
-        </>
+        </div>
     )
 }
 
