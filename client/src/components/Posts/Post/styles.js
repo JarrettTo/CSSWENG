@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 export default makeStyles({
   media: { //image
     display:'flex',
-    height: "280px",
+    height: "200px",
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     backgroundBlendMode: 'darken',
   },
@@ -14,11 +14,13 @@ export default makeStyles({
     borderRadius: '15px',
     height: '100%',
     position: 'relative',
+    backgroundColor: '#555760',
   },
   cardcontent: {
-    Height: '120px',
+    height: '120px',
     marginTop:'2px',
-    padding:'10px'
+    padding:'10px',
+    color:'white'
   },
   overlay2: {
     position: 'absolute',
@@ -33,12 +35,13 @@ export default makeStyles({
   },
   gridDate: {
     justifyContent:'center',
-    backgroundColor:'#e3e6e8',
+    backgroundColor: 'rgba(255, 255, 255, 0.167)',
     height:'90px',
     textAlign:'center',
     padding:'10px',
     borderRadius:'10px',
-    maxWidth:'60px'
+    maxWidth:'60px',
+    marginTop:'3px'
     
   },
   gridDesc: {
@@ -46,21 +49,25 @@ export default makeStyles({
     textAlign:'left',
     paddingLeft:'9px',
     minWidth:'150px',
+    marginTop:'2px'
     // wrap:'wrap',
     
     
   },
+
   details: {
     display: 'flex',
     justifyContent: 'space-between',
     margin: '5px',
   },
+
   title: {
-    fontSize:'17px',
+    fontSize:'19px',
     fontWeight: 'bold',
     lineHeight:'20px'
     
   },
+
   month:{
     fontSize:'20px',
     lineHeight:'28px',
@@ -97,4 +104,25 @@ export default makeStyles({
     display: 'block',
     textAlign: 'initial',
   },
+  button1: {
+    color:'#c8cbcf',
+    '&:hover':{
+      color:'green',
+    },
+  },
+  button2: {
+    color:'#c8cbcf',
+    '&:hover':{
+      color:'red',
+    },
+  },
+  button3: {
+    color:'white',
+    '&:hover':{
+      color:'#65666e',
+    },
+  },
+  tags:{
+    color:'white'
+  }
 });

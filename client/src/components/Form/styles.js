@@ -10,29 +10,56 @@ export default makeStyles((theme) => ({
     marginTop: '5px',
     padding: theme.spacing(2),
     borderRadius: '10px',
-    // backgroundColor:'black'
+    backgroundColor:'#555760'
   },
   form: {
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'center',
+    justifyContent: 'left',
     backgroundColor:'transparent',
     // color:'white',
   },
-  textfield:{
+  label:{
     color:'white',
+    marginBottom:'7px',
   },
-  fileInput: {
-    width: '97%',
-    margin: '10px 0',
-  },
-  buttonSubmit: {
+  input: {                           // - The TextField-root
+    '& label': {
+      color: 'white',
+    },
+    '& label.Mui-focused': {
+      color: 'white',
+    },
+    '& .MuiOutlinedInput-root': {  // - The Input-root, inside the TextField-root
+        '& fieldset': {            // - The <fieldset> inside the Input-root
+            borderColor: 'gray',   // - Set the Input border
+        },
+        '&:hover fieldset': {
+            borderColor: 'white', // - Set the Input border when parent has :hover
+        },
+        '&.Mui-focused fieldset': { // - Set the Input border when parent is focused 
+            borderColor: 'white',
+            color:'white'
+        },
+    marginBottom:'5px'
+    },
+},
+  button1: {
     marginBottom: 10,
-    // color:'white'
+    color:'white',
+    backgroundColor:'blue'
+  },
+  button2: {
+    marginBottom: 10,
+    color:'white',
+    backgroundColor:'red'
   },
   err_msg: {
     color:'red',
     fontStyle: 'italic',
   },
+  fileLabel:{
+    alignContent:'left'
+  }
   
 }));
