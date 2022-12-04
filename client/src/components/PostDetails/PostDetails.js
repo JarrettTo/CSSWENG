@@ -45,11 +45,14 @@ const PostDetails = () => {
 
     const handleSubmit=(e)=>{
 
-        
+      
+        e.preventDefault(); 
         console.log(form);
         dispatch(registerPost(id, form));
         setTrigger(!trigger)
-        window.location.reload(false);
+        
+              
+        
     }
 
     

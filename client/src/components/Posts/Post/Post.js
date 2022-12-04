@@ -17,15 +17,16 @@ const Post = ({ post, setCurrentID }) => {
     const dispatch= useDispatch();
 
     const openPost = () => history.push(`/posts/${post._id}`);
+    
 
     return(
         <Card className={classes.card}>
             
             <ButtonBase className={classes.cardAction} onClick={openPost} >
-                <CardMedia component= 'image' className={classes.media} image={postMessage.selectedFile} title={Post.title} />
-                
+                <CardMedia component='img' height="350px" src={post.selectedFile} />
+
                 <div className={classes.details}>
-                    <Typography variant="body2" color="textSecondary">{post.tags.map((tag) => `#${tag} `)}</Typography>
+                    <Typography className={classes.tags} variant="body2" color="textSecondary">{post.tags.map((tag) => `#${tag} `)}</Typography>
                     
                 </div>
                 <CardContent className={classes.cardcontent}>
@@ -39,7 +40,7 @@ const Post = ({ post, setCurrentID }) => {
                         <Grid  xs={5}  md={8} lg={20} className={classes.gridDesc}>
                             <Typography className={classes.title} >{post.title}</Typography>
                             <Typography className={classes.venue}>{post.venue}</Typography>
-                            <Typography className={classes.description} noWrap>{post.description}</Typography>
+                            {/* <Typography className={classes.description} noWrap>{post.description}</Typography> */}
                             {/* <Typography className={classes.endDate}>{moment(post.endDate).local().format('YYYY-MM-DD HH:mm')}</Typography> */}
                             {/* <Typography className={classes.creator}>{post.creator}</Typography> */}
                             <Typography className={classes.price}>Php {post.price}</Typography>
@@ -49,13 +50,13 @@ const Post = ({ post, setCurrentID }) => {
             
             </ButtonBase>
             <div className={classes.overlay2}>
-                    <Button style={{color: 'white'}} size="medium" onClick={() => setCurrentID(post._id)}>
+                    <Button className={classes.button3} size="medium" onClick={() => setCurrentID(post._id)}>
                         <MoreHorizIcon fontSize="default" />
                     </Button>
             </div>
             <CardActions className={classes.cardActions}>
-                <Button size="small" color="primary" ><ThumbUpAltIcon fontSize="small" /> Like {post.likeCount} </Button>
-                <Button size="small" color="primary" onClick={() => dispatch(deletePost(post._id))}><DeleteIcon fontSize="small" /> Delete</Button>
+                <Button size="small" className={classes.button1} ><ThumbUpAltIcon fontSize="small" /> Like {post.likeCount} </Button>
+                <Button size="small" className={classes.button2} onClick={() => dispatch(deletePost(post._id))}><DeleteIcon fontSize="small" /> Delete</Button>
             </CardActions>
     
         </Card>

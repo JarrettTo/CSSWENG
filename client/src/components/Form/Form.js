@@ -96,16 +96,26 @@ const Form = ({currentID, setCurrentID}) => {
     return(
         <Paper className={classes.paper}>       {/*adds a white bg*/}
             <form autoComplete='off' noValidate className={classes.form} onSubmit={handleSubmit}>
-                <Typography variant='h6'>Add an event:</Typography>
-                <TextField error={error && !postData.title} name='title' variant='outlined' label="Title" fullWidth value={postData.title} onChange={(e)=>{setPostData({...postData ,title: e.target.value})}}/>
-                <TextField error={error && !postData.date} name='date' variant='outlined' label="Start Date YYYY-MM-DD HH:mm" fullWidth value={postData.date} onChange={(e)=>{setPostData({...postData ,date: e.target.value})}}/>
-                <TextField error={error && !postData.endDate} name='endDate' variant='outlined' label="End Date YYYY-MM-DD HH:mm" fullWidth value={postData.endDate} onChange={(e)=>{setPostData({...postData ,endDate: e.target.value})}}/>
-                <TextField error={error && !postData.creator} name='creator' variant='outlined' label="Creator" fullWidth value={postData.creator} onChange={(e)=>{setPostData({...postData ,creator: e.target.value})}}/>   {/*e.target.value basically just takes the new value of the textfrield. the onchange attribute ensures that it only changes whenever there is a change to the textfield*/}
-                <TextField error={error && !postData.description} name='description' variant='outlined' label="Description" multiline rows ={4} maxRows={4} fullWidth value={postData.description} onChange={(e)=>{setPostData({...postData ,description: e.target.value})}}/>
-                <TextField error={error && !postData.venue} name='venue' variant='outlined' label="Venue" fullWidth value={postData.venue} onChange={(e)=>{setPostData({...postData ,venue: e.target.value})}}/>
-                <TextField error={error && !postData.price} name='price' variant='outlined' label="Price" fullWidth value={postData.price} onChange={(e)=>{setPostData({...postData ,price: e.target.value})}}/>
-                <TextField error={error && !postData.maxAttendees} name='maxAttendees' variant='outlined' label="Max Attendees" fullWidth value={postData.maxAttendees} onChange={(e)=>{setPostData({...postData ,maxAttendees: e.target.value})}}/>
-                <TextField name='tags' variant='outlined' label="Tags" fullWidth value={postData.tags} onChange={(e)=>{setPostData({...postData ,tags: e.target.value.split(',')})}}/>
+                <Typography className={classes.label} variant='h6'>Add an event:</Typography>
+
+                <TextField className={classes.input} error={error && !postData.title} name='title' variant='outlined' label="Title" fullWidth value={postData.title} onChange={(e)=>{setPostData({...postData ,title: e.target.value})}}/>
+
+                <TextField className={classes.input} error={error && !postData.date} name='date' variant='outlined' label="Start Date YYYY-MM-DD HH:mm" fullWidth value={postData.date} onChange={(e)=>{setPostData({...postData ,date: e.target.value})}}/>
+
+                <TextField className={classes.input}error={error && !postData.endDate} name='endDate' variant='outlined' label="End Date YYYY-MM-DD HH:mm" fullWidth value={postData.endDate} onChange={(e)=>{setPostData({...postData ,endDate: e.target.value})}}/>
+
+                <TextField className={classes.input} error={error && !postData.creator} name='creator' variant='outlined' label="Creator" fullWidth value={postData.creator} onChange={(e)=>{setPostData({...postData ,creator: e.target.value})}}/>   {/*e.target.value basically just takes the new value of the textfrield. the onchange attribute ensures that it only changes whenever there is a change to the textfield*/}
+
+                <TextField className={classes.input} error={error && !postData.description} name='description' variant='outlined' label="Description" multiline rows ={4} maxRows={4} fullWidth value={postData.description} onChange={(e)=>{setPostData({...postData ,description: e.target.value})}}/>
+
+                <TextField className={classes.input} error={error && !postData.venue} name='venue' variant='outlined' label="Venue" fullWidth value={postData.venue} onChange={(e)=>{setPostData({...postData ,venue: e.target.value})}}/>
+
+                <TextField className={classes.input} error={error && !postData.price} name='price' variant='outlined' label="Price" fullWidth value={postData.price} onChange={(e)=>{setPostData({...postData ,price: e.target.value})}}/>
+
+                <TextField className={classes.input} error={error && !postData.maxAttendees} name='maxAttendees' variant='outlined' label="Max Attendees" fullWidth value={postData.maxAttendees} onChange={(e)=>{setPostData({...postData ,maxAttendees: e.target.value})}}/>
+
+                <TextField className={classes.input} name='tags' variant='outlined' label="Tags" fullWidth value={postData.tags} onChange={(e)=>{setPostData({...postData ,tags: e.target.value.split(',')})}}/>
+                
                 {error && <span className={classes.err_msg}>One or more required field is empty</span> }
                 <Typography>Main Pub (3:4 ratio)</Typography> {/* temporary, just putting a label for now */}
                 <div className={classes.fileInput}>
@@ -113,10 +123,11 @@ const Form = ({currentID, setCurrentID}) => {
                 </div>
                 <Typography>Description Pub (1:1 ratio)</Typography> {/* temporary, just putting a label for now */}
                 <div className={classes.fileInput}>
+                    Second Poster: 
                     <FileBase type ="file"multiple={false} onDone={({base64})=> setPostData({...postData, selectedFileOther: base64})}/>
                 </div>
-                <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit </Button>
-                <Button className={classes.buttonSubmit} variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
+                <Button className={classes.button1} variant="contained" size="large" type="submit" fullWidth>Submit </Button>
+                <Button className={classes.button2} variant="contained" size="small" onClick={clear} fullWidth>Clear</Button>
             </form>
         </Paper>
         

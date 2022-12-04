@@ -1,11 +1,23 @@
 import React, {useEffect} from 'react';
 import * as actionType from '../../constants/actiontypes';
 import { Link, useHistory, useLocation} from 'react-router-dom';
-import { AppBar, Typography, Toolbar, Avatar, Button } from '@material-ui/core';
+import { AppBar, Typography, Toolbar, Avatar, Button, createTheme, responsiveFontSizes, ThemeProvider } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import useStyles from './styles';
 import caologo from '../../images/image.png';
 import { useState } from 'react';
+
+const theme = createTheme();
+
+theme.typography.h3 = {
+  fontSize: '1.2rem',
+  '@media (min-width:600px)': {
+    fontSize: '1.5rem',
+  },
+  [theme.breakpoints.up('md')]: {
+    fontSize: '2rem',
+  },
+};
 
 const Navbar = () => {
     const dispatch = useDispatch();
@@ -37,14 +49,16 @@ const Navbar = () => {
         <AppBar position="static" color="inherit" className={classes.appBar}> {/*appbar is the one on top that desnt move even when ure scrolling*/}
             <div className={classes.brandContainer}>
                 <img className={classes.image} src={caologo} alt="memories" height="60"/>
-                <Typography component={Link} to="/" className={classes.typography} varaint="hs" align="center">DLSU CAO Ticketing Hub</Typography>
+                <ThemeProvider theme={theme}>
+                    <Typography component={Link} to="/" className={classes.typography} variant="h3" align="center">DLSU CAO Ticketing Hub</Typography>
                  {/*className is like defining a class in HTML*/}
+                </ThemeProvider>
             </div>
             <Toolbar className={classes.toolbar}>
                 {user?.result ? (
                 <div className={classes.profile}>
                     <Typography component={Link} to="/" className={classes.home}>HOME</Typography>
-                    <Typography  className={classes.home}>ABOUT US</Typography>
+                    <Typography  className={classes.home} noWrap>ABOUT US</Typography>
                     <Typography className={classes.userName} variant="h6">{user?.result.name}</Typography>
                     <Button variant="outlined" className={classes.logout} color="secondary" onClick={logout}>Logout</Button>
                 </div>
@@ -56,16 +70,15 @@ const Navbar = () => {
                 </div>
 
                 )}
-            </Toolbar>
             
-            { user?.result.admin ?(
-            <>
-            <Button variant="contained" className={classes.logout} color="secondary" onClick={adminPage}>Admin Page</Button>
-            <Button variant="contained" className={classes.logout} color="secondary" onClick={scanQr}>QR Scanner</Button>
-            </>
-            ): null}
+                { user?.result.admin ?(
+                <div className={classes.profile}>
+                <Button variant="outlined" className={classes.admin} onClick={adminPage}>Admin Page</Button>
+                <Button variant="outlined" className={classes.admin} onClick={scanQr}>QR Scanner</Button>
+                </div>
+                ): null}
                         
-                    
+            </Toolbar>        
             
         </AppBar>
     );

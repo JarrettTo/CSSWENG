@@ -9,7 +9,7 @@ import { getPost, getPosts, registerPost } from "../../actions/posts";
 import { getTxns } from "../../actions/transactions";
 const Admin = () => {
     const txns = useSelector((state)=> state.txns);
-    const posts = useSelector((state)=>state.posts);
+    const {posts} = useSelector((state)=>state.posts);
     const selPost=(id)=>posts.find((e)=>{ return e._id==id});
     const dispatch= useDispatch();
     useEffect(() => {

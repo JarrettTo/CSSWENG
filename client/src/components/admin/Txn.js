@@ -9,7 +9,7 @@ import { approveTxn, declineTxn } from "../../actions/transactions";
 
 const Txn = ({txn}) =>{
     const [trigger, setTrigger] = useState(false);
-    const posts = useSelector((state)=>state.posts);
+    const {posts} = useSelector((state)=>state.posts);
     
     
 
