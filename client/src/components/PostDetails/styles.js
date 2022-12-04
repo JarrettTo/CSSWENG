@@ -97,6 +97,7 @@ export default makeStyles((theme) => ({
     minHeight: 'auto',
     maxWidth: '320px',
     maxHeight: 'auto',
+    // boxShadow: '.05vh .05vh 1.5vh white',
   },
   eventBy: {
     // border: '1px solid red',  
@@ -184,52 +185,72 @@ export default makeStyles((theme) => ({
     position: 'relative',
     display:'flex',
     borderRadius: '0 2vh 2vh 0',
+    fontSize: '2vh',
+    padding: '0'
     
   },
   mainImg: {
     height: '90%',
     width: 'auto',
+    borderRadius: '2%'
   },
   registration: {
+    // border: '1px solid white',
     position: 'absolute',
-    top: '6%',
-    right: '-2px',
-    // left: '50%',
+    height: '100%',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    padding: '0'
+  },
+  innerReg: {
+    // border: '1px solid white',
+    width: '100%',
+    height: '20%',
+  },
+  regForm: {
+    // border: '1px solid blue',
+    padding: '0',
+    width: '100%',
+    height: '80%',
+    display: 'block',
   },
   regHeading: {
-    // marginTop: '1vh',
+    marginTop: '5%',
     fontWeight: 'Bold',
+    fontSize: '2em',
+    textAlign: 'left',
+    marginLeft: '5%'
   }, 
-  formTitle: {
-    marginTop: '3vh',
-  },
-  formPayment: {
-    marginTop: '10vh'
-  },
-  fileInput: {
-    // border: '1px solid black',
-    width: '40%',
-    margin: '8px 0',
-    marginLeft: '26vh'
-  },
-  buttonSubmit: {
-    marginTop: '1vh',
-    marginBottom: '1vh',
-    backgroundColor: 'black',
-    color: 'white',
-    width: '18%'
+  status: {
+    textShadow: '.1vh .1vh 1vh white',
+    color: 'black',
+    fontStyle: 'Italic',
+    textAlign: 'left',
+    marginLeft: '5%',
+    marginTop: '-1%',
+    fontSize: '1.3em',
   },
   textField: {
+    // border: '1px solid white',
+    padding: '0',
+    height: '15%',
     width: '40%',
+    // margin: '1%',
+    marginBottom: '0.1%',
     '& label': {
       color: 'white',
+      fontSize: '1.2em'
     },
+    
     '& label.Mui-focused': {
       color: 'white',
     },
     '& .MuiOutlinedInput-root': {  // - The Input-root, inside the TextField-root
         '& fieldset': {            // - The <fieldset> inside the Input-root
             borderColor: 'gray',   // - Set the Input border
+            height: '8vh',
+            marginTop: '3.5%'
         },
         '&:hover fieldset': {
             borderColor: 'white', // - Set the Input border when parent has :hover
@@ -239,10 +260,84 @@ export default makeStyles((theme) => ({
             color:'white'
         }
     },
-
   },
   input: {
     color: 'white',
+    fontSize: '1.2em'
+  },
+  payCha: {
+    width: '100%',
+    fontWeight: 'Bold',
+    fontSize: '1.2em',
+    textAlign: 'left',
+    marginTop: '2%',
+  },
+  payDeets: {
+    // border: '1px solid black',
+    width: '100%',
+    // fontWeight: 'Bold',
+    fontSize: '1.3em',
+    textAlign: 'left',
+    marginTop: '-1%',
+    fontSize: '1.2em',
+    // textShadow: '.1vh .1vh .8vh white',
+  },
+  paybox: {
+    // border: '1px solid black',
+    marginTop: '5%',
+    width: '90%',
+    height: 'auto',
+    display: 'flex',
+    flexDirection: 'row',
+    padding: '0',
+  },
+  leftpb: {
+    // border: '1px solid blue',
+    width: '50%'
+  },
+  rightpb: {
+    // border: '1px solid blue',
+    width: '50%',
+  },
+  pop: {
+    fontSize: '1.3em',
+  },
+  fileInput: {
+    // border: '1px solid black',
+    fontSize: '1.3em',
+    height: '1.3em',
+    width: 'auto',
+    padding: '0',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: '10%'
+  },
+  fileUpload: {
+    fontSize: '1.3em',
+    height: '1.3em',
+    width: '80%',
+  },
+  btnBox: {
+    // border: '1px solid black',
+    width: '100%',
+    textAlign: 'right',
+    padding: '0',
+    paddingRight: '8%',
+  },
+  buttonSubmit: {
+    fontSize: '1.3em',
+    fontWeight: '520',
+    marginTop: '5%',
+    marginBottom: '5%',
+    backgroundColor: '#66bb6a',
+    color: 'black',
+    width: '18%',
+    height: '6vh',
+    '&:hover': {
+      backgroundColor: '#388e3c',
+      color: 'black',
+    }
   },
 
   // SECTION 3

@@ -145,12 +145,21 @@ const PostDetails = () => {
                         {/* <img className={classes.ticketbg} src={regBg}/> */}
 
                         <Container className={classes.registration}>
+                            <Container className={classes.innerReg}>
+                                <Typography className={classes.regHeading}>
+                                    REGISTER
+                                </Typography>
+
+                                <Typography className={classes.status}>
+                                    STATUS: {txn ? txn.status: "No Recorded Transaction" }
+                                </Typography>
+                            </Container>
                             
-                            <Typography className={classes.regHeading}>REGISTER</Typography>
-                            <Typography>STATUS: {txn ? txn.status: "No Recorded Transaction" }</Typography>
+
                             {(!selPost?.registeredUsers?.find((e)=> e==user.result._id) && !selPost?.acceptedUsers?.find((e)=> e==user.result._id))?(
                             
-                            <>
+                            <Container className={classes.regForm}>
+                                {/* <Container className={classes.textFieldBox}> */}
                                 <TextField 
                                     name='Contact Number' 
                                     variant='outlined' 
@@ -164,6 +173,7 @@ const PostDetails = () => {
                                 {(user?.result?.dlsu) ? (
 
                                 <>
+                                    
                                     <TextField 
                                         name='ID Number' 
                                         variant='outlined' 
@@ -203,24 +213,55 @@ const PostDetails = () => {
                                         className={classes.textField}
                                         InputProps={{className: classes.input}}
                                     />
+        
                                 </>
+
+                                // </Container>
 
                                 ): null}
                                 {(!user?.result?.dlsu || user?.result?.claimed) ? (
 
                                 <>
-                        
-                                    <Typography>Payment Details: 09270164346 GCASH JUSTIN TO</Typography>
-                                    <Typography>PROOF OF PAYMENT:</Typography>
-                                    <div className={classes.fileInput}>
-                                        <FileBase type ="file"multiple={false} onDone={({base64})=> setForm({...form ,payment: base64})}/>
-                                    </div>
-                                    <Button className={classes.buttonSubmit} variant="container" color="primary" size="large" type="submit" onClick={handleSubmit} fullWidth>Register</Button>
+                                    <Container className={classes.paybox}>
+                                        <Container className={classes.leftpb}>
+                                            <Typography className={classes.payCha}>
+                                                PAYMENT CHANNEL | GCASH
+                                            </Typography>
+                                            <Typography className={classes.payDeets}>
+                                                0927 016 4346 (JUSTIN TO)
+                                            </Typography>
+                                        </Container>
+                                        
+                                        <Container className={classes.rightpb}>
+                                            <Typography className={classes.pop}>PROOF OF PAYMENT</Typography>
+                                            <Container className={classes.fileInput}>
+                                                <FileBase 
+                                                    className={classes.fileUpload}
+                                                    type ="file"
+                                                    multiple={false} 
+                                                    onDone={({base64})=> setForm({...form ,payment: base64})}
+                                                />
+                                            </Container>
+                                        </Container>
+                                        
+                                    </Container>
+                                    
+                                    
+                                    <Container className={classes.btnBox}>
+                                        <Button 
+                                            className={classes.buttonSubmit} 
+                                            variant="contained" 
+                                            type="submit" 
+                                            onClick={handleSubmit}>
+                                                Submit
+                                        </Button>
+                                    </Container>
+                                    
                         
                                 </>
 
                                 ): <Button className={classes.buttonSubmit} variant="container" color="primary" size="large" type="submit" onClick={handleSubmit} fullWidth>Register</Button> }
-                            </>
+                            </Container>
                             
                             ):<Button className={classes.buttonSubmit} variant="container" color="primary" size="large" type="submit" onClick={handleSubmit} fullWidth>Unregister</Button> }
                         </Container>
