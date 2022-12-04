@@ -41,7 +41,7 @@ export default makeStyles((theme) => ({
             borderColor: 'white',
             color:'white'
         },
-    marginBottom:'5px'
+    marginBottom:'10px'
     },
 },
   button1: {
@@ -59,7 +59,9 @@ export default makeStyles((theme) => ({
     fontStyle: 'italic',
   },
   fileLabel:{
-    alignContent:'left'
+    alignContent:'left',
+    color:'white',
+    marginRight:'5px'
   }
   
 }));

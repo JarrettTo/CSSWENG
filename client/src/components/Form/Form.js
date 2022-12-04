@@ -117,12 +117,13 @@ const Form = ({currentID, setCurrentID}) => {
                 <TextField className={classes.input} name='tags' variant='outlined' label="Tags" fullWidth value={postData.tags} onChange={(e)=>{setPostData({...postData ,tags: e.target.value.split(',')})}}/>
                 
                 {error && <span className={classes.err_msg}>One or more required field is empty</span> }
-                <Typography className={classes.fileLabel}> Main Poster:</Typography> 
+                <Typography className={classes.fileLabel}> Main Poster: </Typography> 
                 <div className={classes.fileInput}> 
                     <FileBase type ="file"multiple={false} onDone={({base64})=> setPostData({...postData, selectedFile: base64})}/>
                 </div>
+                <Typography className={classes.fileLabel}> Second Poster: </Typography> 
                 <div className={classes.fileInput}>
-                    Second Poster: 
+                 
                     <FileBase type ="file"multiple={false} onDone={({base64})=> setPostData({...postData, selectedFileOther: base64})}/>
                 </div>
                 <Button className={classes.button1} variant="contained" size="large" type="submit" fullWidth>Submit </Button>
