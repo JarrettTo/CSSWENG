@@ -8,7 +8,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getPost, getPosts, registerPost } from "../../actions/posts";
 import { getTxns } from "../../actions/transactions";
 import { useHistory } from "react-router-dom";
+import useStyles from './styles';
 const Admin = () => {
+
+    const classes = useStyles();
     const txns = useSelector((state)=> state.txns);
     const posts = useSelector((state)=>state.posts);
     const selPost=(id)=>posts.find((e)=>{ return e._id==id});
@@ -26,16 +29,16 @@ const Admin = () => {
         history.push("/attendance");
     }
     return(
-        <>
-        <Typography>Dashboard</Typography>
+        <div>
+        <Typography className={classes.title} variant="h2">Dashboard</Typography>
         
-        <Grid container alignItems="stretch" spacing={3}>
-            <Button onClick={loadTxns}>Transactions</Button>
-            <Button onClick={loadAttendance}>Attendance Log</Button>
+        <Grid container alignItems="stretch" spacing={2}>
+        <Button className={classes.button} type="submit"  variant="contained"  onClick={loadTxns}>Transactions</Button>
+        <Button className={classes.button} type="submit"  variant="contained"  onClick={loadAttendance}>Attendance Log</Button>
         </Grid>
 
         
-        </>
+        </div>
     )
 }
 

@@ -28,7 +28,8 @@ export default makeStyles((theme) => ({
   image: {
     marginLeft: '80px',
     margin: '10px',
-    height: '80px',
+    height: 'auto',
+    maxHeight:'80px'
   },
   toolbar: {
     marginRight: '80px',
@@ -86,11 +87,11 @@ export default makeStyles((theme) => ({
   },
   admin:{
     "&.MuiButton-outlined":{
-      border:'2px #4caf50 solid',
+      border:'2px #5865f2 solid',
       color: 'white',
     },
     '&:hover':{
-      color:'#4caf50',
+      color:'#5865f2',
     },
     fontSize:'15px',
     lineHeight:'20px',

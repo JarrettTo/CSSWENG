@@ -5,9 +5,13 @@ export default makeStyles(() => ({
         alignItems:'center',
         borderRadius:'10px',
         padding:'10px',
+        backgroundColor:'#555760',
+        width:'450px'
     },
     searchButton: {
-        margin:'5px'
+        margin:'5px',
+        color:'white',
+        backgroundColor:'#5865f2'
     },
     header:{
         marginTop:'50px',
@@ -56,4 +60,28 @@ export default makeStyles(() => ({
         marginBottom:'50px',
         
       },
+      input: {
+        '& label': {
+          color: 'white',
+        },
+        '& label.Mui-focused': {
+          color: 'white',
+        },
+        '& .MuiOutlinedInput-root': {  // - The Input-root, inside the TextField-root
+            '& fieldset': {            // - The <fieldset> inside the Input-root
+                borderColor: 'gray',   // - Set the Input border
+            },
+            '&:hover fieldset': {
+                borderColor: 'white', // - Set the Input border when parent has :hover
+            },
+            '&.Mui-focused fieldset': { // - Set the Input border when parent is focused 
+                borderColor: 'white',
+                color:'white'
+            },
+        marginBottom:'10px'
+        },
+      },
+      grid:{
+        marginLeft:'5px'
+      }
 }));

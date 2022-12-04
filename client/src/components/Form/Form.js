@@ -100,9 +100,9 @@ const Form = ({currentID, setCurrentID}) => {
 
                 <TextField className={classes.input} error={error && !postData.title} name='title' variant='outlined' label="Title" fullWidth value={postData.title} onChange={(e)=>{setPostData({...postData ,title: e.target.value})}}/>
 
-                <TextField className={classes.input} error={error && !postData.date} name='date' variant='outlined' label="Start Date YYYY-MM-DD HH:mm" fullWidth value={postData.date} onChange={(e)=>{setPostData({...postData ,date: e.target.value})}}/>
+                <TextField className={classes.input} error={error && !postData.date} name='date' variant='outlined' label="Start Date (YYYY-MM-DD HH:mm)" fullWidth value={postData.date} onChange={(e)=>{setPostData({...postData ,date: e.target.value})}}/>
 
-                <TextField className={classes.input}error={error && !postData.endDate} name='endDate' variant='outlined' label="End Date YYYY-MM-DD HH:mm" fullWidth value={postData.endDate} onChange={(e)=>{setPostData({...postData ,endDate: e.target.value})}}/>
+                <TextField className={classes.input}error={error && !postData.endDate} name='endDate' variant='outlined' label="End Date (YYYY-MM-DD HH:mm)" fullWidth value={postData.endDate} onChange={(e)=>{setPostData({...postData ,endDate: e.target.value})}}/>
 
                 <TextField className={classes.input} error={error && !postData.creator} name='creator' variant='outlined' label="Creator" fullWidth value={postData.creator} onChange={(e)=>{setPostData({...postData ,creator: e.target.value})}}/>   {/*e.target.value basically just takes the new value of the textfrield. the onchange attribute ensures that it only changes whenever there is a change to the textfield*/}
 
@@ -117,13 +117,13 @@ const Form = ({currentID, setCurrentID}) => {
                 <TextField className={classes.input} name='tags' variant='outlined' label="Tags" fullWidth value={postData.tags} onChange={(e)=>{setPostData({...postData ,tags: e.target.value.split(',')})}}/>
                 
                 {error && <span className={classes.err_msg}>One or more required field is empty</span> }
-                <Typography>Main Pub (3:4 ratio)</Typography> {/* temporary, just putting a label for now */}
-                <div className={classes.fileInput}>
+                <Typography className={classes.fileLabel}> Main Poster (3:4): </Typography> 
+                <div className={classes.fileInput}> 
                     <FileBase type ="file"multiple={false} onDone={({base64})=> setPostData({...postData, selectedFile: base64})}/>
                 </div>
-                <Typography>Description Pub (1:1 ratio)</Typography> {/* temporary, just putting a label for now */}
+                <Typography className={classes.fileLabel}> Second Poster (1:1): </Typography> 
                 <div className={classes.fileInput}>
-                    Second Poster: 
+                 
                     <FileBase type ="file"multiple={false} onDone={({base64})=> setPostData({...postData, selectedFileOther: base64})}/>
                 </div>
                 <Button className={classes.button1} variant="contained" size="large" type="submit" fullWidth>Submit </Button>

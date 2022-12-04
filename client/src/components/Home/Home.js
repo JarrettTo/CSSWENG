@@ -79,9 +79,9 @@ const handleDelete = (tagToDelete => setTags(tags.filter((tag) => tag != tagToDe
                         <Posts setCurrentID={setCurrentID}/> 
                     </Grid>
                     
-                    <Grid item xs={12} sm={4}>
+                    <Grid item className={classes.grid}>
                         <AppBar className={classes.appBarSearch} position='static' color='inherit'>
-                            <TextField
+                            <TextField className={classes.input}
                                 name="search"
                                 variant="outlined"
                                 label="Search Event"
@@ -90,7 +90,7 @@ const handleDelete = (tagToDelete => setTags(tags.filter((tag) => tag != tagToDe
                                 value={search}
                                 onChange={(e) => setSearch(e.target.value)}
                             />
-                            <ChipInput 
+                            <ChipInput className={classes.input}
                                 style={{ margin: '8px 0'}}
                                 value={tags}
                                 onAdd={handleAdd}
@@ -99,7 +99,7 @@ const handleDelete = (tagToDelete => setTags(tags.filter((tag) => tag != tagToDe
                                 label="Search Event Tag (Press Enter After Each Tag)"
                                 variant="outlined"
                             />
-                            <Button onClick={searchPost} className={classes.searchButton} variant='contained' color="primary" fullWidth>Filter</Button>
+                            <Button onClick={searchPost} className={classes.searchButton} variant='contained' fullWidth>Filter</Button>
                         </AppBar>
 
                             <Paper elevation={6}>
