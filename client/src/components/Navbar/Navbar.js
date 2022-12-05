@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import useStyles from './styles';
 import caologo from '../../images/image.png';
 import { useState } from 'react';
+import {getPosts} from '../../actions/posts';
 
 const theme = createTheme();
 
@@ -45,12 +46,17 @@ const Navbar = () => {
     const scanQr= ()=>{
         history.push(`/scan`);
     }
+    const refresh = ()=>{
+        history.push(`/`);
+        dispatch(getPosts());
+
+    }
     return(
         <AppBar position="fixed" color="inherit" className={classes.appBar}> {/*appbar is the one on top that desnt move even when ure scrolling*/}
             <div className={classes.brandContainer}>
                 <img className={classes.image} src={caologo} alt="memories" />
                 <ThemeProvider theme={theme}>
-                    <Typography component={Link} to="/" className={classes.typography} variant="h3" align="center">DLSU CAO Ticketing Hub</Typography>
+                    <Typography component={Link} to="/" onClick={refresh} className={classes.typography} variant="h3" align="center">DLSU CAO Ticketing Hub</Typography>
                 </ThemeProvider>
             </div>
             <Toolbar className={classes.toolbar}>

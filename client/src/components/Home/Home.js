@@ -33,6 +33,7 @@ const searchPost = () => {
         dispatch(getPostsBySearch({ search, tags: tags.join(',') }));
         history.push(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
     } else {
+        dispatch(getPosts());
         history.push('/');
     }
 };
@@ -50,6 +51,7 @@ const handleDelete = (tagToDelete => setTags(tags.filter((tag) => tag != tagToDe
     const [user,setUser]=useState(JSON.parse(localStorage.getItem('profile')));
 
     const viewRegistered = () =>{
+        console.log("viewing all current registered shows")
         console.log(user.result.registeredShows.concat(user.result.acceptedShows));
         dispatch(getRegisteredPosts(user.result.registeredShows.concat(user.result.acceptedShows)));
         history.push(`/posts/regposts`)
