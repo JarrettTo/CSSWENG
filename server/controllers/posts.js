@@ -5,11 +5,13 @@ import user from '../models/user.js';
 import { addLog, removeLog } from './attendance.js';
 
 export const getRegisteredPosts = async (req, res) => {
-    const { regPosts } = req.query;
+    
     console.log("Checking regposts");
     console.log(req.query);
+    console.log("showing regposts");
+    console.log(req.query.regpostsquery);
     try{
-        const posts = await PostMessage.find({  '_id': { $in: regPosts.split(',') } } );
+        const posts = await PostMessage.find({  '_id': { $in: req.query.regpostsquery.split(',') } } );
         console.log("finding");
         console.log(posts);
     } catch(error){
