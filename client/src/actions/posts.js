@@ -6,9 +6,10 @@ export const getRegisteredPosts = (regPosts) => async (dispatch)=> {
     console.log("logging action registered posts");
     console.log(regPosts);
     try{
-        const { data } = await api.fetchPostsbyReg(regPosts);
-        const action = { type: FETCH_BY_REGISTERED, payload: data};
-        dispatch(action);
+        const { data : { data }} = await api.fetchPostsbyReg(regPosts);
+        console.log(data);
+        //const action = { type: FETCH_BY_REGISTERED, payload: data};
+        //dispatch(action);
     } catch(error)
     {
         console.log("logging error");

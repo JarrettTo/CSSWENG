@@ -14,8 +14,9 @@ export const getRegisteredPosts = async (req, res) => {
         const posts = await PostMessage.find({  '_id': { $in: req.query.regpostsquery.split(',') } } );
         console.log("finding");
         console.log(posts);
+        res.json({ data: posts });
     } catch(error){
-
+        res.status(404).json({ message: error.message });
     }
 }
 
