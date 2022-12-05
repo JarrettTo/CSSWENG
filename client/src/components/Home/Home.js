@@ -52,6 +52,7 @@ const handleDelete = (tagToDelete => setTags(tags.filter((tag) => tag != tagToDe
     const viewRegistered = () =>{
         console.log(user.result.registeredShows.concat(user.result.acceptedShows));
         dispatch(getRegisteredPosts(user.result.registeredShows.concat(user.result.acceptedShows)));
+        history.push(`/posts/regposts`)
     };
 
     useEffect(() => {       //everything called here will get called after the react app is started
