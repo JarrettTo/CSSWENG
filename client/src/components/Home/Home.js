@@ -49,6 +49,10 @@ const handleDelete = (tagToDelete => setTags(tags.filter((tag) => tag != tagToDe
     const location = useLocation();
     const [user,setUser]=useState(JSON.parse(localStorage.getItem('profile')));
 
+    const viewRegistered = () =>{
+        console.log(user.result.registeredShows.concat(user.result.acceptedShows));
+    };
+
     useEffect(() => {       //everything called here will get called after the react app is started
         dispatch(getPosts());   //dispatch is used to trigger an action that'll affect our state (check main index.js store variable)
         setUser(JSON.parse(localStorage.getItem('profile')));
@@ -101,9 +105,20 @@ const handleDelete = (tagToDelete => setTags(tags.filter((tag) => tag != tagToDe
                             />
                             <Button onClick={searchPost} className={classes.searchButton} variant='contained' fullWidth>Filter</Button>
                         </AppBar>
-
+                        {user?.result ? (
                             <Paper elevation={6}>
-                                <Pagination page={page}/>
+                                <Button onClick={viewRegistered} variant='contained'>Registered Posts</Button>
+                            </Paper>
+                        ):(
+                            <Paper elevation={6}>
+                                <Typography variant='contained'>Log in to View Registered Posts</Typography>
+                            </Paper>
+                        )
+
+                        }
+                        
+                        <Paper elevation={6}>
+                            <Pagination page={page}/>
                         </Paper>
                         { user?.result.admin ?(
                         <Form currentID={currentID} setCurrentID={setCurrentID}/>
