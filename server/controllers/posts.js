@@ -4,6 +4,12 @@ import mongoose from 'mongoose';
 import user from '../models/user.js';
 import { addLog, removeLog } from './attendance.js';
 
+export const getRegisteredPosts = async (req, res) => {
+    const { regPosts } = req.query;
+    console.log("Checking regposts");
+    console.log(req.query);
+}
+
 export const getPosts = async (req, res) => {
     const { page } = req.query;
     

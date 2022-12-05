@@ -26,3 +26,4 @@ export const signUp=(formData) => API.post('/users/signup', formData);
 export const googleSign=(formData,token) => API.post('/users/googlesign', [formData,token]);
 export const approveTxn=(id, post)=> API.post(`/transactions/approve/${id}`, post);
 export const declineTxn=(id)=> API.post(`/transactions/decline/${id}`);
+export const fetchPostsbyReg = (regPosts) => API.get(`/posts/regposts?regpostsquery=${regPosts}`);

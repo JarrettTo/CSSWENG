@@ -5,7 +5,7 @@ import Posts from '../Posts/Posts';
 import Form from '../Form/Form';
 import useStyles from './styles';
 import { useDispatch, useSelector } from 'react-redux';
-import {getPosts, getPostsBySearch} from '../../actions/posts';
+import {getPosts, getPostsBySearch, getRegisteredPosts} from '../../actions/posts';
 import Pagination from '../Pagination';
 import ChipInput from 'material-ui-chip-input';
 import TitleImage from '../../images/TitleImage.png'
@@ -51,6 +51,7 @@ const handleDelete = (tagToDelete => setTags(tags.filter((tag) => tag != tagToDe
 
     const viewRegistered = () =>{
         console.log(user.result.registeredShows.concat(user.result.acceptedShows));
+        dispatch(getRegisteredPosts(user.result.registeredShows.concat(user.result.acceptedShows)));
     };
 
     useEffect(() => {       //everything called here will get called after the react app is started

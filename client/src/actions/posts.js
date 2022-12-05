@@ -1,7 +1,22 @@
 import * as api from '../api';
-import {FETCH_ALL, FETCH_BY_SEARCH, UPDATE, DELETE, CREATE, REGISTER_POST, REGISTER_USER, REGISTER_TXN} from '../constants/actiontypes';
+import {FETCH_ALL, FETCH_BY_SEARCH, FETCH_BY_REGISTERED, UPDATE, DELETE, CREATE, REGISTER_POST, REGISTER_USER, REGISTER_TXN} from '../constants/actiontypes';
 
 //Action creations are functions that create a function
+export const getRegisteredPosts = (regPosts) => async (dispatch)=> {
+    console.log("logging action registered posts");
+    console.log(regPosts);
+    try{
+        const { data } = await api.fetchPostsbyReg(regPosts);
+        const action = { type: FETCH_BY_REGISTERED, payload: data};
+        dispatch(action);
+    } catch(error)
+    {
+        console.log("logging error");
+        console.log(error);
+    }
+    
+  };
+
 export const getPosts = (page) => async (dispatch)=> {
     try{
         const { data }= await api.fetchPosts(page);                         //fetch posts from backend or mongodb

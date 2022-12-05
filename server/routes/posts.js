@@ -1,9 +1,10 @@
 import express from 'express';
-import {getPosts, getPostsBySearch, createPost, updatePost, deletePost, registerPost, getPost} from '../controllers/posts.js';
+import {getPosts, getPostsBySearch, createPost, updatePost, deletePost, registerPost, getPost, getRegisteredPosts} from '../controllers/posts.js';
 import auth from '../middleware/auth.js';
 const router= express.Router();
 
 router.get('/search', getPostsBySearch);
+router.get('/regposts', getRegisteredPosts);
 router.get('/', getPosts);          //triggers when localhost:5000/ is called. we also use the imported function getPosts from controllers/posts.js where we put all of the functionality so that this page looks clean and readable
 router.post('/:id', getPost);
 router.post('/', auth, createPost);
