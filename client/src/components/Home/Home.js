@@ -26,7 +26,7 @@ const Home = () => {
     const searchQuery = query.get('searchQuery');
     const [search, setSearch] = useState('');
     const [tags, setTags] = useState([]);
-
+    const [regPostOn, setRegPosts] = React.useState(false);
     
 const searchPost = () => {
     if((search.trim() || tags) && (search != '' || tags.join(',') != '')) {
@@ -51,10 +51,18 @@ const handleDelete = (tagToDelete => setTags(tags.filter((tag) => tag != tagToDe
     const [user,setUser]=useState(JSON.parse(localStorage.getItem('profile')));
 
     const viewRegistered = () =>{
-        console.log("viewing all current registered shows")
-        console.log(user.result.registeredShows.concat(user.result.acceptedShows));
-        dispatch(getRegisteredPosts(user.result.registeredShows.concat(user.result.acceptedShows)));
-        history.push(`/posts/regposts`)
+        if(regPostOn == false){
+            console.log("viewing all current registered shows")
+            console.log(user.result.registeredShows.concat(user.result.acceptedShows));
+            dispatch(getRegisteredPosts(user.result.registeredShows.concat(user.result.acceptedShows)));
+            history.push(`/posts/regposts`)
+            setRegPosts(true);
+        }
+        else{
+            dispatch(getPosts());
+            history.push('/');
+            setRegPosts(false);
+        }
     };
 
     useEffect(() => {       //everything called here will get called after the react app is started
@@ -111,7 +119,8 @@ const handleDelete = (tagToDelete => setTags(tags.filter((tag) => tag != tagToDe
                         </AppBar>
                         {user?.result ? (
                             <Paper elevation={6}>
-                                <Button onClick={viewRegistered} variant='contained'>Registered Posts</Button>
+                              {!regPostOn && <Button onClick={viewRegistered} variant='contained'>Check Registered Posts</Button> }
+                              {regPostOn && <Button onClick={viewRegistered} variant='contained'>Check All Posts</Button> }
                             </Paper>
                         ):(
                             <Paper elevation={6}>
