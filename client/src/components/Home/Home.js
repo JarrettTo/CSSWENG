@@ -52,8 +52,10 @@ const handleDelete = (tagToDelete => setTags(tags.filter((tag) => tag != tagToDe
 
     const viewRegistered = () =>{
         if(regPostOn == false){
-            console.log("viewing all current registered shows")
+            console.log("viewing all current registered shows");
             console.log(user.result.registeredShows.concat(user.result.acceptedShows));
+            console.log("viewing localuser")
+            console.log(user);
             dispatch(getRegisteredPosts(user.result.registeredShows.concat(user.result.acceptedShows)));
             history.push(`/posts/regposts`)
             setRegPosts(true);
