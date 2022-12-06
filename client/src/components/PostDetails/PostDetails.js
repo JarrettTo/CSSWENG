@@ -50,7 +50,8 @@ const PostDetails = () => {
         console.log(form);
         dispatch(registerPost(id, form));
         setTrigger(!trigger)
-        
+        window.location.reload(false);
+
     }
 
     
