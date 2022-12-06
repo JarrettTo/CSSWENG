@@ -18,17 +18,29 @@ export default makeStyles((theme) => ({
     },
   },
 
+  paperhere: {
+    // border: '1px solid red',
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: '0'
+  },
+
   // SECTION 1
   section1: {
-    // border: '1px solid rgba(0, 0, 0, 0.3)',
+    // border: '1px solid rgba(0, 0, 0, 1)',
+    
     // backgroundColor: 'rgba(0, 0, 0, 0.3)',
     // border: '1px solid white',
-    marginTop: '10vh'
+    padding: '0',
+    marginTop: '20vh',
+    width: '100%'
   },
   titleBox: {
     // border: '1px solid white',
     marginTop: '7vh',
-    width: '80vw',
+    width: '80%',
     fontSize: '6vw',
     display: 'flex',
     justifyContent: 'center',
@@ -46,11 +58,13 @@ export default makeStyles((theme) => ({
   },
   box1: {
     // border: '1px solid white',
-    marginTop: '5vh',
-    height: '80vh',
+    // marginTop: '5vh',
+    height: '100vh',
+    width: '100%',
     maxHeight: '500px',
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
+    padding: '0',
   },
   innerBox: {
     // border: '1px solid white',
@@ -74,7 +88,7 @@ export default makeStyles((theme) => ({
     padding: '0',
     color: 'white',
     textAlign: 'justify',
-    fontSize: '2vh',
+    fontSize: '85%',
     display: 'flex',
     alignItems: 'center',
     // overflowY: 'hidden',
@@ -104,7 +118,7 @@ export default makeStyles((theme) => ({
     // border: '1px solid red',  
     fontWeight: 'bold',
     textTransform: 'uppercase',
-    fontSize: '1.5em'
+    fontSize: '1.8em'
   },
   innerTitle: {
     fontWeight: 'bold',
@@ -114,7 +128,7 @@ export default makeStyles((theme) => ({
   venue: {
     textTransform: 'uppercase',
     marginTop: '-1vh',
-    fontSize: '1.2em'
+    fontSize: '1.3em'
   },
   description: {
     marginTop: '2%',
@@ -140,7 +154,7 @@ export default makeStyles((theme) => ({
     width: '46%'
   },
   bottomValue: {
-    fontSize: '1.5em',
+    fontSize: '1.3em',
     fontWeight: 'bold',
   },
   bottomTitle: {
@@ -186,13 +200,13 @@ export default makeStyles((theme) => ({
     position: 'relative',
     display:'flex',
     borderRadius: '0 2vh 2vh 0',
-    fontSize: '2vh',
+    fontSize: '80%',
     padding: '0'
     
   },
   mainImg: {
-    height: '90%',
-    width: 'auto',
+    height: 'auto',
+    width: '100%',
     borderRadius: '2%'
   },
   registration: {
