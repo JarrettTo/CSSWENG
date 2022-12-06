@@ -9,7 +9,7 @@ export default (state= { authData: null }, action) => { //reducers take in a sta
             return { ...state,  authData: null }; 
         case 'REGISTER_USER':
             localStorage.setItem('profile',JSON.stringify( {...action?.payload}));  
-            return { ...state, authData: action?.data}; 
+            return { ...state, authData: action?.payload}; 
         default:
             return state;
     }
