@@ -10,9 +10,9 @@ export default makeStyles((theme) => ({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#09300d',
-    height: '12vh',
-    fontSize: '2vh'
+    backgroundColor: 'rgba(5, 43, 0, 1)',
+    height: '10%',
+    fontSize: '100%'
     
   },
   brandContainer: {
@@ -20,19 +20,23 @@ export default makeStyles((theme) => ({
     height: '100%',
     display: 'flex',
     alignItems: 'center',
+    width: '40%',
+    fontSize: '100%',
+  
   },
   image: {
     // border: '1px solid red',
-    marginLeft: '80px',
-    margin: '10px',
-    height: '80%',
+    marginLeft: '3vw',
+    margin: '2%',
+    height: '6vh',
+    width: 'auto',
     maxHeight:'80px'
   },
   typography:{
     // border: '1px solid red',
-    padding: "15px",
+    padding: "5%",
     color: 'white',
-    fontSize:'2em',
+    fontSize:'1.2em',
     textDecoration:'none',
     overflow:'hidden',
     whiteSpace:'nowrap'
@@ -44,7 +48,7 @@ export default makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'flex-end',
     width: '29vw',
-    fontSize: '2vh'
+    fontSize: '100%'
   },
   profile: {
     // border: '1px solid red',
@@ -58,7 +62,7 @@ export default makeStyles((theme) => ({
     // border: '1px solid red',
     marginRight:'2vw',
     color:'white',
-    fontSize:'1.4em',
+    fontSize:'1.1em',
     textDecoration:'none',
     '&:hover':{
       color:'#4caf50'
@@ -89,7 +93,7 @@ export default makeStyles((theme) => ({
     '&:hover':{
       color:'red',
     },
-    fontSize:'1.6em',
+    fontSize:'1.2em',
   },
   purple: {
     color: theme.palette.getContrastText(deepPurple[500]),

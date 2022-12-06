@@ -23,7 +23,8 @@ export default makeStyles(() => ({
     image:{
         width: '1250px',
         height:'100%',
-        maxWidth:'100%'
+        maxWidth:'100%',
+        marginTop: '7vh'
     },
     FooterLogos:{
         marginTop:'150px',
