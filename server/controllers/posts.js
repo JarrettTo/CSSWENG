@@ -108,7 +108,7 @@ export const registerPost = async (req, res)=>{
     const foundUser= await user.findById(req.id);
     const registeredIndex = post.registeredUsers.findIndex((_id) => _id === String(req.id));
     const acceptedIndex = post.acceptedUsers.findIndex((_id) => _id === String(req.id));
-    const valid= date<=Date(post.activeDate);
+    const valid= date<=Date(post.expiryDate);
     let status, finalTxn;
     var claim=false;
     console.log("FAK");

@@ -77,6 +77,7 @@ export const registerPost = (id, form) => async (dispatch) =>{          //create
         console.log(data);
 
         dispatch({type: REGISTER_POST, payload : data.updatedPost});
+        console.log(data.updatedUser)
         dispatch({type: REGISTER_USER, payload : data.updatedUser});
         
     } catch (error){

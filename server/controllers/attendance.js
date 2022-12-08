@@ -40,7 +40,7 @@ export const addLog = async (userID, postID, txnID, email, show, date, name)=>{ 
             to: email,
             
             // Subject of Email
-            subject: 'Tickets for' + show,
+            subject: 'Tickets for ' + show,
                 
             // This would be the text of email body
             text: message,

@@ -4,6 +4,7 @@ const postSchema = mongoose.Schema({ //schema for shows
     title: String,
     date: Date,
     endDate: Date,
+    expiryDate: Date,
     price: Number,
     description: String,
     venue: String,
@@ -16,7 +17,7 @@ const postSchema = mongoose.Schema({ //schema for shows
     selectedFileOther: String,
     registeredUsers: { type: [String], default: [] },
     acceptedUsers: { type: [String], default: [] },
-    activeDate: Date,
+    
 });
 
 const PostMessage = mongoose.model('PostMessage', postSchema);

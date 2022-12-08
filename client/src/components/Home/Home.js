@@ -28,25 +28,25 @@ const Home = () => {
     const [tags, setTags] = useState([]);
     const [regPostOn, setRegPosts] = React.useState(false);
     
-const searchPost = () => {
-    if((search.trim() || tags) && (search != '' || tags.join(',') != '')) {
-        dispatch(getPostsBySearch({ search, tags: tags.join(',') }));
-        history.push(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
-    } else {
-        dispatch(getPosts());
-        history.push('/');
-    }
-};
+    const searchPost = () => {
+        if((search.trim() || tags) && (search != '' || tags.join(',') != '')) {
+            dispatch(getPostsBySearch({ search, tags: tags.join(',') }));
+            history.push(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
+        } else {
+            dispatch(getPosts());
+            history.push('/');
+        }
+    };
 
-const handleKeyPress = (e) => {
-    if(e.keyCode === 13) { //if pressed enter key
-        searchPost();
-    }
-};
+    const handleKeyPress = (e) => {
+        if(e.keyCode === 13) { //if pressed enter key
+            searchPost();
+        }
+    };
 
-const handleAdd = (tag) => setTags([ ...tags, tag]);
+    const handleAdd = (tag) => setTags([ ...tags, tag]);
 
-const handleDelete = (tagToDelete => setTags(tags.filter((tag) => tag != tagToDelete)))
+    const handleDelete = (tagToDelete => setTags(tags.filter((tag) => tag != tagToDelete)))
     const location = useLocation();
     const [user,setUser]=useState(JSON.parse(localStorage.getItem('profile')));
 
@@ -156,13 +156,7 @@ const handleDelete = (tagToDelete => setTags(tags.filter((tag) => tag != tagToDe
                     </Grid>
 
 
-                    <Grid item xs={12} sm={4}>
-                        { user?.result.admin ?(
-                        <Button onClick={adminPage}>Admin Page</Button>
-                        ): null}
-                        
-                        
-                    </Grid>
+                    
                 </Grid>
 
 

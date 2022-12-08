@@ -42,7 +42,7 @@ export const declineTxn = async (req, res)=>{      //function for getting posts
     const {id} = req.params;
     try{
         const txn= await form.findById(id).sort({date: -1});   //looks for all messages with the same model as models/postMessage.js in the database 
-        txn.status="Rejected";
+        txn.status="Cancelled";
         await removeLog(txn.userID, txn.postID, txn._id);
         await form.findByIdAndUpdate(txn._id, txn, {new: true});
         

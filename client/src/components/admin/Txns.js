@@ -18,7 +18,7 @@ const Admin = () => {
     },[])
     return(
         <Grid container alignItems="stretch" spacing={3}>
-            {console.log(txns)};
+
             {!txns.length ? <CircularProgress />: (
             txns.map((txn) => (
                 <Grid key={txn._id} item xs={12} sm={6}>
