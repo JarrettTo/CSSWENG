@@ -1,5 +1,5 @@
 import * as api from '../api';
-import {LOG,GET_LOGS} from '../constants/actiontypes';
+import {LOG,GET_LOGS,FETCH_LOGS_BY_SEARCH} from '../constants/actiontypes';
 export const logTime = (form) => async (dispatch)=> {
     try{
         const { data }= await api.logTime(form);  
@@ -16,8 +16,9 @@ export const getAttBySearch = (searchQuery) => async (dispatch) => {
       console.log("getting attendance")
       const { data } = await api.fetchAttBySearch(searchQuery);
       console.log("logging attendance")
-      console.log(data);
-      
+      console.log(data.data);
+      console.log("logging attendance finished, starting dispatch")
+      dispatch({ type: GET_LOGS,  payload:data.data});
     } catch (error) {
       console.log(error);
     }

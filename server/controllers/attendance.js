@@ -147,6 +147,10 @@ export const getAttBySearch = async (req, res)=>{
         const title = new RegExp(req.query.attsrchquery, "i");
         console.log("trying to search in controller")
         console.log(title)
+        const logs = await attendanceLog.find({'postName' : { $in: title }})
+        console.log("finding");
+        console.log(logs);
+        res.json(logs);
     } catch (error){
         res.status(404).json({message:error.message});
     }

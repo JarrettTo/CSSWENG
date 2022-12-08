@@ -3,6 +3,7 @@ export const DELETE = 'DELETE';
 export const UPDATE = 'UPDATE';
 export const FETCH_BY_SEARCH = 'FETCH_BY_SEARCH';
 export const FETCH_BY_REGISTERED = 'FETCH_BY_REGISTERED';
+export const FETCH_LOGS_BY_SEARCH = 'FETCH_LOGS_BY_SEARCH';
 export const FETCH_ALL = 'FETCH_ALL';
 export const FETCH_TXN = 'FETCH_TXN';
 export const FETCH_TXNS = 'FETCH_TXNS';
