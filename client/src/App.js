@@ -37,6 +37,7 @@ const App = () => {
                         <Route path="/admin" component={Admin} />
                         <Route path="/scan" component={QR} />
                         <Route path="/transactions" component={Txns} />
+                        <Route path="/transactions/txnsrch" component={Txns} />
                         <Route path="/attendance" component={Attendance} />
                     </Switch>
 

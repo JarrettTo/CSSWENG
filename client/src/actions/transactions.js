@@ -1,5 +1,5 @@
 import * as api from '../api';
-import {FETCH_TXN, FETCH_TXNS,UPDATE_TXN} from '../constants/actiontypes';
+import {FETCH_TXN, FETCH_TXNS,UPDATE_TXN, FETCH_TXNS_BY_SEARCH} from '../constants/actiontypes';
 export const getTxn = (id) => async (dispatch)=> {
     try{
         const { data }= await api.getTxn(id);                         //fetch posts from backend or mongodb
@@ -21,6 +21,18 @@ export const getTxns = () => async (dispatch)=> {
     }
 
 }
+
+export const getTxnsBySearch = (searchQuery) => async (dispatch) => {
+    try {
+      console.log("getting getTxns")
+      const { data } = await api.fetchTxnsBySearch(searchQuery);
+      console.log("logging getTxns")
+      console.log(data);
+      
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 export const approveTxn = (id, post) => async (dispatch)=> {
     try{
