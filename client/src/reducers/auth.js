@@ -11,6 +11,11 @@ export default (state= { authData: null }, action) => { //reducers take in a sta
             
             localStorage.setItem('profile',JSON.stringify( {...action?.payload}));  
             return { ...state, authData: action?.payload}; 
+        case 'UPDATE_USER':
+            const old=localStorage.getItem('profile')
+            localStorage.setItem('profile',JSON.stringify({result: action?.data, token:old.token}))
+            return { ...state, authData: {...authData, result: action?.data}};
+            
         default:
             return state;
     }

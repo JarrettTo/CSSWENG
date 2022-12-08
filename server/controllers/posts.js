@@ -29,10 +29,22 @@ export const getPosts = async (req, res) => {
         const total = await PostMessage.countDocuments({});
         const posts = await PostMessage.find().sort({ _id: -1 }).limit(LIMIT).skip(startIndex);
         const postMessages= await PostMessage.find();   //looks for all messages with the same model as models/postMessage.js in the database 
-
+        updatePostStatus(postMessages);
         res.status(200).json({ data: posts, currentPage: Number(page), numberOfPages: Math.ceil(total / LIMIT)});
     } catch (error) {    
         res.status(404).json({ message: error.message });
+    }
+}
+
+const updatePostStatus = async (posts) =>{
+    let date = new Date();
+    for(var i=0;i<posts.length;i++){
+        console.log(posts[i].expiryDate)
+        console.log(date)
+        if(posts[i].expiryDate-date<=0){
+            posts[i].status="dateClosed"
+            await PostMessage.findByIdAndUpdate(posts[i]._id, posts[i], {new: true})
+        }
     }
 }
 
@@ -83,6 +95,25 @@ export const getPost = async (req, res) =>{
     
 }
 
+export const togglePost = async (req,res)=>{
+    let date = new Date();
+    const {id: _id} = req.params;
+    const post = await PostMessage.findById(_id);
+    if(post.status=="Open"){
+        post.status="manualClosed"
+    }
+    else if(post.expiryDate-date>0){
+        post.status="Open"
+    }
+    else{
+        return res.status(404).json("Post is past expiration date. Please extend to reopen show");
+    }
+    if(!mongoose.isValidObjectId(_id)) return res.status(404).send("no post with that id");
+    
+    const updatedPost= await PostMessage.findByIdAndUpdate(post._id, post, {new: true});
+    res.json(updatedPost);
+}
+
 export const deletePost = async (req, res) =>{
     const {id} = req.params;
     const post = req.body;
@@ -97,7 +128,7 @@ export const registerPost = async (req, res)=>{
     const { id } = req.params;
     const register =req.body;
 
-    let date = new Date().toJSON();
+    let date = new Date();
 
     if (!req.id) {
         return res.json({ message: "Unauthenticated" });
@@ -108,10 +139,10 @@ export const registerPost = async (req, res)=>{
     const foundUser= await user.findById(req.id);
     const registeredIndex = post.registeredUsers.findIndex((_id) => _id === String(req.id));
     const acceptedIndex = post.acceptedUsers.findIndex((_id) => _id === String(req.id));
-    const valid= date<=Date(post.expiryDate);
+    const valid= date-post.expiryDate<0 && post.status=="Open";
     let status, finalTxn;
     var claim=false;
-    console.log("FAK");
+
     if (registeredIndex === -1 && acceptedIndex === -1 && valid) {
         if(foundUser.dlsu && !foundUser.claimed){
             post.acceptedUsers.push(req.id);
@@ -129,6 +160,7 @@ export const registerPost = async (req, res)=>{
             
 
         }
+        post.noOfAttendees+=1
         finalTxn = new form({userID: req.id, postID: id, selectedFile: register.payment, artPass: claim, status: status, firstName: foundUser.firstName, lastName: foundUser.lastName, dlsu_id: register.dlsu_id, contactNumber: register.contactNumber, degree: register.degree, college: register.college, altClass: register.altClass, email: foundUser.email, date: Date(post.activeDate)});
         console.log(finalTxn);
         try{
@@ -154,10 +186,18 @@ export const registerPost = async (req, res)=>{
             foundUser.claimed=false;
         }
         finalTxn=await form.findByIdAndUpdate(txn._id, txn, {new: true});
+        post.noOfAttendees-=1
     }
     else{
-        return res(404).send("Too late! :(");
+        return res.status(404).send("Too late! :(");
     }
+    if(post.noOfAttendees>=post.maxAttendees){
+        post.status="maxClosed";
+    }
+    if(post.noOfAttendees<post.maxAttendees && post.status=="maxClosed"){
+        post.status="Open";
+    }
+
     const updatedPost = await PostMessage.findByIdAndUpdate(id, post, { new: true });
     const updatedUser= await user.findByIdAndUpdate(req.id, foundUser, {new: true});
     console.log(updatedUser);

@@ -14,3 +14,5 @@ export const REGISTER_TXN='REGISTER_TXN';
 export const UPDATE_TXN='UPDATE_TXN';
 export const LOG='LOG';
 export const GET_LOGS='GET_LOGS';
+export const TOGGLE='TOGGLE';
+export const UPDATE_USER = 'UPDATE_USER';

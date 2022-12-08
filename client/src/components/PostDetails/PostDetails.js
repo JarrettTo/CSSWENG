@@ -6,7 +6,7 @@ import { Typography, TextField, Button } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container, Grid} from '@material-ui/core';
 import { useParams, useHistory } from 'react-router-dom';
-import { getPosts, registerPost } from "../../actions/posts";
+import { getPosts, registerPost, togglePost } from "../../actions/posts";
 import { getTxn, getTxns } from "../../actions/transactions";
 
 
@@ -33,19 +33,27 @@ const PostDetails = () => {
     
     const [trigger,setTrigger]=useState(false);
     const [complete,setComplete]=useState(false);
+    const [disabled,setDisabled]=useState(false);
     const selPost = posts?.find((e)=>{ return e._id==id});
     
-
+    
     useEffect(()=>{
-
+        
         dispatch(getPosts());
         setUser(JSON.parse(localStorage.getItem('profile')));
         dispatch(getTxn(id));
         dispatch(getTxns());
     },[trigger])
-
+    const toggleShow=(e)=>{
+        e.preventDefault();
+        dispatch(togglePost(id));
+        dispatch(getPosts());
+        setTrigger(!trigger);
+        
+    }
     const handleSubmit=(e)=>{
         console.log(selPost)
+        
         if(selPost.registeredUsers.find((e)=> e==user.result._id) || selPost.acceptedUsers.find((e)=> e==user.result._id)){
             dispatch(registerPost(id, form));
             setForm({      //initializes postData to the ff values. we set "setPostData" as the setter function for the state variable "postData"
@@ -147,10 +155,14 @@ const PostDetails = () => {
                                 <Container className={classes.price}>
                                     <Typography className={classes.bottomValue}>PHP {selPost?.price}.00</Typography>
                                     <Typography className={classes.bottomTitle}>TICKET PRICE</Typography>
+                                    <Typography className={classes.bottomValue}>{selPost?.status}</Typography>
+                                    <Typography className={classes.bottomTitle}>SHOW STATUS</Typography>
                                 </Container>
                                 <Container className={classes.attendees}>
                                     <Typography className={classes.bottomValue}>{selPost?.maxAttendees}</Typography>
                                     <Typography className={classes.bottomTitle}>MAX ATTENDEES</Typography>
+                                    <Typography className={classes.bottomValue}>{selPost?.noOfAttendees}</Typography>
+                                    <Typography className={classes.bottomTitle}>NUMBER OF ATTENDEES</Typography>
                                     {/* <Typography className={classes.bottomTitle}>ATTENDEES</Typography> */}
                                 </Container>
                                 <Container className={classes.date}>
@@ -191,10 +203,13 @@ const PostDetails = () => {
                                 <Typography className={classes.status}>
                                     STATUS: { txn?.status?txn.status : "No Recorded Transaction" }
                                 </Typography>
+                                <Typography className={classes.status}>
+                                    { selPost?.status!="Open" ? "\nThis show is currently not allowing registrations" : null}
+                                </Typography>
                             </Container>
                             
 
-                            {(!selPost?.registeredUsers?.find((e)=> e==user.result._id) && !selPost?.acceptedUsers?.find((e)=> e==user.result._id))?(
+                            {(!selPost?.registeredUsers?.find((e)=> e==user.result._id) && !selPost?.acceptedUsers?.find((e)=> e==user.result._id)) && selPost?.status=="Open" ?(
                             <>
                             {complete? (<Typography> Please Fill In The Fields</Typography>): null}
                             <Container className={classes.regForm}>
@@ -263,7 +278,7 @@ const PostDetails = () => {
                                 // </Container>
 
                                 ): null}
-                                {(!user?.result?.dlsu || user?.result?.claimed) ? (
+                                {(!user?.result?.dlsu || user?.result?.claimed) && selPost?.status=="Open" ? (
 
                                 <>
                                     <Container className={classes.paybox}>
@@ -295,23 +310,26 @@ const PostDetails = () => {
                                         <Button 
                                             className={classes.buttonSubmit} 
                                             variant="contained" 
-                                            type="submit" 
+                                            type="submit"
+                                            
                                             onClick={handleSubmit}>
-                                                Submit
+                                                Register
                                         </Button>
                                     </Container>
                                     
                         
                                 </>
 
-                                ): <Button className={classes.buttonSubmit} variant="container" color="primary" size="large" type="submit" onClick={handleSubmit} fullWidth>Register</Button> }
+                                ): null }
+                                {selPost?.status=="Open" && (user?.result?.dlsu && !user?.result?.claimed) ? <Button className={classes.buttonSubmit} variant="container" color="primary" size="large" type="submit" onClick={handleSubmit} fullWidth>Register</Button>: null }
                             
                             </Container>
                             </>
                             
-                            ):<Button className={classes.buttonSubmit} variant="container" color="primary" size="large" type="submit" onClick={handleSubmit} fullWidth>Unregister</Button> }
+                            ):null }
+                            {(selPost?.registeredUsers?.find((e)=> e==user.result._id) || selPost?.acceptedUsers?.find((e)=> e==user.result._id)) && selPost?.status=="Open" ? (<Button className={classes.buttonSubmit} variant="container" color="primary" size="large" type="submit" onClick={handleSubmit} fullWidth>Unregister</Button>) : null}
                         </Container>
-                        
+                        {user?.result.admin? (<Button  variant="container" color="primary" size="large" onClick={toggleShow}>{selPost?.status=="Open"? ("Close Show"): ("Open Show")}</Button>) : null}
                     </Container>
                 </Container>
 

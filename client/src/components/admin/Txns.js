@@ -7,12 +7,17 @@ import Txn from "./Txn.js";
 import { useDispatch, useSelector } from 'react-redux';
 import { getPost, getPosts, registerPost } from "../../actions/posts";
 import { getTxns } from "../../actions/transactions";
+import { useHistory } from "react-router-dom";
 const Admin = () => {
     const txns = useSelector((state)=> state.txns);
     const {posts} = useSelector((state)=>state.posts);
     const selPost=(id)=>posts.find((e)=>{ return e._id==id});
     const dispatch= useDispatch();
+    const history= useHistory();
     useEffect(() => {
+        if(!JSON.parse(localStorage.getItem("profile"))?.result.admin){
+            history.push('/');
+        }
         dispatch(getTxns());
         dispatch(getPosts());
     },[])

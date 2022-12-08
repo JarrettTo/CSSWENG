@@ -44,8 +44,13 @@ const Txn = ({txn}) =>{
             <Typography>{txn.degree ? "Degree :" + txn.degree : null}</Typography>
             <Typography>{txn.altClass ? "Alt Class :" + txn.altClass : null}</Typography>
             <Typography>{txn.status ? "Current Status :" + txn.status : null}</Typography>
-            {txn.status == 'Pending' || txn.status == 'Cancelled' ? (<Button className={classes.button1} type="submit"  variant="contained" onClick={approve}>Approve</Button>): (<Button className={classes.button2} type="submit" variant="contained" onClick={decline}>Decline</Button>)}
-            
+            {txn.status == 'Pending'  ? (
+                <>
+                <Button className={classes.button1} type="submit"  variant="contained" onClick={approve}>Approve</Button>
+                <Button className={classes.button2} type="submit"  variant="contained" onClick={decline}>Decline</Button>
+                </>
+            ): null}
+            {txn.status == 'Accepted'  ? (<Button className={classes.button1} type="submit"  variant="contained" onClick={decline}>Decline</Button>): null}
             
         </Card>
     )

@@ -58,6 +58,23 @@ export const signIn = async (req, res) =>{        //signin
     
 }
 
+export const updateUser= async (req, res) =>{        //signin
+    const {id} = req.params;
+    console.log(id)
+    try{
+        const foundUser= await user.findById(id)
+        if(!foundUser) return res.status(404).json({message: "User does not exist!"});
+        
+        const token = jwt.sign({id:foundUser._id, email: foundUser.email, isAdmin: foundUser.admin },"dlsucao", {expiresIn: "2h"});
+        res.status(200).json({result: foundUser, token});
+    } catch (error){
+        res.status(500).json({message: "Something Went Wrong!"});
+    }
+    
+   
+    
+}
+
 export const googleSign=async(req, res)=>{
     const {email,password,confirmPassword, firstName, lastName, id} = req.body[0];
     let newUser;

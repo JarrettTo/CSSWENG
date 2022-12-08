@@ -21,6 +21,8 @@ export default (state=[], action) => { //reducers take in a state and an action 
         case 'REGISTER_POST':
             
             return {...state, posts: state.posts.map((post)=> post._id == action.payload._id ? action.payload : post)};
+        case 'TOGGLE':
+            return {...state, posts: state.posts.map((post)=> post._id == action.payload._id ? action.payload : post)};
         default:
             return state;
     }

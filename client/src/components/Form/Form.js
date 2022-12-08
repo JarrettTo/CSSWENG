@@ -24,7 +24,7 @@ const Form = ({currentID, setCurrentID}) => {
         creator: '',
         tags: '',
         id: '',
-        noOfAttendees: '',
+        noOfAttendees: 0,
         maxAttendees: '',
         selectedFile: '',
         selectedFileOther: '',
@@ -44,7 +44,7 @@ const Form = ({currentID, setCurrentID}) => {
             creator: '',
             tags: '',
             id: '',
-            noOfAttendees: '',
+            noOfAttendees: 0,
             maxAttendees: '',
             selectedFile: '',
             selectedFileOther: '',
@@ -78,6 +78,7 @@ const Form = ({currentID, setCurrentID}) => {
             setError(false);
         }
         else{
+            console.log(postData)
             dispatch(createPost({...postData,name: user?.result?.id}));             //dispatches our createPost function from our actions with the parameter of our new object created by filling up the form
             clear();
             setError(false);
