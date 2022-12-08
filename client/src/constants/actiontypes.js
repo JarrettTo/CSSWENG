@@ -6,6 +6,7 @@ export const FETCH_BY_REGISTERED = 'FETCH_BY_REGISTERED';
 export const FETCH_ALL = 'FETCH_ALL';
 export const FETCH_TXN = 'FETCH_TXN';
 export const FETCH_TXNS = 'FETCH_TXNS';
+export const FETCH_TXNS_BY_SEARCH = 'FETCH_TXNS_BY_SEARCH';
 export const AUTH='AUTH';
 export const LOGOUT='LOGOUT';
 export const REGISTER_POST='REGISTER_POST';

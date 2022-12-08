@@ -14,6 +14,19 @@ export const getTxns = async (req, res)=>{      //function for getting posts
     }
 }
 
+export const getTxnsBySearch = async (req, res)=>{ 
+    console.log("Checking txns");
+    console.log(req.query);
+    console.log("showing txns");
+    console.log(req.query.txnsrchquery);     //function for getting posts
+    try{
+        const title = new RegExp(searchQuery, "i");
+        console.log("trying to search in controller")
+    } catch (error){
+        res.status(404).json({message:error.message});
+    }
+}
+
 export const getTxn = async (req, res)=>{      //function for getting posts
     const {id} = req.params;
     try{
