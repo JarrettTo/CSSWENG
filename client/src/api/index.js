@@ -30,3 +30,4 @@ export const declineTxn=(id)=> API.post(`/transactions/decline/${id}`);
 export const fetchPostsbyReg = (regPosts) => API.get(`/posts/regposts?regpostsquery=${regPosts}`);
 export const togglePost = (id) => API.patch(`/posts/${id}/togglePost`);
 export const updateUser=(id)=> API.post(`/users/${id}/update`);
+export const fetchAttBySearch=(attSearch) => API.get(`/attendance/attsrch?attsrchquery=${attSearch.search || 'none'}`);

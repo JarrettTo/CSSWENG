@@ -138,6 +138,21 @@ export const logTime= async (req,res)=>{      //function for getting posts
 
 }
 
+export const getAttBySearch = async (req, res)=>{ 
+    console.log("Checking att");
+    console.log(req.query);
+    console.log("showing att");
+    console.log(req.query.attsrchquery);     //function for getting posts
+    try{
+        const title = new RegExp(req.query.attsrchquery, "i");
+        console.log("trying to search in controller")
+        console.log(title)
+    } catch (error){
+        res.status(404).json({message:error.message});
+    }
+}
+
+
 export const getLogs = async(req,res)=>{
     try{
         const logs= await attendanceLog.find();   //looks for all messages with the same model as models/postMessage.js in the database 

@@ -11,6 +11,17 @@ export const logTime = (form) => async (dispatch)=> {
     }
   
 }
+export const getAttBySearch = (searchQuery) => async (dispatch) => {
+    try {
+      console.log("getting attendance")
+      const { data } = await api.fetchAttBySearch(searchQuery);
+      console.log("logging attendance")
+      console.log(data);
+      
+    } catch (error) {
+      console.log(error);
+    }
+  };
 export const getLogs = () => async (dispatch)=> {
     try{
         const { data }= await api.getLogs();  

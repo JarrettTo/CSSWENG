@@ -47,6 +47,7 @@ const App = () => {
                         <Route path="/transactions" component={Txns} />
                         <Route path="/transactions/txnsrch" component={Txns} />
                         <Route path="/attendance" component={Attendance} />
+                        <Route path="/attendance/attsrch" component={Attendance} />
                         <Route path="*" component={PageNotFound} />
                     </Switch>
 

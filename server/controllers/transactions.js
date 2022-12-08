@@ -20,8 +20,9 @@ export const getTxnsBySearch = async (req, res)=>{
     console.log("showing txns");
     console.log(req.query.txnsrchquery);     //function for getting posts
     try{
-        const title = new RegExp(searchQuery, "i");
+        const title = new RegExp(req.query.txnsrchquery, "i");
         console.log("trying to search in controller")
+        console.log(title)
     } catch (error){
         res.status(404).json({message:error.message});
     }
