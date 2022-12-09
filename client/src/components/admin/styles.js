@@ -1,6 +1,10 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
+  div:{
+    height:'700px',
+    paddingTop:'50px'
+  },
   title:{
     color:'white',
   },

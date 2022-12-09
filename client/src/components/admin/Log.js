@@ -6,9 +6,10 @@ import { Paper, Typography, CircularProgress, Divider, TextField, Button, Card} 
 import { useDispatch, useSelector } from 'react-redux';
 import { getPost, getPosts, registerPost } from "../../actions/posts";
 import { approveTxn, declineTxn } from "../../actions/transactions";
+import useStyles from './styles';
 
 const Log = ({log}) =>{
-
+const classes = useStyles();
     
     
 

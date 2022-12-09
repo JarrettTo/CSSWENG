@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import FileBase from 'react-file-base64';
 
 import { useState } from "react";
-import { Paper, Typography, CircularProgress, Divider, TextField, Button, Grid} from '@material-ui/core';
+import { Paper, Typography, CircularProgress, Divider, TextField, Button, Grid, CssBaseline} from '@material-ui/core';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { getPost, getPosts, registerPost } from "../../actions/posts";
@@ -29,7 +29,8 @@ const Admin = () => {
         history.push("/attendance");
     }
     return(
-        <div>
+        <div className={classes.div}>
+        
         <Typography className={classes.title} variant="h2">Dashboard</Typography>
         
         <Grid container alignItems="stretch" spacing={2}>

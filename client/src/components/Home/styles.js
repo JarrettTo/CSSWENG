@@ -33,7 +33,7 @@ export default makeStyles(() => ({
       divider:{
         backgroundColor:'lightGrey',
         marginBottom:'40px',
-        marginTop:'50px',
+        marginTop:'100px',
       },
       label1:{
         color:'white',

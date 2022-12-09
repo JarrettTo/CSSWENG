@@ -5,9 +5,11 @@ import { useState } from "react";
 import { Paper, Typography, CircularProgress, Divider, TextField, Button, Grid} from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { getLogs } from "../../actions/attendance";
+import useStyles from './styles';
+
 const Attendance = () => {
     const logs = useSelector((state)=> state.logs);
-
+    const classes = useStyles();
     //const selPost=(id)=>posts.find((e)=>{ return e._id==id});
     const dispatch= useDispatch();
     useEffect(() => {

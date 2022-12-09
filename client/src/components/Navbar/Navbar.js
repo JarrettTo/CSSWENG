@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import * as actionType from '../../constants/actiontypes';
 import { Link, useHistory, useLocation} from 'react-router-dom';
-import { AppBar, Typography, Toolbar, Avatar, Button, createTheme, responsiveFontSizes, ThemeProvider } from '@material-ui/core';
+import { AppBar, Typography, Toolbar, Avatar, Button, createTheme, responsiveFontSizes, ThemeProvider,Hidden } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import useStyles from './styles';
 import caologo from '../../images/image.png';
@@ -56,7 +56,8 @@ const Navbar = () => {
             <div className={classes.brandContainer}>
                 <img className={classes.image} src={caologo} alt="memories" />
                 <ThemeProvider theme={theme}>
-                    <Typography component={Link} to="/" onClick={refresh} className={classes.typography} variant="h3" align="center">DLSU CAO Ticketing Hub</Typography>
+                    <Typography component={Link} to="/" onClick={refresh} className={classes.typography} variant="h3" align="center">DLSU CAO 
+                    <Hidden xsDown>&nbsp;Ticketing Hub</Hidden> </Typography>
                 </ThemeProvider>
             </div>
             <Toolbar className={classes.toolbar}>

@@ -88,12 +88,11 @@ export default makeStyles((theme) => ({
     "&.MuiButton-outlined":{
       border:'2px red solid',
       color: 'white',
-      height: '7vh',
     },
     '&:hover':{
       color:'red',
     },
-    fontSize:'1.2em',
+    fontSize:'13px',
   },
   purple: {
     color: theme.palette.getContrastText(deepPurple[500]),
@@ -108,7 +107,7 @@ export default makeStyles((theme) => ({
     '&:hover':{
       color:'#5865f2',
     },
-    fontSize:'15px',
+    fontSize:'13px',
     lineHeight:'20px',
     marginLeft:'10px'
   },

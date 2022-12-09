@@ -7,7 +7,11 @@ import Txn from "./Txn.js";
 import { useDispatch, useSelector } from 'react-redux';
 import { getPost, getPosts, registerPost } from "../../actions/posts";
 import { getTxns } from "../../actions/transactions";
+import useStyles from './styles';
+
+
 const Admin = () => {
+    const classes = useStyles();
     const txns = useSelector((state)=> state.txns);
     const {posts} = useSelector((state)=>state.posts);
     const selPost=(id)=>posts.find((e)=>{ return e._id==id});
@@ -17,11 +21,11 @@ const Admin = () => {
         dispatch(getPosts());
     },[])
     return(
-        <Grid container alignItems="stretch" spacing={3}>
+        <Grid container className={classes.container} alignItems="stretch" spacing={3}>
             {console.log(txns)};
             {!txns.length ? <CircularProgress />: (
             txns.map((txn) => (
-                <Grid key={txn._id} item xs={12} sm={6}>
+                <Grid key={txn._id} item xs={12} sm={6} md={5}>
                     <Txn txn={txn} post={selPost} />
                 </Grid>
             ))) }

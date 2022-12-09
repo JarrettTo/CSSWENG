@@ -6,10 +6,13 @@ import Txn from "./Txn.js";
 import { useDispatch, useSelector } from 'react-redux';
 import { logTime } from "../../actions/attendance";
 import { getTxns } from "../../actions/transactions";
+import useStyles from './styles';
+
 const QR = () => {
     const log = useSelector((state)=>state.log);
     const dispatch= useDispatch();
     const [status, setStatus]=useState(true);
+    const classes = useStyles();
     /*const txns = useSelector((state)=> state.txns);
     const posts = useSelector((state)=>state.posts);
     const selPost=(id)=>posts.find((e)=>{ return e._id==id});
