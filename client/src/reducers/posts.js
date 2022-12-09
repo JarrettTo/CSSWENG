@@ -1,3 +1,13 @@
+/*@brief: redux state for posts
+* @params: state, action
+* state: state containing posts
+* action: action dispatched
+* @author: Justin To and Daniel capinpin
+*/
+
+
+
+
 //basically, this is where we put all the code that'll affect our state tree, so for example when i create a post i need to return all the current posts + the one i just made
 export default (state=[], action) => { //reducers take in a state and an action and return the resulting state based on the action
     switch (action.type){

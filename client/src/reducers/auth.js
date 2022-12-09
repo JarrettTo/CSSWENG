@@ -1,3 +1,9 @@
+/*@brief: redux state for users
+* @params: state, action
+* state: state containing logged in user
+* action: action dispatched
+* @author: Justin To
+*/
 export default (state= { authData: null }, action) => { //reducers take in a state and an action and return the resulting state based on the action
     switch (action.type){
         case 'AUTH':

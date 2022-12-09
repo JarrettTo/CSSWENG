@@ -1,8 +1,12 @@
+/*@brief: render all posts
+* @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
+*/
 import React from 'react';
 import { Grid, CircularProgress } from '@material-ui/core';
 import Post from './Post/Post.js';
 import { useSelector } from 'react-redux';
 import useStyles from './styles';
+
 const Posts = ({setCurrentID}) => {
     const { posts }= useSelector((state)=> state.posts); //gets the posts from the posts.js reducer by extracting it from the store state declared in main index
     //console.log(posts)
@@ -10,7 +14,7 @@ const Posts = ({setCurrentID}) => {
     
    
     return(
-        !posts?.length ? <CircularProgress /> : (
+        !posts?.length ? <CircularProgress /> : (          
             <Grid className={classes.container} container alignItems="stretch" spacing={3}>
                 {console.log(posts)}
                 

@@ -1,3 +1,6 @@
+/*@brief: database schema for users' registration forms for shows
+* @author: Justin To and Daniel Capinpin
+*/
 import mongoose from 'mongoose';
 
 const formSchema = mongoose.Schema({ //schema for shows

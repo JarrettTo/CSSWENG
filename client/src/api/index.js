@@ -1,9 +1,15 @@
+/*@brief: connects frontend to backend APIs using axios
+* @author: Justin To and Daniel Capinpin
+*/
 import axios from 'axios';
 
-const API= axios.create({baseURL: 'http://localhost:5000'});
+
+
+
+const API= axios.create({baseURL: 'http://localhost:5000'});    //creates base connection with API
 API.interceptors.request.use((req) => {
     if (localStorage.getItem('profile')) {
-      req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).token}`;
+      req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).token}`;          //adds header to all request sent by API which will be used for authentication
     }
   
     return req;

@@ -1,3 +1,6 @@
+/*@brief: contains details of the post as well as registration form
+* @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
+*/
 import React, { useEffect } from "react";
 import FileBase from 'react-file-base64';
 import useStyles from './styles';
@@ -34,17 +37,17 @@ const PostDetails = () => {
     const [trigger,setTrigger]=useState(false);
     const [complete,setComplete]=useState(false);
     const [disabled,setDisabled]=useState(false);
-    const selPost = posts?.find((e)=>{ return e._id==id});
+    const selPost = posts?.find((e)=>{ return e._id==id});                  //finds post in posts reducer state based on id
     
     
     useEffect(()=>{
         
         dispatch(getPosts());
-        setUser(JSON.parse(localStorage.getItem('profile')));
+        setUser(JSON.parse(localStorage.getItem('profile')));                       //gets user data stored in local storage
         dispatch(getTxn(id));
         dispatch(getTxns());
     },[trigger])
-    const toggleShow=(e)=>{
+    const toggleShow=(e)=>{                             //toggles show
         e.preventDefault();
         dispatch(togglePost(id));
         dispatch(getPosts());
@@ -54,9 +57,9 @@ const PostDetails = () => {
     const handleSubmit=(e)=>{
         console.log(selPost)
         
-        if(selPost.registeredUsers.find((e)=> e==user.result._id) || selPost.acceptedUsers.find((e)=> e==user.result._id)){
+        if(selPost.registeredUsers.find((e)=> e==user.result._id) || selPost.acceptedUsers.find((e)=> e==user.result._id)){     //if user is already registered
             dispatch(registerPost(id, form));
-            setForm({      //initializes postData to the ff values. we set "setPostData" as the setter function for the state variable "postData"
+            setForm({      
                 contactNumber: '',
                 dlsu_id:'',
                 college: '',
@@ -66,7 +69,7 @@ const PostDetails = () => {
             })
             txn.status=null
         }
-        else if(user.result.dlsu){
+        else if(user.result.dlsu){              // check if user is dlsu and has filled out required fields for registration
             if(form.payment && form.contactNumber && form.college && form.dlsu_id && form.degree){
                 e.preventDefault(); 
                 console.log(form);
@@ -81,7 +84,7 @@ const PostDetails = () => {
                 setComplete(true)
             }
         }
-        else{
+        else{               //check if non dlsu user filled out required fields
             if(form.contactNumber && form.payment){
                 e.preventDefault(); 
                 console.log(form);
@@ -101,14 +104,7 @@ const PostDetails = () => {
     return (
         
         <Grid className={classes.paperhere}>
-            {/* 
-            {selPost?.title}
-            {selPost?.description}
-            {selPost?.price}
-            {selPost?.date}
-            {selPost?.tags}
-            {selPost?.registeredUsers} 
-            */}
+            
 
             <main>
                 
@@ -208,7 +204,7 @@ const PostDetails = () => {
                                 </Typography>
                             </Container>
                             
-
+                            {/* if user is not registered, render these register questions */}
                             {(!selPost?.registeredUsers?.find((e)=> e==user.result._id) && !selPost?.acceptedUsers?.find((e)=> e==user.result._id)) && selPost?.status=="Open" ?(
                             <>
                             {complete? (<Typography> Please Fill In The Fields</Typography>): null}
@@ -224,7 +220,7 @@ const PostDetails = () => {
                                     className={classes.textField}
                                     InputProps={{className: classes.input}}
                                 />
-
+                                {/*if user is from dlsu, render these questions */}
                                 {(user?.result?.dlsu) ? (
 
                                 <>
@@ -278,6 +274,8 @@ const PostDetails = () => {
                                 // </Container>
 
                                 ): null}
+
+                                {/*if user is not from dlsu or doesn't have an art pass and post is open,, render public registration field */}
                                 {(!user?.result?.dlsu || user?.result?.claimed) && selPost?.status=="Open" ? (
 
                                 <>
@@ -321,12 +319,14 @@ const PostDetails = () => {
                                 </>
 
                                 ): null }
+                                {/*if user is dlsu art pass holder and post is open, render register button */}
                                 {selPost?.status=="Open" && (user?.result?.dlsu && !user?.result?.claimed) ? <Button className={classes.buttonSubmit} variant="container" color="primary" size="large" type="submit" onClick={handleSubmit} fullWidth>Register</Button>: null }
                             
                             </Container>
                             </>
                             
                             ):null }
+                            {/*if user is registered to the show, render unregister button*/}
                             {(selPost?.registeredUsers?.find((e)=> e==user.result._id) || selPost?.acceptedUsers?.find((e)=> e==user.result._id)) && selPost?.status=="Open" ? (<Button className={classes.buttonSubmit} variant="container" color="primary" size="large" type="submit" onClick={handleSubmit} fullWidth>Unregister</Button>) : null}
                         </Container>
                         {user?.result.admin? (<Button  variant="container" color="primary" size="large" onClick={toggleShow}>{selPost?.status=="Open"? ("Close Show"): ("Open Show")}</Button>) : null}

@@ -8,6 +8,9 @@ import caologo from '../../images/image.png';
 import { useState } from 'react';
 import {getPosts} from '../../actions/posts';
 
+/*@brief: Navigation Bar
+* @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+*/
 const theme = createTheme();
 
 theme.typography.h3 = {

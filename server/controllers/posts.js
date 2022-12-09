@@ -1,9 +1,21 @@
+/*@brief: API functions pertaining to posts
+* @author: Justin To and Daniel Capinpin
+*/
 import PostMessage from '../models/postMessage.js';
 import form from '../models/registerForm.js';
 import mongoose from 'mongoose';
 import user from '../models/user.js';
 import { addLog, removeLog } from './attendance.js';
 
+
+
+
+/*@brief: get posts that user is registered for
+* @params: req, res
+* req: server requests
+* res: server response
+* @author: Daniel Capinpin
+*/
 export const getRegisteredPosts = async (req, res) => {
     
     console.log("Checking regposts");
@@ -20,6 +32,10 @@ export const getRegisteredPosts = async (req, res) => {
     }
 }
 
+/*@brief: get all posts
+* @params: req, res
+* @author: Justin To
+*/
 export const getPosts = async (req, res) => {
     const { page } = req.query;
     
@@ -36,18 +52,30 @@ export const getPosts = async (req, res) => {
     }
 }
 
+
+/*@brief: update status of posts
+* @params: posts
+* posts: array of all the posts available in the database
+* @author: Justin To
+*/
 const updatePostStatus = async (posts) =>{
     let date = new Date();
     for(var i=0;i<posts.length;i++){
         console.log(posts[i].expiryDate)
         console.log(date)
-        if(posts[i].expiryDate-date<=0){
+        if(posts[i].expiryDate-date<=0){        //if current date is past expiry date set status to dateClosed
             posts[i].status="dateClosed"
             await PostMessage.findByIdAndUpdate(posts[i]._id, posts[i], {new: true})
         }
     }
 }
 
+/*@brief: get posts based on a certain search query
+* @params: req, res
+* req: server request
+* res: server response
+* @author: Daniel Capinpin
+*/
 export const getPostsBySearch = async (req, res) => {
     const { searchQuery, tags } = req.query;
 
@@ -61,6 +89,12 @@ export const getPostsBySearch = async (req, res) => {
     }
 }
 
+/*@brief: create a post
+* @params: req, res
+* req: server request
+* res: server response
+* @author: Justin To
+*/
 export const createPost = async (req, res) =>{
     const post = req.body;
   
@@ -73,36 +107,57 @@ export const createPost = async (req, res) =>{
     }
     
 }
+
+/*@brief: update a post
+* @params: req, res
+* req: server request
+* res: server response
+* @author: Justin To
+*/
 export const updatePost = async (req, res) =>{
     const {id: _id} = req.params;
     const post = req.body;
     if(!mongoose.isValidObjectId(_id)) return res.status(404).send("no post with that id");
     
-    const updatedPost= await PostMessage.findByIdAndUpdate(_id, {...post, _id}, {new: true});
+    const updatedPost= await PostMessage.findByIdAndUpdate(_id, {...post, _id}, {new: true});       //find post in database with passed id and update 
     res.json(updatedPost);
    
     
 }
+
+/*@brief: get a particular post
+* @params: req, res
+* req: server request
+* res: server response
+* @author: Justin To
+*/
 export const getPost = async (req, res) =>{
     const {id} = req.params;
     const post = req.body;
     if(!mongoose.isValidObjectId(id)) return res.status(404).send("no post with that id");
     
-    const getPost= await PostMessage.findById(id);
+    const getPost= await PostMessage.findById(id);                                          //find post with passed id
 
     res.json(getPost);
    
     
 }
 
+
+/*@brief: toggle the status of the post
+* @params: req, res
+* req: server request
+* res: server response
+* @author: Justin To
+*/
 export const togglePost = async (req,res)=>{
     let date = new Date();
     const {id: _id} = req.params;
     const post = await PostMessage.findById(_id);
-    if(post.status=="Open"){
+    if(post.status=="Open"){                                                                //if post was formerly open, set status to manua        l          aaaly closed
         post.status="manualClosed"
-    }
-    else if(post.expiryDate-date>0){
+    }                       
+    else if(post.expiryDate-date>0){                                                        //if it isnt open and date is not past expiration date, set it to open
         post.status="Open"
     }
     else{
@@ -114,16 +169,28 @@ export const togglePost = async (req,res)=>{
     res.json(updatedPost);
 }
 
+/*@brief: delete a particular post
+* @params: req, res
+* req: server request
+* res: server response
+* @author: Justin To
+*/
 export const deletePost = async (req, res) =>{
     const {id} = req.params;
     const post = req.body;
     if(!mongoose.isValidObjectId(id)) return res.status(404).send("no post with that id");
-    const deletedPost= await PostMessage.findByIdAndRemove(id);
+    const deletedPost= await PostMessage.findByIdAndRemove(id);                                     //find post based on id and delete
     res.json(deletedPost);
    
     
 }
 
+/*@brief: register a particular post
+* @params: req, res
+* req: server request
+* res: server response
+* @author: Justin To
+*/
 export const registerPost = async (req, res)=>{
     const { id } = req.params;
     const register =req.body;
@@ -135,27 +202,27 @@ export const registerPost = async (req, res)=>{
     }
     
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
-    const post = await PostMessage.findById(id);
-    const foundUser= await user.findById(req.id);
-    const registeredIndex = post.registeredUsers.findIndex((_id) => _id === String(req.id));
-    const acceptedIndex = post.acceptedUsers.findIndex((_id) => _id === String(req.id));
-    const valid= date-post.expiryDate<0 && post.status=="Open";
+    const post = await PostMessage.findById(id);                    
+    const foundUser= await user.findById(req.id);                                                                               //find user based on id derived from token
+    const registeredIndex = post.registeredUsers.findIndex((_id) => _id === String(req.id));                                        //find if user is in show's registeredUsers array
+    const acceptedIndex = post.acceptedUsers.findIndex((_id) => _id === String(req.id));                                                    //find if user in show's acceptedUsers array
+    const valid= date-post.expiryDate<0 && post.status=="Open";                                                 //checks if status is open and date is not past expiry
     let status, finalTxn;
     var claim=false;
 
-    if (registeredIndex === -1 && acceptedIndex === -1 && valid) {
-        if(foundUser.dlsu && !foundUser.claimed){
+    if (registeredIndex === -1 && acceptedIndex === -1 && valid) {          //check if user has not yet registered and show is still vaalid
+        if(foundUser.dlsu && !foundUser.claimed){                       //check if user is valid art pass holder
             post.acceptedUsers.push(req.id);
             foundUser.acceptedShows.push(id);
             foundUser.claimed=true;
-            claim=true;
+            claim=true;                                             //add him to acceptedUsers and automatically sign him up for the show
             
             status='Accepted';
             
         }
         else{
             post.registeredUsers.push(req.id);
-            foundUser.registeredShows.push(id);
+            foundUser.registeredShows.push(id);                 //register user ofor the show, but not accept them
             status='Pending'
             
 
@@ -174,16 +241,16 @@ export const registerPost = async (req, res)=>{
         }
         
     } 
-    else if((registeredIndex !== -1 || acceptedIndex!== -1) && valid) {
+    else if((registeredIndex !== -1 || acceptedIndex!== -1) && valid) {                     //check if user is already registered and show is still valid
         post.registeredUsers = post.registeredUsers.filter((id) => id !== String(req.id));
-        post.acceptedUsers = post.acceptedUsers.filter((id) => id !== String(req.id));
-        foundUser.registeredShows= foundUser.registeredShows.filter((eid) => eid !== id);
+        post.acceptedUsers = post.acceptedUsers.filter((id) => id !== String(req.id));                 //remove user from show's registeredUsers and acceptedUsers
+        foundUser.registeredShows= foundUser.registeredShows.filter((eid) => eid !== id);           //remove show from user's registeredShows and acceptedShows
         foundUser.acceptedShows= foundUser.acceptedShows.filter((eid) => eid !== id);
-        const txn=await form.findOne({userID:req.id, postID:id}).sort({date: -1});
-        txn.status='Cancelled';
-        if(txn?.artPass){
+        const txn=await form.findOne({userID:req.id, postID:id}).sort({date: -1});              //find latest transaction between user and show and cancel it
+        txn.status='Cancelled';                                             
+        if(txn?.artPass){                                               //check if user registered for the show using art pass
             await removeLog(txn.userID, txn.postID, txn._id);
-            foundUser.claimed=false;
+            foundUser.claimed=false;                                            //refund art pass
         }
         finalTxn=await form.findByIdAndUpdate(txn._id, txn, {new: true});
         post.noOfAttendees-=1
@@ -191,10 +258,10 @@ export const registerPost = async (req, res)=>{
     else{
         return res.status(404).send("Too late! :(");
     }
-    if(post.noOfAttendees>=post.maxAttendees){
+    if(post.noOfAttendees>=post.maxAttendees){              //check if no of attendees exceeds max attendees set by the admin
         post.status="maxClosed";
     }
-    if(post.noOfAttendees<post.maxAttendees && post.status=="maxClosed"){
+    if(post.noOfAttendees<post.maxAttendees && post.status=="maxClosed"){           //check if no of attendees is less than the max and if the previous status is closed due to full booking
         post.status="Open";
     }
 

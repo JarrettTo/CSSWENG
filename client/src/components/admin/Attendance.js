@@ -1,11 +1,14 @@
 import React, { useEffect } from "react";
-import FileBase from 'react-file-base64';
+
 import Log from './Log';
 import { useState } from "react";
-import { Paper, Typography, CircularProgress, Divider, TextField, Button, Grid, Container, AppBar} from '@material-ui/core';
+import { CircularProgress, TextField, Button, Grid, Container, AppBar} from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { getLogs, getAttBySearch } from "../../actions/attendance";
 import { useHistory } from "react-router-dom";
+/*@brief: renders all attendance logs
+* @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+*/
 const Attendance = () => {
     const logs = useSelector((state)=> state.logs);
     const history=useHistory();
@@ -13,12 +16,15 @@ const Attendance = () => {
     //const selPost=(id)=>posts.find((e)=>{ return e._id==id});
     const dispatch= useDispatch();
     useEffect(() => {
-        if(!JSON.parse(localStorage.getItem("profile"))?.result.admin){
+        if(!JSON.parse(localStorage.getItem("profile"))?.result.admin){         //prevent non admin users from accessing this page
             history.push('/');
         }
         dispatch(getLogs());
     },[])
 
+    /*@brief: searchAtt
+    * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+    */
     const searchAtt  = () => {
         if((search.trim()) && (search != '')) {
             console.log("searching");

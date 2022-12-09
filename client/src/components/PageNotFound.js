@@ -1,4 +1,6 @@
-
+/*@brief: page rendered when invalid url is used
+* @author: Justin To
+*/
 import React from 'react';
   
 const PageNotFound= () =>{

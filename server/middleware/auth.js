@@ -1,6 +1,14 @@
+/*@brief: Middleware based on user tokens for authentication
+* @author: Justin To and Daniel Capinpin
+*/
 import jwt from 'jsonwebtoken';
-
-const auth= async(req, res, next)=>{
+/*@brief: Authenticates users by getting user token from request headers and decoding it
+* @params: req,  next
+* req: request sent to server
+* next: function
+* @author: Justin To and Daniel Capinpin
+*/
+const auth= async(req, next)=>{
     try {
         const token =req.headers.authorization.split(" ")[1];
         const isCustomAuth = token.length < 500;    //if token is less than 500 in length means its custom and not from google
@@ -8,7 +16,7 @@ const auth= async(req, res, next)=>{
         let decodedData;
 
         if(token && isCustomAuth){
-            decodedData=jwt.verify(token, 'dlsucao');
+            decodedData=jwt.verify(token, 'dlsucao');   //decrypt token using key
             req.id=decodedData?.id;
         }else{
             decodedData = jwt.decode(token);
