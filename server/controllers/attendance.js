@@ -139,7 +139,7 @@ export const logTime= async (req,res)=>{      //function for getting posts
             console.log(Date(date));
             foundLog.timeOut=Date(date);
             try{
-                const message="Hello " + foundLog.userName+ "!\n\nWe would like your feedback for "+ foundLog.postName + ".\nPlease contact this email if you believe this was a mistake.\n\nThank You!"
+                const message="Hello " + foundLog.userName+ "!\n\nWe would like your feedback for "+ foundLog.postName + ".\n *Insert Feedback Link Here* .\n\nThank You!"
                 const mailConfigurations = {
             
                     // It should be a string of sender email
