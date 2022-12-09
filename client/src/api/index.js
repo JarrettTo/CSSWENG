@@ -13,6 +13,7 @@ API.interceptors.request.use((req) => {
 export const fetchPosts = (page) => API.get(`/posts?page=${page}`);
 export const getTxns = () => API.get(`/transactions`);
 export const getTxn=(id)=> API.post(`/transactions/${id}`);
+export const fetchTxnsBySearch=(txnSearch) => API.get(`/transactions/txnsrch?txnsrchquery=${txnSearch.search || 'none'}`);
 export const createPost= (newPost) =>   API.post(`/posts`, newPost);
 export const updatePost=(id, updatePost) => API.patch(`/posts/${id}`,updatePost);
 export const deletePost=(id, deletePost) => API.delete(`/posts/${id}`,deletePost);
@@ -27,3 +28,6 @@ export const googleSign=(formData,token) => API.post('/users/googlesign', [formD
 export const approveTxn=(id, post)=> API.post(`/transactions/approve/${id}`, post);
 export const declineTxn=(id)=> API.post(`/transactions/decline/${id}`);
 export const fetchPostsbyReg = (regPosts) => API.get(`/posts/regposts?regpostsquery=${regPosts}`);
+export const togglePost = (id) => API.patch(`/posts/${id}/togglePost`);
+export const updateUser=(id)=> API.post(`/users/${id}/update`);
+export const fetchAttBySearch=(attSearch) => API.get(`/attendance/attsrch?attsrchquery=${attSearch.search || 'none'}`);

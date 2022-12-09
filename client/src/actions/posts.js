@@ -1,5 +1,5 @@
 import * as api from '../api';
-import {FETCH_ALL, FETCH_BY_SEARCH, FETCH_BY_REGISTERED, UPDATE, DELETE, CREATE, REGISTER_POST, REGISTER_USER, REGISTER_TXN} from '../constants/actiontypes';
+import {FETCH_ALL, FETCH_BY_SEARCH, FETCH_BY_REGISTERED, UPDATE, DELETE, CREATE, REGISTER_POST, REGISTER_USER, REGISTER_TXN, TOGGLE} from '../constants/actiontypes';
 
 //Action creations are functions that create a function
 export const getRegisteredPosts = (regPosts) => async (dispatch)=> {
@@ -57,6 +57,15 @@ export const updatePost = (id,post) => async (dispatch) =>{          //creates a
         console.log(error);
     }
 }
+export const togglePost = (id) => async (dispatch) =>{          //creates a post
+    try{
+        const { data }= await api.togglePost(id)
+        dispatch({type: TOGGLE, payload : data});
+    } catch (error){
+        console.log(error);
+    }
+}
+
 
 export const deletePost = (id) => async (dispatch) =>{          //creates a post
     try{
@@ -77,6 +86,7 @@ export const registerPost = (id, form) => async (dispatch) =>{          //create
         console.log(data);
 
         dispatch({type: REGISTER_POST, payload : data.updatedPost});
+        console.log(data.updatedUser)
         dispatch({type: REGISTER_USER, payload : data.updatedUser});
         
     } catch (error){

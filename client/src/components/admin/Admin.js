@@ -19,6 +19,9 @@ const Admin = () => {
     const dispatch= useDispatch();
     const [lTxn, setlTxn]= useState(false);
     useEffect(() => {
+        if(!JSON.parse(localStorage.getItem("profile"))?.result.admin){
+            history.push('/');
+        }
         dispatch(getTxns());
         dispatch(getPosts());
     },[])

@@ -1,5 +1,5 @@
 import * as api from '../api';
-import {AUTH} from '../constants/actiontypes';
+import {AUTH, UPDATE_USER} from '../constants/actiontypes';
 
 export const signUpFunc = (form, history) => async (dispatch)=> {
     try{
@@ -34,6 +34,17 @@ export const googleSign = (form, token, history) => async (dispatch)=> {
         const action = { type: AUTH, data};
         dispatch(action);  
         history.push('/');                
+                          
+    } catch (error){
+        console.log(error);
+    }
+  
+}
+export const updateUser = (id) => async (dispatch)=> {
+    try{
+        const { data }= await api.updateUser(id);                        
+        const action = { type: AUTH, data};
+        dispatch(action);                  
                           
     } catch (error){
         console.log(error);

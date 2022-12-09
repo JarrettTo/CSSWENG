@@ -4,19 +4,21 @@ const postSchema = mongoose.Schema({ //schema for shows
     title: String,
     date: Date,
     endDate: Date,
+    expiryDate: Date,
     price: Number,
     description: String,
     venue: String,
     creator: String,
     tags: [String],
     id: String,
-    noOfAttendees: Number,
+    noOfAttendees: { type: Number, default: 0 },
     maxAttendees: Number,
     selectedFile: String,
     selectedFileOther: String,
+    status : { type: String, default: "Open" },
     registeredUsers: { type: [String], default: [] },
     acceptedUsers: { type: [String], default: [] },
-    activeDate: Date,
+    
 });
 
 const PostMessage = mongoose.model('PostMessage', postSchema);

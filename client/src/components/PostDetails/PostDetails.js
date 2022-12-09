@@ -6,7 +6,7 @@ import { Typography, TextField, Button } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container, Grid} from '@material-ui/core';
 import { useParams, useHistory } from 'react-router-dom';
-import { getPosts, registerPost } from "../../actions/posts";
+import { getPosts, registerPost, togglePost } from "../../actions/posts";
 import { getTxn, getTxns } from "../../actions/transactions";
 
 
@@ -16,7 +16,7 @@ const PostDetails = () => {
     
     const {posts}=useSelector((state) => state.posts);
     const txn=useSelector((state) => state.txn);
-    const txns=useSelector((state) => state.txns);
+    
     
     const dispatch = useDispatch();
     const history = useHistory();
@@ -32,25 +32,68 @@ const PostDetails = () => {
     });
     
     const [trigger,setTrigger]=useState(false);
+    const [complete,setComplete]=useState(false);
+    const [disabled,setDisabled]=useState(false);
     const selPost = posts?.find((e)=>{ return e._id==id});
     
-
+    
     useEffect(()=>{
-
+        
         dispatch(getPosts());
         setUser(JSON.parse(localStorage.getItem('profile')));
         dispatch(getTxn(id));
         dispatch(getTxns());
     },[trigger])
-
+    const toggleShow=(e)=>{
+        e.preventDefault();
+        dispatch(togglePost(id));
+        dispatch(getPosts());
+        setTrigger(!trigger);
+        
+    }
     const handleSubmit=(e)=>{
-
-      
-        e.preventDefault(); 
-        console.log(form);
-        dispatch(registerPost(id, form));
+        console.log(selPost)
+        
+        if(selPost.registeredUsers.find((e)=> e==user.result._id) || selPost.acceptedUsers.find((e)=> e==user.result._id)){
+            dispatch(registerPost(id, form));
+            setForm({      //initializes postData to the ff values. we set "setPostData" as the setter function for the state variable "postData"
+                contactNumber: '',
+                dlsu_id:'',
+                college: '',
+                degree: '',
+                altClass: '',
+                payment:'',
+            })
+            txn.status=null
+        }
+        else if(user.result.dlsu){
+            if(form.payment && form.contactNumber && form.college && form.dlsu_id && form.degree){
+                e.preventDefault(); 
+                console.log(form);
+                dispatch(registerPost(id, form));
+                
+                txn?txn.status=null: null
+                setComplete(false)
+            
+            }
+        
+            else{
+                setComplete(true)
+            }
+        }
+        else{
+            if(form.contactNumber && form.payment){
+                e.preventDefault(); 
+                console.log(form);
+                dispatch(registerPost(id, form));
+                
+                txn? txn.status=null: null
+            }
+            else{
+                setComplete(true)
+            }
+        }
         setTrigger(!trigger)
-        window.location.reload(false);
 
     }
 
@@ -112,15 +155,21 @@ const PostDetails = () => {
                                 <Container className={classes.price}>
                                     <Typography className={classes.bottomValue}>PHP {selPost?.price}.00</Typography>
                                     <Typography className={classes.bottomTitle}>TICKET PRICE</Typography>
+                                    <Typography className={classes.bottomValue}>{selPost?.status}</Typography>
+                                    <Typography className={classes.bottomTitle}>SHOW STATUS</Typography>
                                 </Container>
                                 <Container className={classes.attendees}>
                                     <Typography className={classes.bottomValue}>{selPost?.maxAttendees}</Typography>
                                     <Typography className={classes.bottomTitle}>MAX ATTENDEES</Typography>
+                                    <Typography className={classes.bottomValue}>{selPost?.noOfAttendees}</Typography>
+                                    <Typography className={classes.bottomTitle}>NUMBER OF ATTENDEES</Typography>
                                     {/* <Typography className={classes.bottomTitle}>ATTENDEES</Typography> */}
                                 </Container>
                                 <Container className={classes.date}>
                                     <Typography className={classes.bottomValue}>{selPost?.date.replace('Z', '')}</Typography>
                                     <Typography className={classes.bottomTitle}>DATE</Typography>
+                                    <Typography className={classes.bottomValue}>{selPost?.expiryDate.replace('Z', '')}</Typography>
+                                    <Typography className={classes.bottomTitle}>DEADLINE OF REGISTRATION</Typography>
                                 </Container>
                             </Container>
                             
@@ -152,16 +201,21 @@ const PostDetails = () => {
                                 </Typography>
 
                                 <Typography className={classes.status}>
-                                    STATUS: {txn ? txn.status: "No Recorded Transaction" }
+                                    STATUS: { txn?.status?txn.status : "No Recorded Transaction" }
+                                </Typography>
+                                <Typography className={classes.status}>
+                                    { selPost?.status!="Open" ? "\nThis show is currently not allowing registrations" : null}
                                 </Typography>
                             </Container>
                             
 
-                            {(!selPost?.registeredUsers?.find((e)=> e==user.result._id) && !selPost?.acceptedUsers?.find((e)=> e==user.result._id))?(
-                            
+                            {(!selPost?.registeredUsers?.find((e)=> e==user.result._id) && !selPost?.acceptedUsers?.find((e)=> e==user.result._id)) && selPost?.status=="Open" ?(
+                            <>
+                            {complete? (<Typography> Please Fill In The Fields</Typography>): null}
                             <Container className={classes.regForm}>
                                 {/* <Container className={classes.textFieldBox}> */}
-                                <TextField 
+                                <TextField
+                                    required 
                                     name='Contact Number' 
                                     variant='outlined' 
                                     label="Contact Number"
@@ -175,7 +229,8 @@ const PostDetails = () => {
 
                                 <>
                                     
-                                    <TextField 
+                                    <TextField
+                                        required
                                         name='ID Number' 
                                         variant='outlined' 
                                         label="ID Number" 
@@ -185,7 +240,8 @@ const PostDetails = () => {
                                         InputProps={{className: classes.input}}
                                     />
                                     
-                                    <TextField 
+                                    <TextField
+                                        required
                                         name='College' 
                                         variant='outlined' 
                                         label="College" 
@@ -195,7 +251,8 @@ const PostDetails = () => {
                                         InputProps={{className: classes.input}}
                                     />
 
-                                    <TextField 
+                                    <TextField
+                                        required 
                                         name='Degree Program' 
                                         variant='outlined' 
                                         label="Degree Program" 
@@ -206,6 +263,7 @@ const PostDetails = () => {
                                     />
 
                                     <TextField 
+
                                         name='Alternative Class' 
                                         variant='outlined' 
                                         label="Alternative Class" 
@@ -220,7 +278,7 @@ const PostDetails = () => {
                                 // </Container>
 
                                 ): null}
-                                {(!user?.result?.dlsu || user?.result?.claimed) ? (
+                                {(!user?.result?.dlsu || user?.result?.claimed) && selPost?.status=="Open" ? (
 
                                 <>
                                     <Container className={classes.paybox}>
@@ -252,21 +310,26 @@ const PostDetails = () => {
                                         <Button 
                                             className={classes.buttonSubmit} 
                                             variant="contained" 
-                                            type="submit" 
+                                            type="submit"
+                                            
                                             onClick={handleSubmit}>
-                                                Submit
+                                                Register
                                         </Button>
                                     </Container>
                                     
                         
                                 </>
 
-                                ): <Button className={classes.buttonSubmit} variant="container" color="primary" size="large" type="submit" onClick={handleSubmit} fullWidth>Register</Button> }
-                            </Container>
+                                ): null }
+                                {selPost?.status=="Open" && (user?.result?.dlsu && !user?.result?.claimed) ? <Button className={classes.buttonSubmit} variant="container" color="primary" size="large" type="submit" onClick={handleSubmit} fullWidth>Register</Button>: null }
                             
-                            ):<Button className={classes.buttonSubmit} variant="container" color="primary" size="large" type="submit" onClick={handleSubmit} fullWidth>Unregister</Button> }
+                            </Container>
+                            </>
+                            
+                            ):null }
+                            {(selPost?.registeredUsers?.find((e)=> e==user.result._id) || selPost?.acceptedUsers?.find((e)=> e==user.result._id)) && selPost?.status=="Open" ? (<Button className={classes.buttonSubmit} variant="container" color="primary" size="large" type="submit" onClick={handleSubmit} fullWidth>Unregister</Button>) : null}
                         </Container>
-                        
+                        {user?.result.admin? (<Button  variant="container" color="primary" size="large" onClick={toggleShow}>{selPost?.status=="Open"? ("Close Show"): ("Open Show")}</Button>) : null}
                     </Container>
                 </Container>
 

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Avatar, Button, Paper, Grid, Typography, Container, Divider } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import useStyles from './styles';
@@ -28,6 +28,11 @@ const Auth=() => {
             dispatch(signIn(form,history));
         }   
     }
+    useEffect(()=>{
+        if(localStorage.getItem("profile")){
+            history.push('/')
+        }
+    },[])
     const handleShowPassword = () =>{
         setShowPassword((prevShowPassword) => !prevShowPassword);
         

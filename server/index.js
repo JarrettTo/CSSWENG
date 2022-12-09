@@ -12,7 +12,8 @@ import txnRoutes from './routes/transactions.js';
 const CONNECTION_URL= 'mongodb+srv://jarrettto:flsmdfs30@cluster0.91eauuj.mongodb.net/?retryWrites=true&w=majority'
 const PORT = process.env.PORT || 5000;
 dotenv.config();
-mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology : true})
+mongoose.connect("mongodb://localhost:27017", { useNewUrlParser: true, useUnifiedTopology : true})
+//mongoose.connect('mongodb://127.0.0.1/CSSWENGDB', { useNewUrlParser: true, useUnifiedTopology : true})
     .then(()=> app.listen(PORT,()=> console.log(`Server running on port: ${PORT}`)))
     .catch((error)=>console.log(error.message)); 
 

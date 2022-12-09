@@ -6,7 +6,7 @@ import fs from 'fs';
 export const addLog = async (userID, postID, txnID, email, show, date, name)=>{      //function for getting posts
     let b;
     var qr;
-    const newLog = new attendanceLog({userID: userID, postID: postID, txnID:txnID});
+    const newLog = new attendanceLog({userID: userID, postID: postID, userName: name, email: email, postName: show, txnID:txnID});
     try{
         await newLog.save();
         qr=await QRCode.toDataURL(JSON.stringify(newLog), {
@@ -40,7 +40,7 @@ export const addLog = async (userID, postID, txnID, email, show, date, name)=>{ 
             to: email,
             
             // Subject of Email
-            subject: 'Tickets for' + show,
+            subject: 'Tickets for ' + show,
                 
             // This would be the text of email body
             text: message,
@@ -68,10 +68,41 @@ export const addLog = async (userID, postID, txnID, email, show, date, name)=>{ 
 }
 
 export const removeLog = async (userID, postID, txnID)=>{      //function for getting posts
-
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            type: 'OAuth2',
+            user: "justin_jarrett_to@dlsu.edu.ph",
+            pass: "yoqIsa103_",
+            clientId: "387249647738-f58tonsbl58g3n75hh3rt3mqs9bkl0r0.apps.googleusercontent.com",
+            clientSecret: "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",
+            refreshToken: "1//04VMrmN-PP8OnCgYIARAAGAQSNwF-L9IrO2S-VpEt8kL0g0FFGKHkkygoax6QoAeI8ihp-7OVtGhbr50NFLxpOyyeHRTW1hrcDgc"
+        }
+    });
     try{
-        await attendanceLog.findOneAndRemove({userID: userID, postID: postID, txnID: txnID});
-         
+        const log=await attendanceLog.findOneAndRemove({userID: userID, postID: postID, txnID: txnID});
+        const message="Hello " + log.userName+ "!\n\nUnfortunately, your tickets for "+ log.postName + " have been cancelled.\nPlease contact this email if you believe this was a mistake.\n\nThank You!"
+        const mailConfigurations = {
+            
+            // It should be a string of sender email
+            from: 'justin_jarrett_to@dlsu.edu.ph',
+                
+            // Comma Separated list of mails
+            to: log.email,
+            
+            // Subject of Email
+            subject: 'Cancelling of Tickets for ' + log.postName,
+                
+            // This would be the text of email body
+            text: message,
+                
+        };
+        transporter.sendMail(mailConfigurations, function(error, info){
+            if (error) throw Error(error);
+            console.log('Email Sent Successfully');
+            console.log(info);
+            
+        });
     } catch (error){
         console.log(error);
     }
@@ -80,6 +111,17 @@ export const removeLog = async (userID, postID, txnID)=>{      //function for ge
 export const logTime= async (req,res)=>{      //function for getting posts
     const log= req.body;
     let date = new Date().toJSON();
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            type: 'OAuth2',
+            user: "justin_jarrett_to@dlsu.edu.ph",
+            pass: "yoqIsa103_",
+            clientId: "387249647738-f58tonsbl58g3n75hh3rt3mqs9bkl0r0.apps.googleusercontent.com",
+            clientSecret: "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",
+            refreshToken: "1//04VMrmN-PP8OnCgYIARAAGAQSNwF-L9IrO2S-VpEt8kL0g0FFGKHkkygoax6QoAeI8ihp-7OVtGhbr50NFLxpOyyeHRTW1hrcDgc"
+        }
+    });
     const foundLog=await attendanceLog.findOne({userID: log.userID, postID: log.postID, txnID: log.txnID});
     if(foundLog){
         if(foundLog.timeIn==null){
@@ -97,6 +139,28 @@ export const logTime= async (req,res)=>{      //function for getting posts
             console.log(Date(date));
             foundLog.timeOut=Date(date);
             try{
+                const message="Hello " + foundLog.userName+ "!\n\nWe would like your feedback for "+ foundLog.postName + ".\n *Insert Feedback Link Here* .\n\nThank You!"
+                const mailConfigurations = {
+            
+                    // It should be a string of sender email
+                    from: 'justin_jarrett_to@dlsu.edu.ph',
+                        
+                    // Comma Separated list of mails
+                    to: foundLog.email,
+                    
+                    // Subject of Email
+                    subject: 'Feedback for ' + foundLog.postName,
+                        
+                    // This would be the text of email body
+                    text: message,
+                
+                };
+        transporter.sendMail(mailConfigurations, function(error, info){
+            if (error) throw Error(error);
+            console.log('Email Sent Successfully');
+            console.log(info);
+            
+        });
                 await attendanceLog.findByIdAndUpdate(foundLog._id, foundLog, { new: true });
                 return res.status(200).json(foundLog);
             } catch (error){
@@ -106,6 +170,25 @@ export const logTime= async (req,res)=>{      //function for getting posts
     }
 
 }
+
+export const getAttBySearch = async (req, res)=>{ 
+    console.log("Checking att");
+    console.log(req.query);
+    console.log("showing att");
+    console.log(req.query.attsrchquery);     //function for getting posts
+    try{
+        const title = new RegExp(req.query.attsrchquery, "i");
+        console.log("trying to search in controller")
+        console.log(title)
+        const logs = await attendanceLog.find({'postName' : { $in: title }})
+        console.log("finding");
+        console.log(logs);
+        res.json(logs);
+    } catch (error){
+        res.status(404).json({message:error.message});
+    }
+}
+
 
 export const getLogs = async(req,res)=>{
     try{

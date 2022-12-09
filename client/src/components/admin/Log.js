@@ -34,8 +34,11 @@ const classes = useStyles();
         <Card>
             {log? (<Typography>Post: {log?.postID}</Typography>) : null}
             
-            <Typography>Txn: {log.txnID}</Typography>
-            <Typography>User : {log.userID}</Typography>
+            <Typography>TxnID: {log.txnID}</Typography>
+            <Typography>UserID : {log.userID}</Typography>
+            <Typography>User Name : {log.userName}</Typography>
+            <Typography>Post Name : {log.postName}</Typography>
+            <Typography>Email : {log.email}</Typography>
             <Typography>TimeIn : {log.timeIn}</Typography>
             <Typography>TimeOut : {log.timeOut}</Typography>
             

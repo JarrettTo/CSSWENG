@@ -24,7 +24,7 @@ const Form = ({currentID, setCurrentID}) => {
         creator: '',
         tags: '',
         id: '',
-        noOfAttendees: '',
+        noOfAttendees: 0,
         maxAttendees: '',
         selectedFile: '',
         selectedFileOther: '',
@@ -37,13 +37,14 @@ const Form = ({currentID, setCurrentID}) => {
             title: '',
             date: '',
             endDate: '',
+            expiryDate: '',
             price: '',
             description: '',
             venue: '',
             creator: '',
             tags: '',
             id: '',
-            noOfAttendees: '',
+            noOfAttendees: 0,
             maxAttendees: '',
             selectedFile: '',
             selectedFileOther: '',
@@ -65,7 +66,7 @@ const Form = ({currentID, setCurrentID}) => {
         e.preventDefault();
         console.log("logging desc");
         console.log(postData.description);
-        if(!postData.description || !postData.creator || !postData.date || !postData.endDate || !postData.maxAttendees || !postData.price || !postData.title || !postData.venue)
+        if(!postData.description || !postData.creator || !postData.expiryDate || !postData.date || !postData.endDate || !postData.maxAttendees || !postData.price || !postData.title || !postData.venue)
         {
             console.log("no desc");
             setError(true);
@@ -77,6 +78,7 @@ const Form = ({currentID, setCurrentID}) => {
             setError(false);
         }
         else{
+            console.log(postData)
             dispatch(createPost({...postData,name: user?.result?.id}));             //dispatches our createPost function from our actions with the parameter of our new object created by filling up the form
             clear();
             setError(false);
@@ -100,9 +102,11 @@ const Form = ({currentID, setCurrentID}) => {
 
                 <TextField className={classes.input} error={error && !postData.title} name='title' variant='outlined' label="Title" fullWidth value={postData.title} onChange={(e)=>{setPostData({...postData ,title: e.target.value})}}/>
 
-                <TextField className={classes.input} error={error && !postData.date} name='date' variant='outlined' label="Start Date (YYYY-MM-DD HH:mm)" fullWidth value={postData.date} onChange={(e)=>{setPostData({...postData ,date: e.target.value})}}/>
+                <TextField className={classes.input} error={error && !postData.date} name='date' variant='outlined' label="Start Date" type="datetime-local" fullWidth value={postData.date} onChange={(e)=>{setPostData({...postData ,date: e.target.value})}}/>
 
-                <TextField className={classes.input}error={error && !postData.endDate} name='endDate' variant='outlined' label="End Date (YYYY-MM-DD HH:mm)" fullWidth value={postData.endDate} onChange={(e)=>{setPostData({...postData ,endDate: e.target.value})}}/>
+                <TextField className={classes.input} error={error && !postData.endDate} name='endDate' variant='outlined' label="End Date" type="datetime-local" fullWidth value={postData.endDate} onChange={(e)=>{setPostData({...postData ,endDate: e.target.value})}}/>
+
+                <TextField className={classes.input} error={error && !postData.endDate} name='expiryDate' variant='outlined' label="Expiry Date" type="datetime-local" fullWidth value={postData.expiryDate} onChange={(e)=>{setPostData({...postData ,expiryDate: e.target.value})}}/>
 
                 <TextField className={classes.input} error={error && !postData.creator} name='creator' variant='outlined' label="Creator" fullWidth value={postData.creator} onChange={(e)=>{setPostData({...postData ,creator: e.target.value})}}/>   {/*e.target.value basically just takes the new value of the textfrield. the onchange attribute ensures that it only changes whenever there is a change to the textfield*/}
 
@@ -110,9 +114,9 @@ const Form = ({currentID, setCurrentID}) => {
 
                 <TextField className={classes.input} error={error && !postData.venue} name='venue' variant='outlined' label="Venue" fullWidth value={postData.venue} onChange={(e)=>{setPostData({...postData ,venue: e.target.value})}}/>
 
-                <TextField className={classes.input} error={error && !postData.price} name='price' variant='outlined' label="Price" fullWidth value={postData.price} onChange={(e)=>{setPostData({...postData ,price: e.target.value})}}/>
+                <TextField className={classes.input} error={error && !postData.price} name='price' variant='outlined' label="Price" fullWidth value={postData.price} type="number" onChange={(e)=>{setPostData({...postData ,price: e.target.value})}}/>
 
-                <TextField className={classes.input} error={error && !postData.maxAttendees} name='maxAttendees' variant='outlined' label="Max Attendees" fullWidth value={postData.maxAttendees} onChange={(e)=>{setPostData({...postData ,maxAttendees: e.target.value})}}/>
+                <TextField className={classes.input} error={error && !postData.maxAttendees} name='maxAttendees' variant='outlined' label="Max Attendees" fullWidth type="number" value={postData.maxAttendees} onChange={(e)=>{setPostData({...postData ,maxAttendees: e.target.value})}}/>
 
                 <TextField className={classes.input} name='tags' variant='outlined' label="Tags" fullWidth value={postData.tags} onChange={(e)=>{setPostData({...postData ,tags: e.target.value.split(',')})}}/>
                 

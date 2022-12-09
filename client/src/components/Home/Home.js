@@ -11,6 +11,7 @@ import ChipInput from 'material-ui-chip-input';
 import TitleImage from '../../images/TitleImage.png';
 import FooterLogos from '../../images/FooterLogos.png';
 import SearchBar from '../SearchBar/SearchBar';
+import {updateUser} from '../../actions/auth';
 
 function useQuery(){
     return new URLSearchParams(useLocation().search);
@@ -29,25 +30,26 @@ const Home = () => {
     const [tags, setTags] = useState([]);
     const [regPostOn, setRegPosts] = React.useState(false);
     
-const searchPost = () => {
-    if((search.trim() || tags) && (search != '' || tags.join(',') != '')) {
-        dispatch(getPostsBySearch({ search, tags: tags.join(',') }));
-        history.push(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
-    } else {
-        dispatch(getPosts());
-        history.push('/');
-    }
-};
+    
+    const searchPost = () => {
+        if((search.trim() || tags) && (search != '' || tags.join(',') != '')) {
+            dispatch(getPostsBySearch({ search, tags: tags.join(',') }));
+            history.push(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
+        } else {
+            dispatch(getPosts());
+            history.push('/');
+        }
+    };
 
-const handleKeyPress = (e) => {
-    if(e.keyCode === 13) { //if pressed enter key
-        searchPost();
-    }
-};
+    const handleKeyPress = (e) => {
+        if(e.keyCode === 13) { //if pressed enter key
+            searchPost();
+        }
+    };
 
-const handleAdd = (tag) => setTags([ ...tags, tag]);
+    const handleAdd = (tag) => setTags([ ...tags, tag]);
 
-const handleDelete = (tagToDelete => setTags(tags.filter((tag) => tag != tagToDelete)))
+    const handleDelete = (tagToDelete => setTags(tags.filter((tag) => tag != tagToDelete)))
     const location = useLocation();
     const [user,setUser]=useState(JSON.parse(localStorage.getItem('profile')));
 
@@ -69,6 +71,10 @@ const handleDelete = (tagToDelete => setTags(tags.filter((tag) => tag != tagToDe
     };
 
     useEffect(() => {       //everything called here will get called after the react app is started
+        if(!localStorage.getItem('profile')){
+            history.push('/auth');
+        }
+        dispatch(updateUser(user?.result._id));
         dispatch(getPosts());   //dispatch is used to trigger an action that'll affect our state (check main index.js store variable)
         setUser(JSON.parse(localStorage.getItem('profile')));
     },[currentID, dispatch])        //the dependency arrays, currentID and dispatch, when changed, trigger the contents of use effect

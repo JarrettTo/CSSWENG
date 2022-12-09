@@ -9,7 +9,7 @@ import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useDispatch } from 'react-redux';
 import moment from 'moment';
-
+import { useState } from 'react';
 
 const Post = ({ post, setCurrentID }) => {
     const classes = useStyles();
@@ -18,7 +18,7 @@ const Post = ({ post, setCurrentID }) => {
 
     const openPost = () => history.push(`/posts/${post._id}`);
     
-
+    const [user,setUser]= useState(JSON.parse(localStorage.getItem('profile')));
     return(
         <Card className={classes.card}>
             
@@ -55,8 +55,8 @@ const Post = ({ post, setCurrentID }) => {
                     </Button>
             </div>
             <CardActions className={classes.cardActions}>
-                <Button size="small" className={classes.button1} ><ThumbUpAltIcon fontSize="small" /> Like {post.likeCount} </Button>
-                <Button size="small" className={classes.button2} onClick={() => dispatch(deletePost(post._id))}><DeleteIcon fontSize="small" /> Delete</Button>
+                
+                {user.result.admin && (<Button size="small" className={classes.button2} onClick={() => dispatch(deletePost(post._id))}><DeleteIcon fontSize="small" /> Delete</Button>)}
             </CardActions>
     
         </Card>
