@@ -162,11 +162,7 @@ const Home = () => {
 
 
                     
-                        { user?.result.admin ?(
-                            <Grid item xs={12} sm={4}>
-                        <Button onClick={adminPage}>Admin Page</Button>
-                        </Grid>
-                        ): null}
+                        
                         
                         
                     
