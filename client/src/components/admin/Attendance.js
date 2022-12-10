@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import useStyles from './styles';
 
 import Log from './Log';
 import { useState } from "react";

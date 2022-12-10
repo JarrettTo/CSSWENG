@@ -32,9 +32,9 @@ export const getAttBySearch = (searchQuery) => async (dispatch) => {
       console.log("getting attendance")
       const { data } = await api.fetchAttBySearch(searchQuery);
       console.log("logging attendance")
-      console.log(data.data);
+      console.log(data);
       console.log("logging attendance finished, starting dispatch")
-      dispatch({ type: GET_LOGS,  payload:data.data});
+      dispatch({ type: GET_LOGS,  payload:data});
     } catch (error) {
       console.log(error);
     }
