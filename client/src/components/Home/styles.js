@@ -24,7 +24,7 @@ export default makeStyles(() => ({
         width: '1250px',
         height:'100%',
         maxWidth:'100%',
-        marginTop: '7vh'
+        // marginTop: '7vh'
     },
     FooterLogos:{
         marginTop:'150px',
@@ -33,7 +33,7 @@ export default makeStyles(() => ({
       divider:{
         backgroundColor:'lightGrey',
         marginBottom:'40px',
-        marginTop:'50px',
+        marginTop:'100px',
       },
       label1:{
         color:'white',

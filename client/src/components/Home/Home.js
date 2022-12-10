@@ -8,8 +8,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import {getPosts, getPostsBySearch, getRegisteredPosts} from '../../actions/posts';
 import Pagination from '../Pagination';
 import ChipInput from 'material-ui-chip-input';
-import TitleImage from '../../images/TitleImage.png'
-import FooterLogos from '../../images/FooterLogos.png'
+import TitleImage from '../../images/TitleImage.png';
+import FooterLogos from '../../images/FooterLogos.png';
+import SearchBar from '../SearchBar/SearchBar';
 import {updateUser} from '../../actions/auth';
 
 function useQuery(){
@@ -95,13 +96,15 @@ const Home = () => {
                         <Divider className={classes.divider}></Divider>  
                     </Grid>
                 
-                    <Grid item xs={10} sm={7}>
-                        <Typography className={classes.label1} variant='h3'>CAO SHOW LIST </Typography>
+                    <Grid xs={10} sm={7}>
+                        <Typography className={classes.label1} variant='h3'>CAO SHOW LIST </Typography> 
                         <Posts setCurrentID={setCurrentID}/> 
                     </Grid>
                     
-                    <Grid item className={classes.grid}>
+                    <Grid item className={classes.grid} >
+
                         <AppBar className={classes.appBarSearch} position='static' color='inherit'>
+                            
                             <TextField className={classes.input}
                                 name="search"
                                 variant="outlined"
@@ -122,27 +125,26 @@ const Home = () => {
                             />
                             <Button onClick={searchPost} className={classes.searchButton} variant='contained' fullWidth>Filter</Button>
                         </AppBar>
-                        {user?.result ? (
-                            <Paper elevation={6}>
-                              {!regPostOn && <Button onClick={viewRegistered} variant='contained'>Check Registered Posts</Button> }
-                              {regPostOn && <Button onClick={viewRegistered} variant='contained'>Check All Posts</Button> }
-                            </Paper>
-                        ):(
-                            <Paper elevation={6}>
-                                <Typography variant='contained'>Log in to View Registered Posts</Typography>
-                            </Paper>
-                        )
 
-                        }
-                        
-                        <Paper elevation={6}>
+                        {user?.result ? (
+                                <Paper elevation={6}>
+                                {!regPostOn && <Button onClick={viewRegistered} variant='contained'>Check Registered Posts</Button> }
+                                {regPostOn && <Button onClick={viewRegistered} variant='contained'>Check All Posts</Button> }
+                                </Paper>
+                            ):(
+                                <Paper elevation={6}>
+                                    <Typography variant='contained'>Log in to View Registered Posts</Typography>
+                                </Paper>
+                            )}
+                            <Paper elevation={6}>
                             <Pagination page={page}/>
                         </Paper>
                         { user?.result.admin ?(
                         <Form currentID={currentID} setCurrentID={setCurrentID}/>
-                        ): null}
+                        ): null}                   
                         
                     </Grid>
+                    
 
                     <Grid item xs={12} sm={20}>
                         <Divider className={classes.divider}></Divider>
@@ -159,6 +161,14 @@ const Home = () => {
                     </Grid>
 
 
+                    
+                        { user?.result.admin ?(
+                            <Grid item xs={12} sm={4}>
+                        <Button onClick={adminPage}>Admin Page</Button>
+                        </Grid>
+                        ): null}
+                        
+                        
                     
                 </Grid>
 

@@ -43,7 +43,8 @@ const Admin = () => {
         history.push("/attendance");
     }
     return(
-        <div>
+        <div className={classes.div}>
+        
         <Typography className={classes.title} variant="h2">Dashboard</Typography>
         
         <Grid container alignItems="stretch" spacing={2}>

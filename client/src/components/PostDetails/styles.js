@@ -34,7 +34,7 @@ export default makeStyles((theme) => ({
     // backgroundColor: 'rgba(0, 0, 0, 0.3)',
     // border: '1px solid white',
     padding: '0',
-    marginTop: '20vh',
+    marginTop: '5vh',
     width: '100%'
   },
   titleBox: {
@@ -353,6 +353,20 @@ export default makeStyles((theme) => ({
       backgroundColor: '#388e3c',
       color: 'black',
     }
+  },
+  unregister: {
+      fontSize: '1.3em',
+      fontWeight: '520',
+      marginTop: '5%',
+      marginBottom: '5%',
+      backgroundColor: '#66bb6a',
+      color: 'black',
+      width: '18%',
+      height: '6vh',
+      '&:hover': {
+        backgroundColor: '#388e3c',
+        color: 'black',
+      }
   },
 
   // SECTION 3

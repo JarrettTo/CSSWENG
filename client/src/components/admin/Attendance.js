@@ -11,7 +11,7 @@ import { useHistory } from "react-router-dom";
 */
 const Attendance = () => {
     const logs = useSelector((state)=> state.logs);
-    const history=useHistory();
+    const classes = useStyles();    const history=useHistory();
     const [search, setSearch] = useState('');
     //const selPost=(id)=>posts.find((e)=>{ return e._id==id});
     const dispatch= useDispatch();

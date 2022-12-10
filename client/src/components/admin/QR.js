@@ -9,6 +9,8 @@ import { getTxns } from "../../actions/transactions";
 /*@brief: Render QR Scanner Page
 * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
 */
+import useStyles from './styles';
+
 const QR = () => {
     const log = useSelector((state)=>state.log);
     const dispatch= useDispatch();
@@ -19,6 +21,8 @@ const QR = () => {
     * error: error found
     * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
     */
+    const classes = useStyles();
+    
     const handleErrorFile = (error)=>{
         console.log(error);
     }

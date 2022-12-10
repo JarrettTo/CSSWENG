@@ -19,7 +19,7 @@ import useStyles from './styles';
 // import useStyles from './GlobalStyles';
 import Attendance from './components/admin/Attendance';
 import PostDetails from './components/PostDetails/PostDetails'
-import SearchBar from './components/SearchBar/SearchBar';
+
 import AuthVerify from './AuthVerify';
 import {LOGOUT} from './constants/actiontypes'
 
@@ -47,7 +47,7 @@ const App = () => {
                 <BrowserRouter>
                 <Navbar />
                 <Container className={classes.body}> {/*equivalent of a div, lg means large*/} 
-                    {/* <SearchBar /><br></br> */}
+                   
                     <Switch>
                         
                         <Route path='/' exact component={Home} />

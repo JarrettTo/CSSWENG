@@ -8,7 +8,9 @@ import { Typography,  Card} from '@material-ui/core';
 * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
 */
 const Log = ({log}) =>{
-
+const classes = useStyles();
+    
+    
 
     return(
         <Card>

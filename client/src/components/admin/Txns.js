@@ -19,7 +19,12 @@ function useQuery(){
 /*@brief: Rendering of Txns
 * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
 */
+
+import useStyles from './styles';
+
+
 const Admin = () => {
+    const classes = useStyles();
     const txns = useSelector((state)=> state.txns);
     const {posts} = useSelector((state)=>state.posts);
     const selPost=(id)=>posts.find((e)=>{ return e._id==id});
@@ -67,7 +72,7 @@ const Admin = () => {
     };
     return(
         
-        <Grid container alignItems="stretch" spacing={3}>
+        <Grid container className={classes.container} alignItems="stretch" spacing={3}>
             <Container>
                 <AppBar position="static">
                     <form>
@@ -88,7 +93,7 @@ const Admin = () => {
             {console.log(txns)};
             {!txns.length ? <CircularProgress />: (
             txns.map((txn) => (
-                <Grid key={txn._id} item xs={12} sm={6}>
+                <Grid key={txn._id} item xs={12} sm={6} md={5}>
                     <Txn txn={txn} post={selPost} />
                 </Grid>
             ))) }

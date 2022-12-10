@@ -325,9 +325,23 @@ const PostDetails = () => {
                             </Container>
                             </>
                             
+<<<<<<< Updated upstream
                             ):null }
                             {/*if user is registered to the show, render unregister button*/}
                             {(selPost?.registeredUsers?.find((e)=> e==user.result._id) || selPost?.acceptedUsers?.find((e)=> e==user.result._id)) && selPost?.status=="Open" ? (<Button className={classes.buttonSubmit} variant="container" color="primary" size="large" type="submit" onClick={handleSubmit} fullWidth>Unregister</Button>) : null}
+=======
+                            ):
+                            <Button className={classes.unregister} 
+                            variant="container"
+                            type="submit" 
+                            onClick={handleSubmit} >
+                                Unregister
+                            </Button> 
+                            }
+                                
+                            <Container/>
+                            
+>>>>>>> Stashed changes
                         </Container>
                         {user?.result.admin? (<Button  variant="container" color="primary" size="large" onClick={toggleShow}>{selPost?.status=="Open"? ("Close Show"): ("Open Show")}</Button>) : null}
                     </Container>
