@@ -20,17 +20,18 @@ export default makeStyles(() => ({
     searchButton1: {
       color:'white',
       backgroundColor:'#0b9446',
-      marginRight:'40px',
       textAlign:'center',
       '&:hover':{
         color:'#0b9446',
         backgroundColor:'white'
       },
+      marginLeft:'10px'
 
   },
   searchButton2: {
     color:'white',
     backgroundColor:'#0b9446',
+   
     
 },
     header:{
@@ -61,8 +62,6 @@ export default makeStyles(() => ({
         fontSize:'60px'
       },
       label2:{
-        marginRight:'400px',
-        marginLeft:'400px',
         marginBottom:'40px',
         color:'white',
         fontSize:'60px'
@@ -180,20 +179,25 @@ export default makeStyles(() => ({
         padding:'10px'
       },
       item2:{
-        marginLeft:'300px'
+        marginTop:'10px'
       },
+
       gridContainer1:{
       flexGrow:'1',
       justifyContent:'center',
-
+      alignItems:"center",
       },
       div:{
-        marginLeft:'80px',
+      
         marginTop:'30px'
       },
       page:{
         marginTop:'30px',
         width:'500px'
+      },
+      container3:{
+        justifyContent:'space-between',
+        direction:'column'
       }
 
 }));

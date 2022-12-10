@@ -88,7 +88,7 @@ const Home = () => {
 
                 <Grid container spacing={2} className={classes.gridContainer}>
 
-                <Grid container justifyContent="center" alignItems="stretch" spacing={2} className={classes.gridContainer}>
+                <Grid container justifyContent="center" alignItems="stretch"  className={classes.gridContainer}>
                     <Grid className={classes.header}>
                         <img className={classes.image} src={TitleImage} alt="memories" />
                     </Grid>
@@ -189,41 +189,51 @@ const Home = () => {
 
 
                             <Grid container  className={classes.gridContainer1}>
-                                <Typography className={classes.label2} variant='h3'>CAO SHOW LIST </Typography> 
-                                {user?.result ? (
-                                        <div className={classes.div}>
-                                        {!regPostOn && <Button onClick={viewRegistered} className={classes.searchButton1} variant='contained' >My Registered Posts</Button> }
-                                        {regPostOn && <Button onClick={viewRegistered} className={classes.searchButton1} variant='contained' >Check All Posts</Button> }
-                                        </div>
-                                    ):(
-                                        <div className={classes.div}>
-                                            <Typography variant='contained'>Log in to View Registered Posts</Typography>
-                                        </div>
-                                    )}        
-                                <Grid item className={classes.item2} alignItems='flex-end' justifyContent='flex-end' xs={6} sm={6} md={6}>
-                                <TextField className={classes.input2}
-                                        name="search"
-                                        variant="outlined"
-                                        label="Search Event"
-                                        onKeyPress={handleKeyPress}
-                                        value={search}
+                                <Grid item xs={15} sm={5} md={5}>
+                                         <Typography className={classes.label2} variant='h3'>CAO SHOW LIST </Typography> 
+                                </Grid>
+                                <Grid item xs={15} sm={8} md={10}>
 
-                                        onChange={(e) => setSearch(e.target.value)}
-                                        
-                                    />
-                                    
-                                     
-                                    <ChipInput className={classes.input3}
-                                        value={tags}
-                                        onAdd={handleAdd}
-                                        onDelete={handleDelete}
-                                        label="Search Tag"
-                                        variant="outlined"
-                                        helperText="Press enter after each tag"
-                                    />
-                                    <Button onClick={searchPost} className={classes.searchButton} variant='contained'>Filter</Button>
-                             
-                                    </Grid>
+                                    <Grid container className={classes.container3}>
+                                        <Grid item xs={10} sm={4} md={5} >
+                                            {user?.result ? (
+                                                    <div className={classes.div}>
+                                                    {!regPostOn && <Button onClick={viewRegistered} className={classes.searchButton1} variant='contained' >My Registered Posts</Button> }
+                                                    {regPostOn && <Button onClick={viewRegistered} className={classes.searchButton1} variant='contained' >Check All Posts</Button> }
+                                                    </div>
+                                                ):(
+                                                    <div className={classes.div}>
+                                                        <Typography variant='contained'>Log in to View Registered Posts</Typography>
+                                                    </div>
+                                                )}      
+                                            </Grid>  
+
+                                            <Grid item className={classes.item2} xs={15} sm={7} md={7} >
+                                                <TextField className={classes.input2}
+                                                    name="search"
+                                                    variant="outlined"
+                                                    label="Search Event"
+                                                    onKeyPress={handleKeyPress}
+                                                    value={search}
+
+                                                    onChange={(e) => setSearch(e.target.value)}
+                                                    
+                                                />
+                                                
+                                                
+                                                <ChipInput className={classes.input3}
+                                                    value={tags}
+                                                    onAdd={handleAdd}
+                                                    onDelete={handleDelete}
+                                                    label="Search Tag"
+                                                    variant="outlined"
+                                                    helperText="Press enter after each tag"
+                                                />
+                                                <Button onClick={searchPost} className={classes.searchButton} variant='contained'>Filter</Button>
+                                            </Grid>
+                                        </Grid>
+
+                                </Grid>
       
                                 <Grid item className={classes.item} xs={10} sm={8} md={10}>
                                     <Posts setCurrentID={setCurrentID}/> 
