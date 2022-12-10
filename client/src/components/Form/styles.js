@@ -46,6 +46,9 @@ export default makeStyles((theme) => ({
     marginBottom:'10px',
     backgroundColor:'#72737b'
     },
+    '& .MuiInputBase-root':{
+      color:'#e0e0e0'
+    },
   },
   button1: {
     marginBottom: '10px',

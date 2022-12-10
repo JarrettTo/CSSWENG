@@ -93,7 +93,16 @@ const Auth=() => {
                             cookiePolicy="single_host_origin"
                         />
                     </GoogleOAuthProvider>
-                            <Divider className={classes.divider}></Divider>
+                    <Grid container alignItems='center' justifyContent='center'>
+                        <Grid items>
+                        <Divider className={classes.divider}></Divider>
+                        </Grid>
+                     <Typography  className={classes.or}> or </Typography>
+                     <Grid items>
+                        <Divider className={classes.divider}></Divider>
+                        </Grid>
+                    </Grid>
+                            
                     </div>
                 <form className={classes.form} onSubmit={handleSubmit}>
                     <Grid container spacing={2} className={classes.input}>

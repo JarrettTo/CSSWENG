@@ -40,22 +40,22 @@ const Post = ({ post, setCurrentID }) => {
                         <Grid  xs={5}  md={8} lg={20} className={classes.gridDesc}>
                             <Typography className={classes.title} >{post.title}</Typography>
                             <Typography className={classes.venue}>{post.venue}</Typography>
-                            {/* <Typography className={classes.description} noWrap>{post.description}</Typography> */}
-                            {/* <Typography className={classes.endDate}>{moment(post.endDate).local().format('YYYY-MM-DD HH:mm')}</Typography> */}
-                            {/* <Typography className={classes.creator}>{post.creator}</Typography> */}
                             <Typography className={classes.price}>Php {post.price}</Typography>
                         </Grid>
                     </Grid>
                 </CardContent>
             
             </ButtonBase>
-            <div className={classes.overlay2}>
-                    <Button className={classes.button3} size="medium" onClick={() => setCurrentID(post._id)}>
-                        <MoreHorizIcon fontSize="default" />
-                    </Button>
-            </div>
+            {user?.result.admin?(
+                        <div className={classes.overlay2}>
+                                <Button className={classes.button3} size="medium" onClick={() => setCurrentID(post._id)}>
+                                    <MoreHorizIcon fontSize="default" />
+                                </Button>
+                        </div>):null}
+
             <CardActions className={classes.cardActions}>
-                
+              
+                            
                 {user.result.admin && (<Button size="small" className={classes.button2} onClick={() => dispatch(deletePost(post._id))}><DeleteIcon fontSize="small" /> Delete</Button>)}
             </CardActions>
     
