@@ -35,7 +35,7 @@ export const getTxns = () => async (dispatch)=> {
 
 }
 
-/*@brief: delete a particular post
+/*@brief: search for a particular transactions
 * @params: searchQuery
 * searchQuery: search query
 * @author: Daniel Capinpin
@@ -46,7 +46,7 @@ export const getTxnsBySearch = (searchQuery) => async (dispatch) => {
       const { data } = await api.fetchTxnsBySearch(searchQuery);
       console.log("logging getTxns")
       console.log(data);
-      
+      dispatch({type: FETCH_TXNS, payload : data});
     } catch (error) {
       console.log(error);
     }

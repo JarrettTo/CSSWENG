@@ -25,7 +25,7 @@ export const getTxns = async (req, res)=>{
         res.status(404).json({message:error.message});
     }
 }
-/*@brief: delete a particular post
+/*@brief: gets transactions based on a query
 * @params: req, res
 * req: server request
 * res: server response
@@ -38,8 +38,12 @@ export const getTxnsBySearch = async (req, res)=>{
     console.log(req.query.txnsrchquery);     //function for getting posts
     try{
         const title = new RegExp(req.query.txnsrchquery, "i");
-        console.log("trying to search in controller")
-        console.log(title)
+        console.log("trying to search in controller");
+        console.log(title);
+        const txn= await form.find({'postName' : { $in: title }});
+        console.log("Found txn");
+        console.log(txn);
+        res.json(txn);
     } catch (error){
         res.status(404).json({message:error.message});
     }
