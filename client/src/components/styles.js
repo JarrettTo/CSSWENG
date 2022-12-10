@@ -26,7 +26,6 @@ export default makeStyles(() => ({
         '&.MuiPaginationItem-outlined' :{
             borderColor:'white'
         },
-        backgroundColor:'#555760',
         borderRadius:'5px',
         color:'white'
     } ,  

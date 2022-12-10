@@ -102,11 +102,18 @@ export default makeStyles((theme) => ({
   divider:{
     backgroundColor:'lightGrey',
         marginTop:'20px',
+        width:'220px'
   },
   googleDiv:{
     marginTop:'20px',
     alignItems:'center',
     width:'500px'
+  },
+  or:{
+    marginTop:'20px',
+    marginLeft: '5px',
+    marginRight: '5px',
+    color:"white"
   }
 
 }));

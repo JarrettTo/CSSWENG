@@ -7,6 +7,7 @@ export default makeStyles(() => ({
   paperContainer:{
     // border: '1px solid red',
     height: '100%',
+    minWidth:'500px',
     width:'100vw',
     boxSizing: 'border-box',
     margin: '0',

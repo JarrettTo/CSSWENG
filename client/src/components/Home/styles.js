@@ -9,10 +9,33 @@ export default makeStyles(() => ({
         width:'450px'
     },
     searchButton: {
-        margin:'5px',
         color:'white',
-        backgroundColor:'#5865f2'
+        backgroundColor:'#0b9446',
+        height:'54px',
+        '&:hover':{
+          color:'#0b9446',
+          backgroundColor:'white'
+        },
+        
     },
+    searchButton1: {
+      color:'white',
+      backgroundColor:'#0b9446',
+      textAlign:'center',
+      '&:hover':{
+        color:'#0b9446',
+        backgroundColor:'white'
+      },
+      marginLeft:'10px'
+
+  },
+  searchButton2: {
+    color:'white',
+    backgroundColor:'#0b9446',
+    marginTop:'20px'
+   
+    
+},
     header:{
         marginTop:'50px',
         alignItems:'center',
@@ -32,12 +55,18 @@ export default makeStyles(() => ({
     },
       divider:{
         backgroundColor:'lightGrey',
-        marginBottom:'40px',
+        marginBottom:'30px',
         marginTop:'100px',
       },
       label1:{
+        marginLeft:'70px',
         color:'white',
-        marginBottom:'40px'
+        fontSize:'60px'
+      },
+      label2:{
+        marginBottom:'40px',
+        color:'white',
+        fontSize:'60px'
       },
       about:{
         textAlign:'center',
@@ -81,8 +110,101 @@ export default makeStyles(() => ({
             },
         marginBottom:'10px'
         },
+        '& .MuiInputBase-root':{
+          color:'white'
+        },
+        '& .MuiFormHelperText-root':{
+          color:'white'
+        },
+        height:'54px'
+        
       },
+      input2: {
+        '& label': {
+          color: 'white',
+        },
+        '& label.Mui-focused': {
+          color: 'white',
+        },
+        '& .MuiOutlinedInput-root': {  // - The Input-root, inside the TextField-root
+            '& fieldset': {            // - The <fieldset> inside the Input-root
+                borderColor: 'gray',   // - Set the Input border
+            },
+            '&:hover fieldset': {
+                borderColor: 'white', // - Set the Input border when parent has :hover
+            },
+            '&.Mui-focused fieldset': { // - Set the Input border when parent is focused 
+                borderColor: 'white',
+                color:'white'
+            },
+        },
+        '& .MuiInputBase-root':{
+          color:'white'
+        },
+        '& .MuiFormHelperText-root':{
+          color:'white'
+        },
+        marginRight:'10px',
+        marginBottom:'10px',
+        width:'250px',
+        height:'54px'
+      },
+      input3: {
+        '& label': {
+          color: 'white',
+        },
+        '& label.Mui-focused': {
+          color: 'white',
+        },
+        '& .MuiOutlinedInput-root': {  // - The Input-root, inside the TextField-root
+            '& fieldset': {            // - The <fieldset> inside the Input-root
+                borderColor: 'gray',   // - Set the Input border
+            },
+            '&:hover fieldset': {
+                borderColor: 'white', // - Set the Input border when parent has :hover
+            },
+            '&.Mui-focused fieldset': { // - Set the Input border when parent is focused 
+                borderColor: 'white',
+                color:'white'
+            },
+        },
+        '& .MuiInputBase-root':{
+          color:'white',
+        },
+        '& .MuiFormHelperText-root':{
+          color:'white'
+        },
+        marginRight:'10px',
+        marginBottom:'10px',
+        width:'250px',
+      },
+
       grid:{
-        marginLeft:'5px'
+        marginLeft:'40px',
+      },
+      item:{
+        padding:'10px'
+      },
+      item2:{
+        marginTop:'10px'
+      },
+
+      gridContainer1:{
+      flexGrow:'1',
+      justifyContent:'center',
+      alignItems:"center",
+      },
+      div:{
+      
+        marginTop:'30px'
+      },
+      page:{
+        marginTop:'30px',
+        width:'500px'
+      },
+      container3:{
+        justifyContent:'space-between',
+        direction:'column'
       }
+
 }));

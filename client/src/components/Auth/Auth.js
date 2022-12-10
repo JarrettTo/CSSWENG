@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Avatar, Button, Paper, Grid, Typography, Container, Divider } from '@material-ui/core';
+import { Avatar, Button, Paper, Grid, Typography, Container, Divider, CssBaseline } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import useStyles from './styles';
 import { useHistory } from 'react-router-dom';
@@ -120,7 +120,16 @@ const Auth=() => {
                             cookiePolicy="single_host_origin"
                         />
                     </GoogleOAuthProvider>
-                            <Divider className={classes.divider}></Divider>
+                    <Grid container alignItems='center' justifyContent='center'>
+                        <Grid items>
+                        <Divider className={classes.divider}></Divider>
+                        </Grid>
+                     <Typography  className={classes.or}> or </Typography>
+                     <Grid items>
+                        <Divider className={classes.divider}></Divider>
+                        </Grid>
+                    </Grid>
+                            
                     </div>
                 <form className={classes.form} onSubmit={handleSubmit}>
                     <Grid container spacing={2} className={classes.input}>

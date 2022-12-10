@@ -5,7 +5,7 @@ export default makeStyles((theme) => ({
   appBar: {
     // marginTop: '2vh',
     padding: '0 1% 0 1%',
-    width: '100vw',
+    width: '100%',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
