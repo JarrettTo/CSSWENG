@@ -16,6 +16,7 @@ export default makeStyles(() => ({
           color:'#0b9446',
           backgroundColor:'white'
         },
+        
     },
     searchButton1: {
       color:'white',
@@ -31,6 +32,7 @@ export default makeStyles(() => ({
   searchButton2: {
     color:'white',
     backgroundColor:'#0b9446',
+    marginTop:'20px'
    
     
 },
@@ -111,6 +113,11 @@ export default makeStyles(() => ({
         '& .MuiInputBase-root':{
           color:'white'
         },
+        '& .MuiFormHelperText-root':{
+          color:'white'
+        },
+        height:'54px'
+        
       },
       input2: {
         '& label': {

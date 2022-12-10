@@ -17,7 +17,6 @@ export default makeStyles((theme) => ({
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'left',
-    backgroundColor:'transparent',
     
     // color:'white',
   },

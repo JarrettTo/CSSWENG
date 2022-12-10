@@ -149,7 +149,7 @@ const Home = () => {
                                         <Typography className={classes.label1} variant='h3'>CAO SHOW LIST </Typography>      
                                         <Posts setCurrentID={setCurrentID}/> 
                                     </Grid>
-                                    <Grid item className={classes.grid} >
+                                    <Grid item className={classes.grid}  xs={12} sm={4} md={4} >
                                         <AppBar className={classes.appBarSearch} position='static' color='inherit'>
                                         
                                         <TextField className={classes.input}
@@ -167,7 +167,8 @@ const Home = () => {
                                             onAdd={handleAdd}
                                             onDelete={handleDelete}
                                             fullWidth
-                                            label="Search Event Tag (Press Enter After Each Tag)"
+                                            label="Search Event Tag"
+                                            helperText="Press the enter key after each tag"
                                             variant="outlined"
                                         />
                                         <Button onClick={searchPost} className={classes.searchButton2} variant='contained' fullWidth>Filter</Button>
@@ -177,9 +178,9 @@ const Home = () => {
 
                                         
                                         </AppBar>
-                                        <Paper elevation={6}>
-                                            <Pagination page={page}/>
-                                        </Paper>
+                                        
+                                        <Pagination page={page}/>
+                                        
                                             
                                     </Grid>
                                 </Grid>
@@ -225,9 +226,9 @@ const Home = () => {
                                                     value={tags}
                                                     onAdd={handleAdd}
                                                     onDelete={handleDelete}
-                                                    label="Search Tag"
+                                                    label="Search Event Tag"
                                                     variant="outlined"
-                                                    helperText="Press enter after each tag"
+                                                    helperText="Press the enter key after each tag"
                                                 />
                                                 <Button onClick={searchPost} className={classes.searchButton} variant='contained'>Filter</Button>
                                             </Grid>
