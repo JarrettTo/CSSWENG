@@ -5,13 +5,15 @@ import React from 'react';
 import { Grid, CircularProgress } from '@material-ui/core';
 import Post from './Post/Post.js';
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
 import useStyles from './styles';
 
 const Posts = ({setCurrentID}) => {
     const { posts }= useSelector((state)=> state.posts); //gets the posts from the posts.js reducer by extracting it from the store state declared in main index
     //console.log(posts)
     const classes = useStyles();
-    
+    const [user,setUser]=useState(JSON.parse(localStorage.getItem('profile')));
+
    
     return(
         !posts?.length ? <CircularProgress /> : (          
