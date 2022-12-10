@@ -195,7 +195,12 @@ export const logTime= async (req,res)=>{
     }
 
 }
-
+/*@brief: searches for attendance based on a query
+* @params: req, res
+* req: request sent to the server
+* res: response of the server
+* @author: Daniel Capinpin
+*/
 export const getAttBySearch = async (req, res)=>{ 
     console.log("Checking att");
     console.log(req.query);
