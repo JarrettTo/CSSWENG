@@ -9,7 +9,7 @@ import { useState } from 'react';
 import {getPosts} from '../../actions/posts';
 
 /*@brief: Navigation Bar
-* @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+* @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
 */
 const theme = createTheme();
 

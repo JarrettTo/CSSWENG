@@ -65,7 +65,7 @@ const Auth=() => {
     }
 
     /*@brief: googe sign up/sign in success
-    * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+    * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
     */
     const googleSuccess = async (res)=>{
         console.log(res);
@@ -84,7 +84,7 @@ const Auth=() => {
     }
 
     /*@brief: google log in or sign up failure
-    * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+    * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
     */
     const googleFailure =(error)=>{
         console.log(error);

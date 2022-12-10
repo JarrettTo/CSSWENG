@@ -11,7 +11,7 @@ import { useHistory } from "react-router-dom";
 import useStyles from './styles';
 
 /*@brief: Admin Page
-* @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+* @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
 */
 const Admin = () => {
 

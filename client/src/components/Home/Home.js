@@ -18,7 +18,7 @@ function useQuery(){
 }
 
 /*@brief: Home Page
-* @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+* @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
 */
 
 const Home = () => {
@@ -100,46 +100,6 @@ const Home = () => {
                 </Grid>
                 
                
-                      
-                        
-                        
-    {/* 
-                            <AppBar className={classes.appBarSearch} position='static' color='inherit'>
-                                
-                                <TextField className={classes.input}
-                                    name="search"
-                                    variant="outlined"
-                                    label="Search Event"
-                                    onKeyPress={handleKeyPress}
-                                    fullWidth
-                                    value={search}
-                                    onChange={(e) => setSearch(e.target.value)}
-                                />
-                                <ChipInput className={classes.input}
-                                    style={{ margin: '8px 0'}}
-                                    value={tags}
-                                    onAdd={handleAdd}
-                                    onDelete={handleDelete}
-                                    fullWidth
-                                    label="Search Event Tag (Press Enter After Each Tag)"
-                                    variant="outlined"
-                                />
-                                <Button onClick={searchPost} className={classes.searchButton} variant='contained' fullWidth>Filter</Button>
-                            </AppBar> */}
-    {/* 
-                            {user?.result ? (
-                                    <Paper elevation={6}>
-                                    {!regPostOn && <Button onClick={viewRegistered} variant='contained'>Check Registered Posts</Button> }
-                                    {regPostOn && <Button onClick={viewRegistered} variant='contained'>Check All Posts</Button> }
-                                    </Paper>
-                                ):(
-                                    <Paper elevation={6}>
-                                        <Typography variant='contained'>Log in to View Registered Posts</Typography>
-                                    </Paper>
-                                )}
-                                <Paper elevation={6}>
-                                <Pagination page={page}/>
-                            </Paper> */}
                             { user?.result.admin ?(
 
                                 // ADMIN VIEW 

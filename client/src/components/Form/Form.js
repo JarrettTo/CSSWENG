@@ -11,7 +11,7 @@ import  {updatePost} from '../../actions/posts.js';
 * @params: currentID, setCurrentID
 * currentID: currend ID
 * setCurrentID: useState setter for currentId
-* @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+* @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
 */
 const Form = ({currentID, setCurrentID}) => {
     console.log(currentID);
@@ -67,7 +67,7 @@ const Form = ({currentID, setCurrentID}) => {
       
     
     /*@brief: handles submit button
-    * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+    * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
     */
 
     const handleSubmit = async (e) => {
