@@ -1,12 +1,19 @@
 import React, { useEffect } from "react";
-import FileBase from 'react-file-base64';
+
 
 import { useState } from "react";
-import { Paper, Typography, CircularProgress, Divider, TextField, Button, Card} from '@material-ui/core';
+import {  Typography,Button, Card} from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPost, getPosts, registerPost } from "../../actions/posts";
+import {  getPosts } from "../../actions/posts";
 import { approveTxn, declineTxn } from "../../actions/transactions";
 import useStyles from './styles';
+
+/*@brief: rendering of individual transaction 
+* @params: txn
+* txn: transaction
+* @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+*/
+
 const Txn = ({txn}) =>{
     const [trigger, setTrigger] = useState(false);
     const {posts} = useSelector((state)=>state.posts);
@@ -22,11 +29,19 @@ const Txn = ({txn}) =>{
 
     
     const dispatch= useDispatch();
+
+    /*@brief: approve transaction
+    * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+    */
     const approve = () =>{
         
         dispatch(approveTxn(txn._id, selPost));
         setTrigger(!trigger);
     }
+
+    /*@brief: decline transaction
+    * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+    */
     const decline = () =>{
         dispatch(declineTxn(txn._id));
         setTrigger(!trigger);

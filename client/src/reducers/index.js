@@ -1,3 +1,6 @@
+/*@brief: combines reducers
+* @author: Justin To and Daniel Capinpin
+*/
 import { combineReducers} from 'redux';     //our main reducer index file
 import posts from './posts.js';
 

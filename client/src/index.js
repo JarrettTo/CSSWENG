@@ -1,4 +1,6 @@
-//main index
+/*@brief: Main Index File
+* @author: Justin To and Daniel Capinpin
+*/
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'

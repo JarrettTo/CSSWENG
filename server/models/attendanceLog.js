@@ -1,3 +1,6 @@
+/*@brief: Database schema for attendance logs
+* @author: Justin To and Daniel Capinpin
+*/
 import mongoose from 'mongoose';
 
 const attendanceSchema = mongoose.Schema({ //schema for shows

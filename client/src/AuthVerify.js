@@ -1,6 +1,14 @@
+/*@brief: Verifying validity of token
+* @author: Justin To
+*/
 import React from "react";
 import { withRouter } from "react-router-dom";
 
+/*@brief: parse jwt token
+* @params: token
+* token: token to be parsed
+* @author: Justin To
+*/
 const parseJwt = (token) => {
   try {
     return JSON.parse(atob(token.split(".")[1]));
@@ -8,6 +16,13 @@ const parseJwt = (token) => {
     return null;
   }
 };
+
+
+/*@brief: verify is current token is expired or not
+* @params: props
+* props: props
+* @author: Justin To
+*/
 
 const AuthVerify = (props) => {
   props.history.listen(() => {

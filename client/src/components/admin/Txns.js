@@ -16,6 +16,9 @@ function useQuery(){
     return new URLSearchParams(useLocation().search);
 }
 
+/*@brief: Rendering of Txns
+* @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+*/
 
 import useStyles from './styles';
 
@@ -39,6 +42,12 @@ const Admin = () => {
         dispatch(getPosts());
     },[])
 
+
+    /*@brief: handling of error
+    * @params: error
+    * error: error found
+    * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+    */
     const searchTxn  = () => {
         if((search.trim()) && (search != '')) {
             console.log("searching");
@@ -51,7 +60,11 @@ const Admin = () => {
             
         }
     };
-
+    /*@brief: handling of error
+    * @params: error
+    * error: error found
+    * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+    */
     const handleKeyPress = (e) => {
         if(e.keyCode === 13) { //if pressed enter key
             searchTxn();

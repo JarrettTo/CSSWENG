@@ -11,6 +11,9 @@ import Input from './Input';
 import jwt_decode from "jwt-decode";
 import {signIn, signUpFunc, googleSign} from "../../actions/auth";
 const initialState = { firstName: '', lastName: '', email: '', id: '', password: '', confirmPassword: '' };
+/*@brief: Auth Page
+* @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+*/
 const Auth=() => {
     
     const classes = useStyles();
@@ -19,6 +22,10 @@ const Auth=() => {
     const [signUp,setSignUp]= useState(false);
     const dispatch = useDispatch();
     const history= useHistory();
+
+    /*@brief: Handles submit button
+    * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+    */
     const handleSubmit = (e) =>{
         e.preventDefault(); 
         console.log(form);
@@ -33,17 +40,33 @@ const Auth=() => {
             history.push('/')
         }
     },[])
+
+    /*@brief: Handles showing of password
+    * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+    */
     const handleShowPassword = () =>{
         setShowPassword((prevShowPassword) => !prevShowPassword);
         
     }
+
+    /*@brief: handles changing of text field
+    * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+    */
     const handleChange = (e) => {
         setForm({... form, [e.target.name]: e.target.value});
     };
+
+    /*@brief: switches mode
+    * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+    */
     const switchMode = () => {
         setSignUp((prev)=>!prev);
         setShowPassword(false);
     }
+
+    /*@brief: googe sign up/sign in success
+    * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+    */
     const googleSuccess = async (res)=>{
         console.log(res);
         const result=jwt_decode(res.credential)
@@ -59,6 +82,10 @@ const Auth=() => {
             console.log("error");
         }
     }
+
+    /*@brief: google log in or sign up failure
+    * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+    */
     const googleFailure =(error)=>{
         console.log(error);
     }

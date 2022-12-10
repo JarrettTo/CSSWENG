@@ -1,3 +1,7 @@
+/*@brief: Brwoser router that renders pages based on URL
+* @author: Justin To, Daniel Capinpin, Cara Alabanza, Janielle Enriquez
+*/
+
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Container, Paper, CssBaseline } from '@material-ui/core';
@@ -18,15 +22,25 @@ import PostDetails from './components/PostDetails/PostDetails'
 
 import AuthVerify from './AuthVerify';
 import {LOGOUT} from './constants/actiontypes'
+
+
+/*@brief: logout user
+* @author: Justin To
+*/
+
 const logout = ()=>{
     const history= useHistory()
     dispatch({ type: LOGOUT });
     history.push('/auth');
 }
+
+/*@brief: Browser Router
+* @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
+*/
 const App = () => {
     const dispatch=useDispatch();   
     const classes=useStyles();
-    const history= useHistory()
+    const history= useHistory()                 //Browser router that renders different pages based on url
     return (
             <Paper className={classes.paperContainer}>
                 <CssBaseline />

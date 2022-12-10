@@ -17,6 +17,9 @@ function useQuery(){
     return new URLSearchParams(useLocation().search);
 }
 
+/*@brief: Home Page
+* @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+*/
 
 const Home = () => {
     const [currentID, setCurrentID] = useState(null);
@@ -78,14 +81,8 @@ const Home = () => {
         dispatch(getPosts());   //dispatch is used to trigger an action that'll affect our state (check main index.js store variable)
         setUser(JSON.parse(localStorage.getItem('profile')));
     },[currentID, dispatch])        //the dependency arrays, currentID and dispatch, when changed, trigger the contents of use effect
-    //const posts= useSelector((state)=> state.posts);
-    //console.log(posts)
-    const adminPage= ()=>{
-        history.push(`/admin`);
-    }
-    const scanQr= ()=>{
-        history.push(`/scan`);
-    }
+   
+    
     return(
         <Grow in>
 
@@ -258,11 +255,7 @@ const Home = () => {
 
 
                     
-                        {/* { user?.result.admin ?(
-                            <Grid item xs={12} sm={4}>
-                        <Button onClick={adminPage}>Admin Page</Button>
-                        </Grid>
-                        ): null} */}
+                        
                         
                         
                     

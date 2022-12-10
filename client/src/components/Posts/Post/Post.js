@@ -5,12 +5,18 @@ import { mergeClasses } from '@material-ui/styles';
 import useStyles from './styles';
 import { useHistory } from 'react-router-dom';
 import { deletePost } from '../../../actions/posts.js';
-import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useDispatch } from 'react-redux';
 import moment from 'moment';
 import { useState } from 'react';
 
+
+/*@brief: renders post
+* @params: post, setCurrentId
+* post: post data to be rendered
+* setCurrentID: useState setter
+* @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+*/
 const Post = ({ post, setCurrentID }) => {
     const classes = useStyles();
     const history = useHistory();

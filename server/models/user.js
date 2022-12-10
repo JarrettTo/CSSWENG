@@ -1,3 +1,6 @@
+/*@brief: Database schema for users on the show
+* @author: Justin To and Daniel Capinpin
+*/
 import mongoose from 'mongoose';
 
 const userSchema = mongoose.Schema({ //schema for shows

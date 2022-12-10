@@ -4,6 +4,9 @@ import {TextField, Grid, InputAdornment, IconButton} from '@material-ui/core';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
+/*@brief: modified input based on material UI textfield
+* @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+*/
 const Input=({name, handleChange, label, half, autoFocus, type, handleShowPassword})=>{
     return(
         <Grid item xs={12} sm={half ? 6: 12}>

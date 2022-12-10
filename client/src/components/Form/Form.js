@@ -5,12 +5,17 @@ import useStyles from './styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { createPost } from '../../actions/posts.js';
 import  {updatePost} from '../../actions/posts.js';
-import { useHistory } from 'react-router-dom';
 
+
+/*@brief: Form
+* @params: currentID, setCurrentID
+* currentID: currend ID
+* setCurrentID: useState setter for currentId
+* @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+*/
 const Form = ({currentID, setCurrentID}) => {
     console.log(currentID);
     const post = useSelector((state) => (currentID ? state.posts.posts.find((message) => message._id === currentID) : null));
-    const history = useHistory();
     const user = JSON.parse(localStorage.getItem('profile'))
     console.log("Post:" + post);
     const [error, setError] = React.useState(false);
@@ -61,12 +66,15 @@ const Form = ({currentID, setCurrentID}) => {
           //[post], or the dependency array, when changed, triggers the useEffect function
       
     
-    
+    /*@brief: handles submit button
+    * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+    */
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("logging desc");
         console.log(postData.description);
-        if(!postData.description || !postData.creator || !postData.expiryDate || !postData.date || !postData.endDate || !postData.maxAttendees || !postData.price || !postData.title || !postData.venue)
+        if(!postData.description || !postData.creator || !postData.expiryDate || !postData.date || !postData.endDate || !postData.maxAttendees || !postData.price || !postData.title || !postData.venue)        //checks if there are empty fields
         {
             console.log("no desc");
             setError(true);

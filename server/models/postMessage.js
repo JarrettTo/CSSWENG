@@ -1,3 +1,6 @@
+/*@brief: Database scehma for show posts
+* @author: Justin To and Daniel Capinpin
+*/
 import mongoose from 'mongoose';
 
 const postSchema = mongoose.Schema({ //schema for shows
