@@ -11,7 +11,7 @@ import useStyles from './styles';
 /*@brief: rendering of individual transaction 
 * @params: txn
 * txn: transaction
-* @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+* @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
 */
 
 const Txn = ({txn}) =>{

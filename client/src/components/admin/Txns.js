@@ -63,7 +63,7 @@ const Admin = () => {
     /*@brief: handling of error
     * @params: error
     * error: error found
-    * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+    * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
     */
     const handleKeyPress = (e) => {
         if(e.keyCode === 13) { //if pressed enter key
@@ -74,9 +74,9 @@ const Admin = () => {
         
         <Grid container className={classes.container} alignItems="stretch" spacing={3}>
             <Container>
-                <AppBar position="static">
+                <AppBar position="static" className={classes.appbar} >
                     <form>
-                        <TextField 
+                        <TextField className={classes.filter}
                                     name="search"
                                     variant="outlined"
                                     label="Search Event"

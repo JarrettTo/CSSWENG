@@ -30,7 +30,7 @@ const QR = () => {
     /*@brief: handling of successful scan
     * @params: result
     * error: scanned result
-    * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+    * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
     */
     const handleScanFile = (result)=>{
         if(result){

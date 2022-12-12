@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getLogs, getAttBySearch } from "../../actions/attendance";
 import { useHistory } from "react-router-dom";
 /*@brief: renders all attendance logs
-* @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+* @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
 */
 const Attendance = () => {
     const logs = useSelector((state)=> state.logs);
@@ -45,10 +45,10 @@ const Attendance = () => {
     };
     return(
         <Grid container alignItems="stretch" spacing={3}>
-            <Container>
-                <AppBar position="static">
+            
+                <AppBar position="static" className={classes.appbar}>
                     <form>
-                        <TextField 
+                        <TextField className={classes.filter}
                                     name="search"
                                     variant="outlined"
                                     label="Search Event"
@@ -61,7 +61,7 @@ const Attendance = () => {
                     </form>
                 
                 </AppBar>
-            </Container>
+            
             {console.log(logs)};
             {!logs.length ? <CircularProgress />: (
             logs.map((log) => (

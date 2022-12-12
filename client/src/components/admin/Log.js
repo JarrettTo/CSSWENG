@@ -6,7 +6,7 @@ import { Typography,  Card} from '@material-ui/core';
 
 
 /*@brief: render single log
-* @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+* @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
 */
 const Log = ({log}) =>{
 const classes = useStyles();
