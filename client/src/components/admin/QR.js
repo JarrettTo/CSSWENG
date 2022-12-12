@@ -50,7 +50,7 @@ const QR = () => {
 
     }
     /*@brief: set status to be true
-    * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+    * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
     */
     const setTrue=()=>{
         setStatus(true);
@@ -58,34 +58,42 @@ const QR = () => {
     }
 
     return(
-        <>
+        <div className={classes.div1}>
         <Grid container alignItems="stretch" spacing={3}>
-            <Typography>Scan QR Code:</Typography>
+        <Grid item xs={12} sm={11} md={10}>
+            <Typography className={classes.title2} variant="h2">Scan QR Code:</Typography>
+            </Grid>
+            <Grid item xs={12} sm={11} md={8}>  
+                {console.log(status)}
+                {!status ? (
+                <>
+                    <Typography className={classes.text2} variant='h5'> Scan Again?  </Typography>
+                    <Button className={classes.button} type="submit" variant="contained" onClick={setTrue}>Yes</Button>  
+                </>
+                ) : null}
+            </Grid> 
         </Grid>
-        {console.log(status)}
-        {!status ? (
-            <>
-            <Typography>Scan Again?</Typography>
-            <Button onClick={setTrue}>Yes</Button>
-            </>
-            
-        ) : null}
+
         <Grid container alignItems="stretch" spacing={3}>
 
-            <QrReader
+        <Grid item xs={12} sm={6} md={7}>
+            {log?(<Typography className={classes.text1}>{JSON.stringify(log)}</Typography>):null}
+            </Grid>
+
+                   
+            <QrReader className={classes.qr}
             
                 delay={300}
-                style={{width: '100%'}}
+                style={{width: '800px', height:'500px'}}
                 onError={handleErrorFile}
                 onScan={handleScanFile}
                 
                 
             />
-            {log?(<Typography>{JSON.stringify(log)}</Typography>):null}
-            
+
         </Grid>
         
-        </>
+        </div>
     )
 }
 

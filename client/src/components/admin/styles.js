@@ -7,6 +7,11 @@ export default makeStyles((theme) => ({
   },
   title:{
     color:'white',
+    marginTop:'10px',
+  },
+  title2:{
+    color:'white',
+    marginTop:'30px',
   },
   button:{
     color:'white',
@@ -41,20 +46,57 @@ export default makeStyles((theme) => ({
             borderColor: 'white',
             color:'white'
         },
-    marginBottom:'10px',
-    backgroundColor:'#72737b'
+    margin:'5px',
+    backgroundColor:'#72737b',
     },
     '& .MuiInputBase-root':{
       color:'#e0e0e0'
     },
+    width:'300px'
   },
   container:{
-    height:'100vh'
+    height:'100%',
+    paddingBottom:'50px',
+    marginTop:'30px',
+    minHeight:'100vh'
   },
   appbar:{
-    width:'500px',
-    backgroundColor:'#555760'
+    width:'380px',
+    backgroundColor:'#555760',
+    marginTop:'20px',
+    borderRadius:'5px'
+  },
+  card:{
+    backgroundColor: '#555760',
+  },
+  text:{
+    color:'white'
+  },
+  filterButton:{
+    width:'50px',
+    margin:'5px',
+    marginTop:'7px'
+  },
+  box:{
+    marginTop:'30px'
+  },
+  divider:{
+    backgroundColor:'lightGrey',
+    marginBottom:'30px',
+    marginTop:'70px',
+  },
+  div1:{
+    height:'200vh'
+  },
+  text1:{
+    overflowWrap:'break-word',
+    color:'white'
+  },
+  text2:{
+    width:'200px',
+    color:'white'
   }
+
 
 
 
