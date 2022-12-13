@@ -56,7 +56,7 @@ export default makeStyles(() => ({
       divider:{
         backgroundColor:'lightGrey',
         marginBottom:'30px',
-        marginTop:'100px',
+        marginTop:'70px',
       },
       label1:{
         marginLeft:'70px',

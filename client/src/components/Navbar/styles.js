@@ -28,7 +28,7 @@ export default makeStyles((theme) => ({
     // border: '1px solid red',
     marginLeft: '3vw',
     margin: '2%',
-    height: '6vh',
+    height: '8vh',
     width: 'auto',
     maxHeight:'80px'
   },
@@ -36,7 +36,7 @@ export default makeStyles((theme) => ({
     // border: '1px solid red',
     padding: "5%",
     color: 'white',
-    fontSize:'1.2em',
+    fontSize:'1.5em',
     textDecoration:'none',
     overflow:'hidden',
     whiteSpace:'nowrap'
@@ -82,7 +82,7 @@ export default makeStyles((theme) => ({
     '&:hover':{
       color:'#4caf50',
     },
-    fontSize:'17px',
+    fontSize:'13px',
   },
   logout: {
     "&.MuiButton-outlined":{

@@ -31,13 +31,13 @@ const Admin = () => {
     },[])
 
     /*@brief: load transactions page
-    * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+    * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
     */
     const loadTxns=()=>{
         history.push("/transactions");
     }
     /*@brief: load attendance page
-    * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+    * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
     */
     const loadAttendance=()=>{
         history.push("/attendance");

@@ -14,16 +14,16 @@ const classes = useStyles();
     
 
     return(
-        <Card>
-            {log? (<Typography>Post: {log?.postID}</Typography>) : null}
+        <Card className={classes.card}>
+            {log? (<Typography className={classes.text}>Post: {log?.postID}</Typography>) : null}
             
-            <Typography>TxnID: {log.txnID}</Typography>
-            <Typography>UserID : {log.userID}</Typography>
-            <Typography>User Name : {log.userName}</Typography>
-            <Typography>Post Name : {log.postName}</Typography>
-            <Typography>Email : {log.email}</Typography>
-            <Typography>TimeIn : {log.timeIn}</Typography>
-            <Typography>TimeOut : {log.timeOut}</Typography>
+            <Typography className={classes.text}>TxnID: {log.txnID}</Typography>
+            <Typography className={classes.text}>UserID : {log.userID}</Typography>
+            <Typography className={classes.text}>User Name : {log.userName}</Typography>
+            <Typography className={classes.text}>Post Name : {log.postName}</Typography>
+            <Typography className={classes.text}>Email : {log.email}</Typography>
+            <Typography className={classes.text}>TimeIn : {log.timeIn}</Typography>
+            <Typography className={classes.text}>TimeOut : {log.timeOut}</Typography>
             
             
         </Card>

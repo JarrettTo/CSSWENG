@@ -93,7 +93,7 @@ const Home = () => {
                         <img className={classes.image} src={TitleImage} alt="memories" />
                     </Grid>
 
-                    <Grid item xs={12} sm={12} className={classes}>
+                    <Grid item xs={12} sm={12}>
                         <Divider className={classes.divider}></Divider>  
                         
                     </Grid>

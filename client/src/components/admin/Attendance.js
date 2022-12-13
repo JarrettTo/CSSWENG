@@ -3,7 +3,7 @@ import useStyles from './styles';
 
 import Log from './Log';
 import { useState } from "react";
-import { CircularProgress, TextField, Button, Grid, Container, AppBar} from '@material-ui/core';
+import { CircularProgress, TextField, Button, Grid, Container, AppBar, Typography} from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { getLogs, getAttBySearch } from "../../actions/attendance";
 import { useHistory } from "react-router-dom";
@@ -24,7 +24,7 @@ const Attendance = () => {
     },[])
 
     /*@brief: searchAtt
-    * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+    * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
     */
     const searchAtt  = () => {
         if((search.trim()) && (search != '')) {
@@ -44,8 +44,9 @@ const Attendance = () => {
         }
     };
     return(
-        <Grid container alignItems="stretch" spacing={3}>
-            
+        <Grid container className={classes.container} alignItems="stretch" spacing={3}>
+            <Container>
+                <Typography className={classes.title} variant="h2">Attendance Page</Typography>
                 <AppBar position="static" className={classes.appbar}>
                     <form>
                         <TextField className={classes.filter}
@@ -53,19 +54,21 @@ const Attendance = () => {
                                     variant="outlined"
                                     label="Search Event"
                                     onKeyPress={handleKeyPress}
-                                    fullWidth
+                                    size="small"
                                     value={search}
                                     onChange={(e) => setSearch(e.target.value)}
                         />
-                        <Button onClick={searchAtt}  variant='contained' fullWidth>Filter</Button>
+                        <Button className={classes.filterButton} onClick={searchAtt}  variant='contained' >Filter</Button>
                     </form>
                 
                 </AppBar>
+                
+            </Container>
             
-            {console.log(logs)};
+            {console.log(logs)}
             {!logs.length ? <CircularProgress />: (
-            logs.map((log) => (
-                <Grid key={log._id} item xs={12} sm={6}>
+            logs.map((log) =>(
+                <Grid key={log._id} item xs={12} sm={6} md={5}>
                     <Log log={log} />
                 </Grid>
             ))) }
