@@ -74,7 +74,6 @@ const PostDetails = () => {
     } else if (user.result.dlsu) {
       // check if user is dlsu and has filled out required fields for registration
       if (
-        form.payment &&
         form.contactNumber &&
         form.college &&
         form.dlsu_id &&

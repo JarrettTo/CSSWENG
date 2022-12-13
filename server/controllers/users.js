@@ -34,11 +34,13 @@ export const signUp = async (req, res) => {
       claimed: false,
       registeredShows: [],
     });
+    await newUser.save();
     const token = jwt.sign(
       { id: newUser._id, email: newUser.email, isAdmin: newUser.admin },
       "dlsucao",
       { expiresIn: "2h" }
     ); //create jwt token
+
     console.log({ result: newUser, token });
     res.status(200).json({ result: newUser, token });
   } catch (error) {
@@ -117,38 +119,39 @@ export const googleSign = async (req, res) => {
       );
       res.status(200).json({ result: foundUser, token });
     } else {
-      if ("@dlsu.edu.ph".indexOf(email) != -1) {
+        if(email.includes("@dlsu.edu.ph")) {
         //if emaail is a dlsu email, set it to be a dlsu account
-        newUser = await user.create({
-          email: email,
-          password: " ",
-          firstName: firstName,
-          lastName: lastName,
-          id: id,
-          admin: false,
-          dlsu: true,
-          claimed: false,
-          registeredShows: [],
-        });
-      } else {
-        newUser = await user.create({
-          email: email,
-          password: " ",
-          firstName: firstName,
-          lastName: lastName,
-          id: id,
-          admin: false,
-          dlsu: false,
-          claimed: false,
-          registeredShows: [],
-        });
-      }
-      const token = jwt.sign(
-        { id: newUser._id, email: newUser.email, isAdmin: newUser.admin },
-        "dlsucao",
-        { expiresIn: "2h" }
-      );
-      res.status(200).json({ result: newUser, token });
+            newUser = await user.create({
+                email: email,
+                password: " ",
+                firstName: firstName,
+                lastName: lastName,
+                id: id,
+                admin: false,
+                dlsu: true,
+                claimed: false,
+                registeredShows: [],
+            });
+        } else {
+            newUser = await user.create({
+                email: email,
+                password: " ",
+                firstName: firstName,
+                lastName: lastName,
+                id: id,
+                admin: false,
+                dlsu: false,
+                claimed: false,
+                registeredShows: [],
+            });
+        }
+        await newUser.save();
+        const token = jwt.sign(
+            { id: newUser._id, email: newUser.email, isAdmin: newUser.admin },
+            "dlsucao",
+            { expiresIn: "2h" }
+        );
+        res.status(200).json({ result: newUser, token });
     }
   } catch (error) {
     console.log(error);
