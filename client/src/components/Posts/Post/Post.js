@@ -23,7 +23,7 @@ import { useState } from "react";
  * @params: post, setCurrentId
  * post: post data to be rendered
  * setCurrentID: useState setter
- * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
+ * @author: Justin To, Daniel Capinpin, Chelsea Alabanza, and Janielle Enriquez
  */
 const Post = ({ post, setCurrentID }) => {
   const classes = useStyles();

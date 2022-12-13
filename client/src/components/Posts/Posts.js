@@ -1,5 +1,5 @@
 /*@brief: render all posts
- * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
+ * @author: Justin To, Daniel Capinpin, Chelsea Alabanza, and Janielle Enriquez
  */
 import React from "react";
 import { Grid, CircularProgress } from "@material-ui/core";

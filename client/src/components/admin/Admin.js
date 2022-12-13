@@ -10,7 +10,7 @@ import { useHistory } from "react-router-dom";
 import useStyles from "./styles";
 
 /*@brief: Admin Page
- * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
+ * @author: Justin To, Daniel Capinpin, Chelsea Alabanza, and Janielle Enriquez
  */
 const Admin = () => {
   const classes = useStyles();
@@ -33,13 +33,13 @@ const Admin = () => {
   }, []);
 
   /*@brief: load transactions page
-   * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
+   * @author: Justin To, Daniel Capinpin, Chelsea Alabanza, and Janielle Enriquez
    */
   const loadTxns = () => {
     history.push("/transactions");
   };
   /*@brief: load attendance page
-   * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
+   * @author: Justin To, Daniel Capinpin, Chelsea Alabanza, and Janielle Enriquez
    */
   const loadAttendance = () => {
     history.push("/attendance");

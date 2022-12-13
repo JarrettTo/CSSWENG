@@ -55,7 +55,7 @@ const Admin = () => {
   /*@brief: handling of error
    * @params: error
    * error: error found
-   * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
+   * @author: Justin To, Daniel Capinpin, Chelsea Alabanza, and Janielle Enriquez
    */
   const searchTxn = () => {
     if (search.trim() && search != "") {
@@ -71,7 +71,7 @@ const Admin = () => {
   /*@brief: handling of error
    * @params: error
    * error: error found
-   * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
+   * @author: Justin To, Daniel Capinpin, Chelsea Alabanza, and Janielle Enriquez
    */
   const handleKeyPress = (e) => {
     if (e.keyCode === 13) {

@@ -32,7 +32,7 @@ function useQuery() {
 }
 
 /*@brief: Home Page
- * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
+ * @author: Justin To, Daniel Capinpin, Chelsea Alabanza, and Janielle Enriquez
  */
 
 const Home = () => {

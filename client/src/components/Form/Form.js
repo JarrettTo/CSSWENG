@@ -10,7 +10,7 @@ import { updatePost } from "../../actions/posts.js";
  * @params: currentID, setCurrentID
  * currentID: currend ID
  * setCurrentID: useState setter for currentId
- * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
+ * @author: Justin To, Daniel Capinpin, Chelsea Alabanza, and Janielle Enriquez
  */
 const Form = ({ currentID, setCurrentID }) => {
   console.log(currentID);

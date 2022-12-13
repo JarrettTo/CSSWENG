@@ -16,7 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logTime } from "../../actions/attendance";
 import { getTxns } from "../../actions/transactions";
 /*@brief: Render QR Scanner Page
- * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+ * @author: Justin To, Daniel Capinpin, Chelsea Alabanza, and Janielle Enrqiuez
  */
 import useStyles from "./styles";
 
@@ -28,7 +28,7 @@ const QR = () => {
   /*@brief: handling of error
    * @params: error
    * error: error found
-   * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+   * @author: Justin To, Daniel Capinpin, Chelsea Alabanza, and Janielle Enrqiuez
    */
   const classes = useStyles();
 

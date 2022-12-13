@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withTheme } from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
   "@global": {
@@ -74,46 +74,73 @@ export default makeStyles((theme) => ({
     },
     width: "300px",
   },
-  container: {
-    height: "100%",
-    paddingBottom: "50px",
-    marginTop: "30px",
-    minHeight: "100vh",
+  about: {
+    padding: "5rem 3rem 3rem 3rem",
   },
-  appbar: {
-    width: "380px",
-    backgroundColor: "#555760",
-    marginTop: "20px",
-    borderRadius: "5px",
+  row: {
+    display: "flex",
+    justifyContent: "space-around",
   },
-  card: {
-    backgroundColor: "#555760",
+  column: {
+    width: "40%",
   },
-  text: {
-    color: "white",
+  tabs: {
+    display: "flex",
   },
-  filterButton: {
-    width: "50px",
-    margin: "5px",
-    marginTop: "7px",
+  singleTab: {
+    background: "white",
+    marginRight: "10px",
+    cursor: "pointer",
   },
-  box: {
-    marginTop: "30px",
+  STH2: {
+    display: "block",
+    padding: "10px 16px",
+    borderRadius: "4px",
+    color: "#3c3c3c",
+    fontSize: "14px",
+    fontWeight: "600",
   },
-  divider: {
-    backgroundColor: "lightGrey",
-    marginBottom: "30px",
-    marginTop: "70px",
+  aboutImg: {
+    position: "relative",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    backgoundPosition: "center center",
+    height: "600px",
+    width: "100%",
   },
-  div1: {
-    height: "200vh",
+  content: {
+    paddingTop: "1.5rem",
+    paddingBottom: "1.5rem"
   },
-  text1: {
-    overflowWrap: "break-word",
-    color: "white",
+  CH2: {
+    fontSize: "16px",
+    fontWeight: "700",
+    lineHeight: "1.4",
+    marginBottom: "1rem"
   },
-  text2: {
-    width: "200px",
-    color: "white",
+  CP: {
+    paddingBottom: "1rem",
+    fontSize: "16px",
+    lineHeight: "1.8",
+    fontWeight: "400",
+    color: "#999"
   },
+  SCH3: {
+    fontSize: "1.5rem",
+    fontWeight: "700",
+    lineHeight: "1.5",
+    marginBottom: "1rem",
+  },
+  contentRow: {
+    marginTop: "2rem",
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr",
+  },
+  contentColumn: {
+    marginTop:  "30px",
+    marginRight: "20px",
+  },
+  infoWrapH3: {
+    fontSize: 
+  }
 }));

@@ -28,7 +28,7 @@ const initialState = {
   confirmPassword: "",
 };
 /*@brief: Auth Page
- * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+ * @author: Justin To, Daniel Capinpin, Chelsea Alabanza, and Janielle Enrqiuez
  */
 const Auth = () => {
   const classes = useStyles();
@@ -39,7 +39,7 @@ const Auth = () => {
   const history = useHistory();
 
   /*@brief: Handles submit button
-   * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+   * @author: Justin To, Daniel Capinpin, Chelsea Alabanza, and Janielle Enrqiuez
    */
   const handleSubmit = (e) => {
     e.preventDefault();

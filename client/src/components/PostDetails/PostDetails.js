@@ -1,5 +1,5 @@
 /*@brief: contains details of the post as well as registration form
- * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
+ * @author: Justin To, Daniel Capinpin, Chelsea Alabanza, and Janielle Enriquez
  */
 import React, { useEffect } from "react";
 import FileBase from "react-file-base64";

@@ -35,7 +35,7 @@ const Txn = ({ txn }) => {
   const dispatch = useDispatch();
 
   /*@brief: approve transaction
-   * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
+   * @author: Justin To, Daniel Capinpin, Chelsea Alabanza, and Janielle Enriquez
    */
   const approve = () => {
     dispatch(approveTxn(txn._id, selPost));
@@ -43,7 +43,7 @@ const Txn = ({ txn }) => {
   };
 
   /*@brief: decline transaction
-   * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
+   * @author: Justin To, Daniel Capinpin, Chelsea Alabanza, and Janielle Enriquez
    */
   const decline = () => {
     dispatch(declineTxn(txn._id));

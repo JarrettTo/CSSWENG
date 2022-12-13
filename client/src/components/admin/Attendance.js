@@ -16,7 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getLogs, getAttBySearch } from "../../actions/attendance";
 import { useHistory } from "react-router-dom";
 /*@brief: renders all attendance logs
- * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
+ * @author: Justin To, Daniel Capinpin, Chelsea Alabanza, and Janielle Enriquez
  */
 const Attendance = () => {
   const logs = useSelector((state) => state.logs);
@@ -34,7 +34,7 @@ const Attendance = () => {
   }, []);
 
   /*@brief: searchAtt
-   * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
+   * @author: Justin To, Daniel Capinpin, Chelsea Alabanza, and Janielle Enriquez
    */
   const searchAtt = () => {
     if (search.trim() && search != "") {

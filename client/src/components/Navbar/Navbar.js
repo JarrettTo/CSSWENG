@@ -19,7 +19,7 @@ import { useState } from "react";
 import { getPosts } from "../../actions/posts";
 
 /*@brief: Navigation Bar
- * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
+ * @author: Justin To, Daniel Capinpin, Chelsea Alabanza, and Janielle Enriquez
  */
 const theme = createTheme();
 
@@ -58,6 +58,9 @@ const Navbar = () => {
   const scanQr = () => {
     history.push(`/scan`);
   };
+  const about = () => {
+    history.push(`/about`);
+  };
   const refresh = () => {
     history.push(`/`);
     dispatch(getPosts());
@@ -88,9 +91,16 @@ const Navbar = () => {
             <Typography component={Link} to="/" className={classes.home}>
               HOME
             </Typography>
-            <Typography className={classes.home} noWrap>
+            <Typography component={Link} to="/about" className={classes.home} noWrap>
               ABOUT US
             </Typography>
+            {/* <Button
+              // variant="outlined"
+              className={classes.home}
+              color="secondary"
+              onClick={about}>
+                About us
+            </Button> */}
             <Typography className={classes.userName} variant="h6">
               {user?.result.name}
             </Typography>
@@ -108,7 +118,9 @@ const Navbar = () => {
             <Typography component={Link} to="/" className={classes.home}>
               HOME
             </Typography>
-            <Typography className={classes.home}>ABOUT US</Typography>
+            <Typography component={Link} to="/about" className={classes.home} noWrap>
+              ABOUT US
+            </Typography>
             <Button
               variant="outlined"
               component={Link}

@@ -16,6 +16,7 @@ import {
 } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home/Home";
+import About from "./components/About/About";
 import Auth from "./components/Auth/Auth";
 import Admin from "./components/admin/Admin";
 import QR from "./components/admin/QR";
@@ -41,7 +42,7 @@ const logout = () => {
 };
 
 /*@brief: Browser Router
- * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
+ * @author: Justin To, Daniel Capinpin, Chelsea Alabanza, and Janielle Enriquez
  */
 const App = () => {
   const dispatch = useDispatch();
@@ -60,6 +61,7 @@ const App = () => {
             <Route path="/posts" exact component={Home} />
             <Route path="/posts/search" exact component={Home} />
             <Route path="/posts/regposts" exact component={Home} />
+            <Route path="/about" exact component={About} />
             <Route path="/auth" exact component={Auth} />
             <Route path="/posts/:id" component={PostDetails} />
             <Route path="/admin" component={Admin} />
