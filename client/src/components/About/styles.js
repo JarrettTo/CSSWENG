@@ -74,73 +74,10 @@ export default makeStyles((theme) => ({
     },
     width: "300px",
   },
-  about: {
-    padding: "5rem 3rem 3rem 3rem",
-  },
-  row: {
-    display: "flex",
-    justifyContent: "space-around",
-  },
-  column: {
-    width: "40%",
-  },
-  tabs: {
-    display: "flex",
-  },
-  singleTab: {
-    background: "white",
-    marginRight: "10px",
-    cursor: "pointer",
-  },
-  STH2: {
-    display: "block",
-    padding: "10px 16px",
-    borderRadius: "4px",
-    color: "#3c3c3c",
-    fontSize: "14px",
-    fontWeight: "600",
-  },
-  aboutImg: {
-    position: "relative",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
-    backgoundPosition: "center center",
-    height: "600px",
-    width: "100%",
-  },
-  content: {
-    paddingTop: "1.5rem",
-    paddingBottom: "1.5rem"
-  },
-  CH2: {
-    fontSize: "16px",
-    fontWeight: "700",
-    lineHeight: "1.4",
-    marginBottom: "1rem"
-  },
-  CP: {
-    paddingBottom: "1rem",
-    fontSize: "16px",
-    lineHeight: "1.8",
-    fontWeight: "400",
-    color: "#999"
-  },
-  SCH3: {
-    fontSize: "1.5rem",
-    fontWeight: "700",
-    lineHeight: "1.5",
-    marginBottom: "1rem",
-  },
-  contentRow: {
-    marginTop: "2rem",
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr",
-  },
-  contentColumn: {
-    marginTop:  "30px",
-    marginRight: "20px",
-  },
-  infoWrapH3: {
-    fontSize: 
+  headerImg: {
+    width: "1000px",
+    height: "100%",
+    maxWidth: "100%",
   }
+
 }));

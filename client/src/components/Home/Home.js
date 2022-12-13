@@ -272,13 +272,7 @@ const Home = () => {
           </Typography>
           <Typography className={classes.description}>
             {" "}
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            The De La Salle University Culture and Arts Office (CAO) has made its commitment to strengthen the foundation of culture and arts learning in the Lasallian community through both the academic and non-academic approaches for more than two decades (De La Salle University Manila, 2019). There are several groups within CAO that allow students to express and explore their passion and creativity, namely: the La Salle Dance Company Contemporary, the DLSU Harlequin Theatre Guild, the La Salle Dance Company Folk, the La Salle Dance Company Street, the De La Salle Innersoul, the DLSU Green Media Group, the DLSU Chorale, and the Lasallian Youth Orchestra.
           </Typography>
         </Grid>
 
