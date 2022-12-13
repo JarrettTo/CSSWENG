@@ -1,176 +1,236 @@
-import React, {useState, useEffect} from 'react';
-import { Avatar, Button, Paper, Grid, Typography, Container, Divider, CssBaseline } from '@material-ui/core';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
-import useStyles from './styles';
-import { useHistory } from 'react-router-dom';
-import  {GoogleLogin} from '@react-oauth/google';
-import {GoogleOAuthProvider} from '@react-oauth/google';
-import { useDispatch } from 'react-redux';
-import Icon from './icon';
-import Input from './Input';
+import React, { useState, useEffect } from "react";
+import {
+  Avatar,
+  Button,
+  Paper,
+  Grid,
+  Typography,
+  Container,
+  Divider,
+  CssBaseline,
+} from "@material-ui/core";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import useStyles from "./styles";
+import { useHistory } from "react-router-dom";
+import { GoogleLogin } from "@react-oauth/google";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import { useDispatch } from "react-redux";
+import Icon from "./icon";
+import Input from "./Input";
 import jwt_decode from "jwt-decode";
-import {signIn, signUpFunc, googleSign} from "../../actions/auth";
-const initialState = { firstName: '', lastName: '', email: '', id: '', password: '', confirmPassword: '' };
+import { signIn, signUpFunc, googleSign } from "../../actions/auth";
+const initialState = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  id: "",
+  password: "",
+  confirmPassword: "",
+};
 /*@brief: Auth Page
-* @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
-*/
-const Auth=() => {
-    
-    const classes = useStyles();
-    const [form, setForm] = useState(initialState);
-    const [showPassword,setShowPassword]= useState(false);
-    const [signUp,setSignUp]= useState(false);
-    const dispatch = useDispatch();
-    const history= useHistory();
+ * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+ */
+const Auth = () => {
+  const classes = useStyles();
+  const [form, setForm] = useState(initialState);
+  const [showPassword, setShowPassword] = useState(false);
+  const [signUp, setSignUp] = useState(false);
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-    /*@brief: Handles submit button
-    * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
-    */
-    const handleSubmit = (e) =>{
-        e.preventDefault(); 
-        console.log(form);
-        if(signUp){
-            dispatch(signUpFunc(form,history));
-        }else{
-            dispatch(signIn(form,history));
-        }   
+  /*@brief: Handles submit button
+   * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+   */
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(form);
+    if (signUp) {
+      dispatch(signUpFunc(form, history));
+    } else {
+      dispatch(signIn(form, history));
     }
-    useEffect(()=>{
-        if(localStorage.getItem("profile")){
-            history.push('/')
-        }
-    },[])
-
-    /*@brief: Handles showing of password
-    * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
-    */
-    const handleShowPassword = () =>{
-        setShowPassword((prevShowPassword) => !prevShowPassword);
-        
+  };
+  useEffect(() => {
+    if (localStorage.getItem("profile")) {
+      history.push("/");
     }
+  }, []);
 
-    /*@brief: handles changing of text field
-    * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
-    */
-    const handleChange = (e) => {
-        setForm({... form, [e.target.name]: e.target.value});
+  /*@brief: Handles showing of password
+   * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+   */
+  const handleShowPassword = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
+
+  /*@brief: handles changing of text field
+   * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+   */
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  /*@brief: switches mode
+   * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
+   */
+  const switchMode = () => {
+    setSignUp((prev) => !prev);
+    setShowPassword(false);
+  };
+
+  /*@brief: googe sign up/sign in success
+   * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
+   */
+  const googleSuccess = async (res) => {
+    console.log(res);
+    const result = jwt_decode(res.credential);
+    const tokenID = res?.credential;
+    console.log("result:", result);
+    console.log("token:", tokenID);
+    const googleForm = {
+      firstName: result.given_name,
+      lastName: result.family_name,
+      email: result.email,
+      id: result.email,
+      password: "",
+      confirmPassword: "",
     };
 
-    /*@brief: switches mode
-    * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enrqiuez
-    */
-    const switchMode = () => {
-        setSignUp((prev)=>!prev);
-        setShowPassword(false);
+    try {
+      dispatch(googleSign(googleForm, tokenID, history));
+      //redirects us to the homepage
+    } catch (error) {
+      console.log("error");
     }
+  };
 
-    /*@brief: googe sign up/sign in success
-    * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
-    */
-    const googleSuccess = async (res)=>{
-        console.log(res);
-        const result=jwt_decode(res.credential)
-        const tokenID= res?.credential;
-        console.log("result:", result);
-        console.log("token:", tokenID);
-        const googleForm={ firstName: result.given_name, lastName: result.family_name, email: result.email, id: result.email, password: '', confirmPassword: '' };
-        
-        try{
-            dispatch(googleSign(googleForm,tokenID,history));
-                           //redirects us to the homepage
-        } catch(error){
-            console.log("error");
-        }
-    }
+  /*@brief: google log in or sign up failure
+   * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
+   */
+  const googleFailure = (error) => {
+    console.log(error);
+  };
+  return (
+    <Container component="main">
+      <Container className={classes.paper}>
+        <Avatar className={classes.Avatar}>
+          <LockOutlinedIcon></LockOutlinedIcon>
+        </Avatar>
+        <Typography className={classes.title} variant="h5">
+          {signUp ? "Sign Up" : "Sign In"}
+        </Typography>
+        <div className={classes.googleDiv}>
+          <Typography className={classes.note}>
+            {" "}
+            If you have a DLSU Account, please sign in with Google:
+          </Typography>
+          <GoogleOAuthProvider clientId="387249647738-f58tonsbl58g3n75hh3rt3mqs9bkl0r0.apps.googleusercontent.com">
+            <GoogleLogin
+              render={(renderProps) => (
+                <Button
+                  className={classes.googleButton}
+                  color="primary"
+                  fullWidth
+                  onClick={renderProps.onClick}
+                  disabled={renderProps.disabled}
+                  startIcon={<Icon />}
+                  variant="contained"
+                >
+                  Google Sign In
+                </Button>
+              )}
+              onSuccess={googleSuccess}
+              onFailure={googleFailure}
+              cookiePolicy="single_host_origin"
+            />
+          </GoogleOAuthProvider>
+          <Grid container alignItems="center" justifyContent="center">
+            <Grid items>
+              <Divider className={classes.divider}></Divider>
+            </Grid>
+            <Typography className={classes.or}> or </Typography>
+            <Grid items>
+              <Divider className={classes.divider}></Divider>
+            </Grid>
+          </Grid>
+        </div>
+        <form className={classes.form} onSubmit={handleSubmit}>
+          <Grid container spacing={2} className={classes.input}>
+            {signUp ? (
+              <>
+                <Input
+                  name="firstName"
+                  label="First Name"
+                  handleChange={handleChange}
+                  autoFocus
+                  half
+                ></Input>
+                <Input
+                  name="lastName"
+                  label="Last Name"
+                  handleChange={handleChange}
+                  half
+                ></Input>
 
-    /*@brief: google log in or sign up failure
-    * @author: Justin To, Daniel Capinpin, Cara Alabanza, and Janielle Enriquez
-    */
-    const googleFailure =(error)=>{
-        console.log(error);
-    }
-    return(
-        <Container component="main" >
-            <Container className={classes.paper}>
-                <Avatar className={classes.Avatar}>
-                    <LockOutlinedIcon></LockOutlinedIcon>
-                </Avatar>
-                <Typography className={classes.title} variant="h5">{signUp? 'Sign Up':'Sign In'}</Typography>
-                <div className={classes.googleDiv}>
-                <Typography className={classes.note}> If you have a DLSU Account, please sign in with Google:</Typography>
-                    <GoogleOAuthProvider clientId='387249647738-f58tonsbl58g3n75hh3rt3mqs9bkl0r0.apps.googleusercontent.com'>
-                        <GoogleLogin
+                <Input
+                  name="id"
+                  label="ID"
+                  handleChange={handleChange}
+                  type="id"
+                ></Input>
+              </>
+            ) : null}
+            <Input
+              name="email"
+              label="Email"
+              handleChange={handleChange}
+              type="email"
+              fullWidth
+            ></Input>
+            <Input
+              name="password"
+              label="Password"
+              handleChange={handleChange}
+              type={showPassword ? "text" : "password"}
+              handleShowPassword={handleShowPassword}
+            ></Input>
+            {signUp ? (
+              <Input
+                name="confirmPassword"
+                label="Confirm Password"
+                handleChange={handleChange}
+                type={showPassword ? "text" : "password"}
+                handleShowPassword={handleShowPassword}
+                fullWidth
+              ></Input>
+            ) : null}
+          </Grid>
 
-                            render={(renderProps)=>(
-                                <Button 
-                                    className={classes.googleButton} 
-                                    color='primary' 
-                                    fullWidth 
-                                    onClick={renderProps.onClick} 
-                                    disabled = { renderProps.disabled} 
-                                    startIcon={<Icon/>} 
-                                    variant="contained">
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            {signUp ? "Sign Up" : "Sign In"}
+          </Button>
 
-                                Google Sign In</Button>
-                                )
+          <Grid container justifyContent="flex-end">
+            <Grid item>
+              <Button className={classes.button2} onClick={switchMode}>
+                {signUp
+                  ? "Already have an account? Sign In!"
+                  : "Don't have an Account? Sign Up!"}
+              </Button>
+            </Grid>
+          </Grid>
+        </form>
+      </Container>
 
-                            }
-                            onSuccess={googleSuccess}
-                            onFailure={googleFailure}
-                            cookiePolicy="single_host_origin"
-                        />
-                    </GoogleOAuthProvider>
-                    <Grid container alignItems='center' justifyContent='center'>
-                        <Grid items>
-                        <Divider className={classes.divider}></Divider>
-                        </Grid>
-                     <Typography  className={classes.or}> or </Typography>
-                     <Grid items>
-                        <Divider className={classes.divider}></Divider>
-                        </Grid>
-                    </Grid>
-                            
-                    </div>
-                <form className={classes.form} onSubmit={handleSubmit}>
-                    <Grid container spacing={2} className={classes.input}>
-                        {
-                            signUp? (
-                            <>
-                                <Input name="firstName" label="First Name" handleChange={handleChange} autoFocus half></Input>
-                                <Input name="lastName" label="Last Name" handleChange={handleChange}  half></Input>
-                                
-                                <Input name="id" label="ID" handleChange={handleChange}  type="id" ></Input>
-                            </>
-                        ) : null}
-                            <Input name="email" label="Email" handleChange={handleChange} type="email"    fullWidth></Input>
-                            <Input name="password" label="Password" handleChange={handleChange}  type={showPassword ? "text": "password"} handleShowPassword={handleShowPassword} ></Input>
-                        {
-                            signUp? (
-                                <Input name="confirmPassword" label="Confirm Password" handleChange={handleChange}  type={showPassword ? "text": "password"} handleShowPassword={handleShowPassword} fullWidth></Input>  
-                            ) : null
-                        }
-                    </Grid>
-                    
-                    <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>{signUp? 'Sign Up':'Sign In'}</Button>
-                
-                    
-                    <Grid container justifyContent="flex-end">
-                        <Grid item>
-                            <Button className={classes.button2} onClick={switchMode}>
-                                { signUp? 'Already have an account? Sign In!' : 'Don\'t have an Account? Sign Up!'}
-                            </Button>
-                        </Grid>
-                    </Grid>
-                </form>
-
-            </Container>
-
-            <Container className={classes.btmbox}>
-
-            </Container>
-
-        </Container>
-    )
-}
+      <Container className={classes.btmbox}></Container>
+    </Container>
+  );
+};
 
 export default Auth;

@@ -1,114 +1,112 @@
-import { makeStyles } from '@material-ui/core/styles';
-import { deepPurple } from '@material-ui/core/colors';
+import { makeStyles } from "@material-ui/core/styles";
+import { deepPurple } from "@material-ui/core/colors";
 
 export default makeStyles((theme) => ({
   appBar: {
     // marginTop: '2vh',
-    padding: '0 1% 0 1%',
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: 'rgba(5, 43, 0, 1)',
-    height: '10%',
-    fontSize: '100%'
-    
+    padding: "0 1% 0 1%",
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    backgroundColor: "rgba(5, 43, 0, 1)",
+    height: "10%",
+    fontSize: "100%",
   },
   brandContainer: {
     // border: '1px solid red',
-    height: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    width: '40%',
-    fontSize: '100%',
-  
+    height: "100%",
+    display: "flex",
+    alignItems: "center",
+    width: "40%",
+    fontSize: "100%",
   },
   image: {
     // border: '1px solid red',
-    marginLeft: '3vw',
-    margin: '2%',
-    height: '8vh',
-    width: 'auto',
-    maxHeight:'80px'
+    marginLeft: "3vw",
+    margin: "2%",
+    height: "8vh",
+    width: "auto",
+    maxHeight: "80px",
   },
-  typography:{
+  typography: {
     // border: '1px solid red',
     padding: "5%",
-    color: 'white',
-    fontSize:'1.5em',
-    textDecoration:'none',
-    overflow:'hidden',
-    whiteSpace:'nowrap'
+    color: "white",
+    fontSize: "1.5em",
+    textDecoration: "none",
+    overflow: "hidden",
+    whiteSpace: "nowrap",
   },
   toolbar: {
     // border: '1px solid red',
-    height: '100%',
-    marginRight: '5vw',
-    display: 'flex',
-    justifyContent: 'flex-end',
-    width: '29vw',
-    fontSize: '100%'
+    height: "100%",
+    marginRight: "5vw",
+    display: "flex",
+    justifyContent: "flex-end",
+    width: "29vw",
+    fontSize: "100%",
   },
   profile: {
     // border: '1px solid red',
-    height: '85%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: 'auto',
+    height: "85%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "auto",
   },
-  home:{
+  home: {
     // border: '1px solid red',
-    marginRight:'2vw',
-    color:'white',
-    fontSize:'1.1em',
-    textDecoration:'none',
-    '&:hover':{
-      color:'#4caf50'
+    marginRight: "2vw",
+    color: "white",
+    fontSize: "1.1em",
+    textDecoration: "none",
+    "&:hover": {
+      color: "#4caf50",
     },
   },
   userName: {
     // border: '1px solid red',
-    display: 'flex',
-    alignItems: 'center',
-    color:'white'
+    display: "flex",
+    alignItems: "center",
+    color: "white",
   },
   button: {
-    "&.MuiButton-outlined":{
-      border:'2px #4caf50 solid',
-      color: 'white',
+    "&.MuiButton-outlined": {
+      border: "2px #4caf50 solid",
+      color: "white",
     },
-    '&:hover':{
-      color:'#4caf50',
+    "&:hover": {
+      color: "#4caf50",
     },
-    fontSize:'13px',
+    fontSize: "13px",
   },
   logout: {
-    "&.MuiButton-outlined":{
-      border:'2px red solid',
-      color: 'white',
+    "&.MuiButton-outlined": {
+      border: "2px red solid",
+      color: "white",
     },
-    '&:hover':{
-      color:'red',
+    "&:hover": {
+      color: "red",
     },
-    fontSize:'13px',
+    fontSize: "13px",
   },
   purple: {
     color: theme.palette.getContrastText(deepPurple[500]),
     backgroundColor: deepPurple[500],
   },
-  
-  admin:{
-    "&.MuiButton-outlined":{
-      border:'2px #5865f2 solid',
-      color: 'white',
+
+  admin: {
+    "&.MuiButton-outlined": {
+      border: "2px #5865f2 solid",
+      color: "white",
     },
-    '&:hover':{
-      color:'#5865f2',
+    "&:hover": {
+      color: "#5865f2",
     },
-    fontSize:'13px',
-    lineHeight:'20px',
-    marginLeft:'10px'
+    fontSize: "13px",
+    lineHeight: "20px",
+    marginLeft: "10px",
   },
 }));

@@ -1,31 +1,27 @@
-import { makeStyles } from '@material-ui/core/styles';
-import bg from '../src/images/bg.png';
+import { makeStyles } from "@material-ui/core/styles";
+import bg from "../src/images/bg.png";
 
 export default makeStyles(() => ({
-  
-  
-  paperContainer:{
+  paperContainer: {
     // border: '1px solid red',
-    height: '100%',
-    minWidth:'500px',
-    width:'100vw',
-    boxSizing: 'border-box',
-    margin: '0',
-    padding: '0',
-    borderRadius: '0',
+    height: "100%",
+    minWidth: "500px",
+    width: "100vw",
+    boxSizing: "border-box",
+    margin: "0",
+    padding: "0",
+    borderRadius: "0",
     // marginBottom: '-3%',
     // marginRight: '-5%',
     backgroundImage: `url(${bg})`,
-    backgroundSize:'cover',
-    backgroundRepeat: 'noRepeat',
-    backgroundPosition: 'center center',
+    backgroundSize: "cover",
+    backgroundRepeat: "noRepeat",
+    backgroundPosition: "center center",
     // overflow: 'overlay'
   },
-  body:{
-    border: '1px solid rgba(0, 0, 0, 0)',
-    width: '100vw',
-    padding: '0',
+  body: {
+    border: "1px solid rgba(0, 0, 0, 0)",
+    width: "100vw",
+    padding: "0",
   },
-  
-  
 }));
