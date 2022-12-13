@@ -2,7 +2,7 @@
  * @author: Justin To and Daniel Capinpin
  */
 import * as api from "../api";
-import { LOG, GET_LOGS, FETCH_LOGS_BY_SEARCH } from "../constants/actiontypes";
+import { LOG, GET_LOGS } from "../constants/actiontypes";
 
 /*@brief: log time to attendance
  * @params: form
