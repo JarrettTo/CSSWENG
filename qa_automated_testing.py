@@ -122,27 +122,47 @@ def edit_test(url, title="", creator="", description="", date="", endDate="", ex
         driver.find_element(By.XPATH, '//*[@id="root"]/div/div[1]/main/div[1]/form/button').click()
         time.sleep(3) # Wait for loading
         # 5 | click | XPATH
-        driver.find_element(By.XPATH, '//*[@id="root"]/div/div[1]/div/div[2]/div[1]/div/div/div/div/div[1]/button').click()
+        driver.find_element(By.XPATH, '//*[@id="root"]/div/div[1]/div/div[2]/div[1]/div/div/div[1]/div/div[1]/button').click()
         # 6 | type | name=title | string
-        driver.find_element(By.NAME, "title").send_keys(title)
+        if title != "":
+            driver.find_element(By.NAME, "title").send_keys(Keys.CONTROL + "a" + Keys.BACK_SPACE)
+            driver.find_element(By.NAME, "title").send_keys(title)
         # 6 | type | name=creator | string
-        driver.find_element(By.NAME, "creator").send_keys(creator)
+        if creator != "":
+            driver.find_element(By.NAME, "creator").send_keys(Keys.CONTROL + "a" + Keys.BACK_SPACE)
+            driver.find_element(By.NAME, "creator").send_keys(creator)
         # 7 | type | XPATH
-        driver.find_element(By.XPATH, '//*[@id="root"]/div/div[1]/div/div[2]/div[2]/header/div[3]/form/div[6]/div/textarea[1]').send_keys(description)
+        if description != "":
+            driver.find_element(By.XPATH, '//*[@id="root"]/div/div[1]/div/div[2]/div[2]/header/div[3]/form/div[6]/div/textarea[1]').send_keys(Keys.CONTROL + "a" + Keys.BACK_SPACE)
+            driver.find_element(By.XPATH, '//*[@id="root"]/div/div[1]/div/div[2]/div[2]/header/div[3]/form/div[6]/div/textarea[1]').send_keys(description)
         # 8 | type | name=date | string
-        driver.find_element(By.NAME, "date").send_keys(date[:10], Keys.TAB, date[11:])
+        if date != "":
+            driver.find_element(By.NAME, "date").send_keys(Keys.CONTROL + "a" + Keys.BACK_SPACE)
+            driver.find_element(By.NAME, "date").send_keys(date[:10], Keys.TAB, date[11:])
         # 9 | type | name=endDate | string
-        driver.find_element(By.NAME, "endDate").send_keys(endDate[:10], Keys.TAB, endDate[11:])
+        if endDate != "":
+            driver.find_element(By.NAME, "endDate").send_keys(Keys.CONTROL + "a" + Keys.BACK_SPACE)
+            driver.find_element(By.NAME, "endDate").send_keys(endDate[:10], Keys.TAB, endDate[11:])
         # 10 | type | name=expiryDate | string
-        driver.find_element(By.NAME, "expiryDate").send_keys(expiryDate[:10], Keys.TAB, expiryDate[11:])
+        if expiryDate != "":
+            driver.find_element(By.NAME, "expiryDate").send_keys(Keys.CONTROL + "a" + Keys.BACK_SPACE)
+            driver.find_element(By.NAME, "expiryDate").send_keys(expiryDate[:10], Keys.TAB, expiryDate[11:])
         # 11 | type | name=venue | string
-        driver.find_element(By.NAME, "venue").send_keys(venue)
+        if venue != "":
+            driver.find_element(By.NAME, "venue").send_keys(Keys.CONTROL + "a" + Keys.BACK_SPACE)
+            driver.find_element(By.NAME, "venue").send_keys(venue)
         # 12 | type | name=maxAttendees | int
-        driver.find_element(By.NAME, "maxAttendees").send_keys(maxAttendees)
+        if maxAttendees != "":
+            driver.find_element(By.NAME, "maxAttendees").send_keys(Keys.CONTROL + "a" + Keys.BACK_SPACE)
+            driver.find_element(By.NAME, "maxAttendees").send_keys(maxAttendees)
         # 13 | type | name=tags | test, string
-        driver.find_element(By.NAME, "tags").send_keys(tags)
+        if tags != "":
+            driver.find_element(By.NAME, "tags").send_keys(Keys.CONTROL + "a" + Keys.BACK_SPACE)
+            driver.find_element(By.NAME, "tags").send_keys(tags)
         # 14 | type | name=price | in5
-        driver.find_element(By.NAME, "price").send_keys(price)
+        if price != "":
+            driver.find_element(By.NAME, "price").send_keys(Keys.CONTROL + "a" + Keys.BACK_SPACE)
+            driver.find_element(By.NAME, "price").send_keys(price)
         # 13 | click | XPATH
         driver.find_element(By.XPATH, '//*[@id="root"]/div/div[1]/div/div[2]/div[2]/header/div[3]/form/button[1]').click() # Submit
         time.sleep(3) # Observe
@@ -214,27 +234,29 @@ login_test(url, "user@gmail.com", "password") # Valid Login
 addEvent_test(url, "Test Title", "DLSU", "Test description test description. Test description!", "08-11-2023T16:00", "08-11-2023T17:00", "08-11-2023T13:00", "DLSU", "50", "test, tag", "200") # Expected values
 addEvent_test(url, "The Sound of Music", "Howard Lindsay and Russel Crouse", "The Sound of Music is a musical with music by Richard Rodgers, lyrics by Oscar Hammerstein II, and a book by Howard Lindsay and Russel Crouse. It is based on the 1949 memoir of Maria von Trapp, The Story of the Trapp Family Singers.", "08-11-2023T16:00", "08-11-2023T17:00", "08-11-2023T13:00", "Theater", "50", "broadway", "200") # Sound of Music
 addEvent_test(url, "32!!#$``234/1234/", "!!!@#1231324``` `23/", "12349-DASDJ203I09~231`/", "FDWF03240132/41`2~~", "FDWF03240132/41`2~~", "FDWF03240132/41`2~~", "R032RI-1", "DSAF`/.!", "R032RI-1", "DSAF`/.!") # Unexpected values
-addEvent_test(url, "", "DLSU", "Test description test description. Test description!", "2023-11-08T16:00", "2023-11-08T17:00", "2023-11-08T13:00", "DLSU", 50, "test, tag", 200) # No Title
-addEvent_test(url, "Test Title", "", "Test description test description. Test description!", "2023-11-08T16:00", "2023-11-08T17:00", "2023-11-08T13:00", "DLSU", 50, "test, tag", 200) # No creator
-addEvent_test(url, "Test Title", "DLSU", "", "2023-11-08T16:00", "2023-11-08T17:00", "2023-11-08T13:00", "DLSU", 50, "test, tag", 200) # No Description
-addEvent_test(url, "Test Title", "DLSU", "Test description test description. Test description!", "", "2023-11-08T17:00", "2023-11-08T13:00", "DLSU", 50, "test, tag", 200) # No Start Date
-addEvent_test(url, "Test Title", "DLSU", "Test description test description. Test description!", "2023-11-08T16:00", "", "2023-11-08T13:00", "DLSU", 50, "test, tag", 200) # No End Date
-addEvent_test(url, "Test Title", "DLSU", "Test description test description. Test description!", "2023-11-08T16:00", "2023-11-08T17:00", "", "DLSU", 50, "test, tag", 200) # No Expiry Date
-addEvent_test(url, "Test Title", "DLSU", "Test description test description. Test description!", "2023-11-08T16:00", "2023-11-08T17:00", "2023-11-08T13:00", "DLSU", 50, "test, tag", "") # No Max Attendees
-addEvent_test(url, "Test Title", "DLSU", "Test description test description. Test description!", "2023-11-08T16:00", "2023-11-08T17:00", "2023-11-08T13:00", "DLSU", 50, "", 200) # No Tags
-addEvent_test(url, "Test Title", "DLSU", "Test description test description. Test description!", "2023-11-08T16:00", "2023-11-08T17:00", "2023-11-08T13:00", "DLSU", "", "test, tag", 200) # No Price
+addEvent_test(url, "", "DLSU", "Test description test description. Test description!", "08-11-2023T16:00", "08-11-2023T17:00", "08-11-2023T13:00", "DLSU", 50, "test, tag", 200) # No Title
+addEvent_test(url, "Test Title", "", "Test description test description. Test description!", "08-11-2023T16:00", "08-11-2023T17:00", "08-11-2023T13:00", "DLSU", 50, "test, tag", 200) # No creator
+addEvent_test(url, "Test Title", "DLSU", "", "08-11-2023T16:00", "08-11-2023T17:00", "08-11-2023T13:00", "DLSU", 50, "test, tag", 200) # No Description
+addEvent_test(url, "Test Title", "DLSU", "Test description test description. Test description!", "", "08-11-2023T17:00", "08-11-2023T13:00", "DLSU", 50, "test, tag", 200) # No Start Date
+addEvent_test(url, "Test Title", "DLSU", "Test description test description. Test description!", "08-11-2023T16:00", "", "08-11-2023T13:00", "DLSU", 50, "test, tag", 200) # No End Date
+addEvent_test(url, "Test Title", "DLSU", "Test description test description. Test description!", "08-11-2023T16:00", "08-11-2023T17:00", "", "DLSU", 50, "test, tag", 200) # No Expiry Date
+addEvent_test(url, "Test Title", "DLSU", "Test description test description. Test description!", "08-11-2023T16:00", "08-11-2023T17:00", "08-11-2023T13:00", "", 50, "test, tag", 200) # No Venue
+addEvent_test(url, "Test Title", "DLSU", "Test description test description. Test description!", "08-11-2023T16:00", "08-11-2023T17:00", "08-11-2023T13:00", "DLSU", 50, "test, tag", "") # No Max Attendees
+addEvent_test(url, "Test Title", "DLSU", "Test description test description. Test description!", "08-11-2023T16:00", "08-11-2023T17:00", "08-11-2023T13:00", "DLSU", 50, "", 200) # No Tags
+addEvent_test(url, "Test Title", "DLSU", "Test description test description. Test description!", "08-11-2023T16:00", "08-11-2023T17:00", "08-11-2023T13:00", "DLSU", "", "test, tag", 200) # No Price
 
 # Edit Shows Tests
-edit_test(url, creator=(Keys.CONTROL + "a", "TEST")) # Edit Creator
-edit_test(url, title=(Keys.CONTROL + "a", "Test Title")) # Edit Title
-edit_test(url, description=(Keys.CONTROL + "a", "Test description test description. Test description!!")) # Edit Description
-edit_test(url, date=(Keys.CONTROL + "a", "2023-11-08T16:01")) # Edit Start Time
-edit_test(url, endDate=(Keys.CONTROL + "a", "2023-11-08T17:01")) # Edit End Time
-edit_test(url, expiryDate=(Keys.CONTROL + "a", "2023-11-08T13:01")) # Edit Expiry Time
-edit_test(url, maxAttendees=(Keys.CONTROL + "a", 200)) # Edit Max Attendees
-edit_test(url, tags=((Keys.CONTROL + "a", "testTag"))) # Edit Tag
-edit_test(url, maxAttendees=(Keys.CONTROL + "a", "DSAF'/'!")) # Edit to Inavlid Max Attendees
-edit_test(url, price=(Keys.CONTROL + "a", "R032RI-1")) # Edit to Inavlid Price
+edit_test(url, creator="TEST") # Edit Creator
+edit_test(url, title="Test TITLE") # Edit Title
+edit_test(url, description="Test description test description. Test description!!") # Edit Description
+edit_test(url, date="08-11-2023T16:01") # Edit Start Time
+edit_test(url, endDate="08-11-2023T17:01") # Edit End Time
+edit_test(url, expiryDate="08-11-2023T13:01") # Edit Expiry Time
+edit_test(url, maxAttendees=200) # Edit Max Attendees
+edit_test(url, tags="testTag") # Edit Tag
+edit_test(url, maxAttendees="R032RI-1") # Edit to Inavlid Max Attendees
+edit_test(url, price="DSAF'/'!") # Edit to Inavlid Price
+
 # Delete
 delete_test(url)
 
