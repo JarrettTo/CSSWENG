@@ -11,7 +11,7 @@ import { Container, Grid} from '@material-ui/core';
 import { useParams, useHistory } from 'react-router-dom';
 import { getPosts, registerPost, togglePost } from "../../actions/posts";
 import { getTxn, getTxns } from "../../actions/transactions";
-
+import moment from 'moment';
 
 
 const PostDetails = () => {
@@ -76,12 +76,12 @@ const PostDetails = () => {
                 dispatch(registerPost(id, form));
                 
                 txn?txn.status=null: null
-                setComplete(false)
+                setComplete(false);
             
             }
         
             else{
-                setComplete(true)
+                setComplete(true);
             }
         }
         else{               //check if non dlsu user filled out required fields
@@ -151,7 +151,7 @@ const PostDetails = () => {
                                 <Container className={classes.price}>
                                     <Typography className={classes.bottomValue}>PHP {selPost?.price}.00</Typography>
                                     <Typography className={classes.bottomTitle}>TICKET PRICE</Typography>
-                                    <Typography className={classes.bottomValue}>{selPost?.status}</Typography>
+                                    <Typography className={classes.bottomValue}>{selPost?.status=="Open"? "Open": "Closed"}</Typography>
                                     <Typography className={classes.bottomTitle}>SHOW STATUS</Typography>
                                 </Container>
                                 <Container className={classes.attendees}>
@@ -162,9 +162,9 @@ const PostDetails = () => {
                                     {/* <Typography className={classes.bottomTitle}>ATTENDEES</Typography> */}
                                 </Container>
                                 <Container className={classes.date}>
-                                    <Typography className={classes.bottomValue}>{selPost?.date.replace('Z', '')}</Typography>
+                                    <Typography className={classes.bottomValue}>{moment(selPost?.date).local().format('YYYY-MM-DD HH:mm')}</Typography>
                                     <Typography className={classes.bottomTitle}>DATE</Typography>
-                                    <Typography className={classes.bottomValue}>{selPost?.expiryDate.replace('Z', '')}</Typography>
+                                    <Typography className={classes.bottomValue}>{moment(selPost?.expiryDate).local().format('YYYY-MM-DD HH:mm')}</Typography>
                                     <Typography className={classes.bottomTitle}>DEADLINE OF REGISTRATION</Typography>
                                 </Container>
                             </Container>
