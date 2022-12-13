@@ -19,7 +19,7 @@ import mongoose from 'mongoose';
 export const getTxns = async (req, res)=>{      
     try{
         const txns= await form.find();   //looks for all messages with the same model as models/registerform.js in the database 
-        console.log("it ran")
+        
         res.status(200).json(txns); 
     } catch (error){
         res.status(404).json({message:error.message});
@@ -78,7 +78,6 @@ export const approveTxn = async (req, res)=>{
     try{
         const txn= await form.findById(id).sort({date: -1});                        //looks for transaction from the database with certain txn id
         txn.status="Accepted";
-        console.log("Here");
         const foundPost=await PostMessage.findById(txn.postID);
         const foundUser = await user.findById(txn.userID);
         console.log(foundUser)

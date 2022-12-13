@@ -29,11 +29,11 @@ export const logTime = (form) => async (dispatch)=> {
 */
 export const getAttBySearch = (searchQuery) => async (dispatch) => {
     try {
-      console.log("getting attendance")
+      console.log("getting attendance");
       const { data } = await api.fetchAttBySearch(searchQuery);
-      console.log("logging attendance")
+      console.log("logging attendance");
       console.log(data);
-      console.log("logging attendance finished, starting dispatch")
+      console.log("logging attendance finished, starting dispatch");
       dispatch({ type: GET_LOGS,  payload:data});
     } catch (error) {
       console.log(error);
