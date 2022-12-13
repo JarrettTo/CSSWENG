@@ -11,6 +11,7 @@ import { Container, Grid } from "@material-ui/core";
 import { useParams, useHistory } from "react-router-dom";
 import { getPosts, registerPost, togglePost } from "../../actions/posts";
 import { getTxn, getTxns } from "../../actions/transactions";
+import moment from "moment";
 
 const PostDetails = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
@@ -161,7 +162,7 @@ const PostDetails = () => {
                       TICKET PRICE
                     </Typography>
                     <Typography className={classes.bottomValue}>
-                      {selPost?.status}
+                      {selPost?.status == "Open" ? "Open" : "Closed"}
                     </Typography>
                     <Typography className={classes.bottomTitle}>
                       SHOW STATUS
@@ -184,13 +185,15 @@ const PostDetails = () => {
                   </Container>
                   <Container className={classes.date}>
                     <Typography className={classes.bottomValue}>
-                      {selPost?.date.replace("Z", "")}
+                      {moment(selPost?.date).local().format("YYYY-MM-DD HH:mm")}
                     </Typography>
                     <Typography className={classes.bottomTitle}>
                       DATE
                     </Typography>
                     <Typography className={classes.bottomValue}>
-                      {selPost?.expiryDate.replace("Z", "")}
+                      {moment(selPost?.expiryDate)
+                        .local()
+                        .format("YYYY-MM-DD HH:mm")}
                     </Typography>
                     <Typography className={classes.bottomTitle}>
                       DEADLINE OF REGISTRATION
