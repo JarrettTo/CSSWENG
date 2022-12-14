@@ -17,6 +17,9 @@ import {
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home/Home";
 import About from "./components/About/About";
+import Music from "./components/About/Music";
+import Dance from "./components/About/Dance";
+import Theater from "./components/About/Theater";
 import Auth from "./components/Auth/Auth";
 import Admin from "./components/admin/Admin";
 import QR from "./components/admin/QR";
@@ -62,6 +65,9 @@ const App = () => {
             <Route path="/posts/search" exact component={Home} />
             <Route path="/posts/regposts" exact component={Home} />
             <Route path="/about" exact component={About} />
+            <Route path="/about/music" exact component={Music} />
+            <Route path="/about/dance" exact component={Dance} />
+            <Route path="/about/theater-events" exact component={Theater} />
             <Route path="/auth" exact component={Auth} />
             <Route path="/posts/:id" component={PostDetails} />
             <Route path="/admin" component={Admin} />

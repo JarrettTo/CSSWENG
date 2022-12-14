@@ -58,9 +58,6 @@ const Navbar = () => {
   const scanQr = () => {
     history.push(`/scan`);
   };
-  const about = () => {
-    history.push(`/about`);
-  };
   const refresh = () => {
     history.push(`/`);
     dispatch(getPosts());
