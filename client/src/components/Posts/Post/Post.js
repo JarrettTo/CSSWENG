@@ -84,7 +84,7 @@ const Post = ({ post, setCurrentID }) => {
       ) : null}
 
       <CardActions className={classes.cardActions}>
-        {user.result.admin && (
+        {user?.result.admin && (
           <Button
             size="small"
             className={classes.button2}
