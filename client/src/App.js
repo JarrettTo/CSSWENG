@@ -1,5 +1,5 @@
 /*@brief: Brwoser router that renders pages based on URL
- * @author: Justin To, Daniel Capinpin, Cara Alabanza, Janielle Enriquez
+ * @author: Justin To, Daniel Capinpin, Chelsea Alabanza, Janielle Enriquez
  */
 
 import React, { useEffect } from "react";
