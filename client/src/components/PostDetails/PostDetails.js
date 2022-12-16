@@ -357,7 +357,7 @@ const PostDetails = () => {
                     user?.result?.dlsu &&
                     !user?.result?.claimed ? (
                       <Button
-                        className={classes.buttonSubmit}
+                        className={classes.btnSubmit}
                         variant="container"
                         color="primary"
                         size="large"
@@ -376,7 +376,7 @@ const PostDetails = () => {
                 selPost?.acceptedUsers?.find((e) => e == user.result._id)) &&
               selPost?.status == "Open" ? (
                 <Button
-                  className={classes.buttonSubmit}
+                  className={classes.unregister}
                   variant="container"
                   color="primary"
                   size="large"
@@ -393,6 +393,7 @@ const PostDetails = () => {
                 variant="container"
                 color="primary"
                 size="large"
+                className={classes.close}
                 onClick={toggleShow}
               >
                 {selPost?.status == "Open" ? "Close Show" : "Open Show"}

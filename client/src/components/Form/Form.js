@@ -140,6 +140,7 @@ const Form = ({ currentID, setCurrentID }) => {
         <TextField
           className={classes.input}
           error={error && !postData.date}
+          InputLabelProps={{ shrink: true }}
           name="date"
           variant="outlined"
           label="Start Date"
@@ -153,6 +154,7 @@ const Form = ({ currentID, setCurrentID }) => {
         <TextField
           className={classes.input}
           error={error && !postData.endDate}
+          InputLabelProps={{ shrink: true }}
           name="endDate"
           variant="outlined"
           label="End Date"
@@ -166,6 +168,7 @@ const Form = ({ currentID, setCurrentID }) => {
         <TextField
           className={classes.input}
           error={error && !postData.endDate}
+          InputLabelProps={{ shrink: true }}
           name="expiryDate"
           variant="outlined"
           label="Expiry Date"
